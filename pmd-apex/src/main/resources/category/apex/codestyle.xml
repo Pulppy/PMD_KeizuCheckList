@@ -9,21 +9,7 @@
 Rules which enforce a specific coding style.
     </description>
 
-    <rule name="ClassNamingConventions"
-          since="5.5.0"
-          message="Viết hoa Tên Class"
-          class="net.sourceforge.pmd.lang.apex.rule.codestyle.ClassNamingConventionsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#classnamingconventions">
-        <description>
-Class names should always begin with an upper case character.
-        </description>
-        <priority>1</priority>
-        <example>
-<![CDATA[
-public class Foo {}
-]]>
-        </example>
-    </rule>
+    
 
     <rule name="IfElseStmtsMustUseBraces"
           language="apex"
@@ -95,6 +81,8 @@ if (foo) {  // preferred approach
         </example>
     </rule>
 
+    
+
     <rule name="ForLoopsMustUseBraces"
           language="apex"
           since="5.6.0"
@@ -130,21 +118,55 @@ for (int i = 0; i < 42; i++) { // preferred approach
         </example>
     </rule>
 
-    <rule name="MethodNamingConventions"
-          since="5.5.0"
-          message="Method name does not begin with a lower case character."
-          class="net.sourceforge.pmd.lang.apex.rule.codestyle.MethodNamingConventionsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#methodnamingconventions">
+    
+
+    <rule name="LocalVariableNamingConventions"
+          since="6.15.0"
+          message="The {0} name ''{1}'' doesn''t match ''{2}''"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.LocalVariableNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#localvariablenamingconventions">
         <description>
-Method names should always begin with a lower case character, and should not contain underscores.
+            Configurable naming conventions for local variable declarations.
+            This rule reports variable declarations which do not match the regex that applies to their
+            specific kind (e.g. local variable, or final local variable). Each regex can be configured through
+            properties.
+
+            By default this rule uses the standard Apex naming convention (Camel case).
         </description>
         <priority>1</priority>
         <example>
 <![CDATA[
 public class Foo {
-    public void fooStuff() {
+    public Foo() {
+        Integer localVariable; // This is in camel case, so it's ok
+
+        Integer LOCAL_VARIABLE; // This will be reported unless you change the regex
     }
 }
+]]>
+        </example>
+    </rule>
+
+    <rule name="MethodNamingConventions"
+          since="5.5.0"
+          message="The {0} name ''{1}'' doesn''t match ''{2}''"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.MethodNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#methodnamingconventions">
+        <description>
+            Configurable naming conventions for method declarations. This rule reports
+            method declarations which do not match the regex that applies to their
+            specific kind (e.g. static method, or test method). Each regex can be
+            configured through properties.
+
+            By default this rule uses the standard Apex naming convention (Camel case).
+        </description>
+        <priority>1</priority>
+        <example>
+<![CDATA[
+public class Foo {
+    public void instanceMethod() { } // This is in camel case, so it's ok
+
+    public void INSTANCE_METHOD() { } // This will be reported unless you change the regex
 ]]>
         </example>
     </rule>
@@ -190,26 +212,41 @@ Integer b;
         </example>
     </rule>
 
-    <rule name="VariableNamingConventions"
-          since="5.5.0"
-          message="{0} variable {1} should begin with {2}"
-          class="net.sourceforge.pmd.lang.apex.rule.codestyle.VariableNamingConventionsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#variablenamingconventions">
+    <rule name="PropertyNamingConventions"
+          since="6.15.0"
+          message="The {0} name ''{1}'' doesn''t match ''{2}''"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.PropertyNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#propertynamingconventions">
         <description>
-A variable naming conventions rule - customize this to your liking.  Currently, it
-checks for final variables that should be fully capitalized and non-final variables
-that should not include underscores.
+            Configurable naming conventions for property declarations. This rule reports
+            property declarations which do not match the regex that applies to their
+            specific kind (e.g. static property, or instance property). Each regex can be
+            configured through properties.
+
+            By default this rule uses the standard Apex naming convention (Camel case).
         </description>
         <priority>1</priority>
         <example>
 <![CDATA[
 public class Foo {
-    public static final Integer MY_NUM = 0;
-    public String myTest = '';
-    DataModule dmTest = new DataModule();
+    public Integer instanceProperty { get; set; } // This is in camel case, so it's ok
+
+    public Integer INSTANCE_PROPERTY { get; set; } // This will be reported unless you change the regex
 }
 ]]>
         </example>
+    </rule>
+
+    <rule name="Check-List-General-1"
+          since="5.5.0"
+          deprecated="true"
+          message="[General-1] Ten method phai viet thuong , tu chu thu 2 tro di phai viet hoa chu dau tien "
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.VariableNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#variablenamingconventions">
+        <description>
+
+        </description>
+        <priority>5</priority>
     </rule>
 
     <rule name="WhileLoopsMustUseBraces"
@@ -244,5 +281,283 @@ while (true) {  // preferred approach
 ]]>
         </example>
     </rule>
+    
+    
+    <rule name="Check-List-TestClass-6"
+		  since="5.6.0"
+          message="[TestClass-6] Ten testClass phai la dang ten controler + Test. Truong hop trong tai lieu co ghi khac thi confirm lai voi nguoi viet tai lieu"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass06">
+          <description>
+          </description>
+            <priority>5</priority>
 
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-TestClass-7"
+		  since="5.6.0"
+          message="[TestClass-7] Ten method test phai bat dau va chu test + Method muon test. 
+					Vidu: testSubString()"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass07">
+          <description>
+          </description>
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-Trigger-2"
+		  since="5.6.0"
+          message="[Trigger-2] Khi xu ly trigger thi phai tao cac lop handler de xe ly, trong file trigger chi xu ly su kien va delegate cho cac lop handler thuc hien"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.Trigger02">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-VisualPage-6"
+		  since="5.6.0"
+          message="[ViusalPage-6] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage06">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-VisualPage-18"
+		  since="5.6.0"
+          message="[VisualPage-18] Nhung method nao return la Pagereference thi phai co try cacth"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage18">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+     <rule name="Check-List-General-2"
+		  since="5.6.0"
+          message="[General-2] Trong xu ly, nhung method hoac funtion public phai co try catch de xu ly loi, Neu tai lieu ko ghi thi confirm lai giup."
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General02">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-5"
+		  since="5.6.0"
+          message="[General-5] Truong hop la class su dung trong batch thi đat ten theo kieu: danh từ ＋  Batch"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General05">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-6"
+		  since="5.6.0"
+          message="[General-6] Truong hop la class su dung trong trigger thi đat ten theo kieu : ten Object (xoa chu __c)　＋　Trigger"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General06">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-Geneneral-11"
+		  since="5.6.0"
+          message="[General-11] Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
+					Vi du: public final Integer COLUMN_DATE = 0; //実績日付 "
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General11">
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-12"
+		  since="5.6.0"
+          message="[General-12] Khi su dung check size of list thi phai su dung ham isEmpty()
+					if (membershipHistoryList.size() > 0) -> if (!membershipHistoryList.isEmpty())"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General12">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+     <rule name="Check-List-General-15"
+		  since="5.6.0"
+          message="Khong duoc thiet lap bien class, bien  instance o trạng thai public, neu thiet lap thi phai xac nhan voi PL"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General15">
+          <description>
+          Use Private Variable
+          </description>
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-18"
+		  since="5.6.0"
+          message="[General-18] Ngat tung parameter bang dau phay,  sau do phai la 1 space 1byte"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General18">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-19"
+		  since="5.6.0"
+          message="[General-19] Khong khai bao bien toan cuc ko can thiet, uu tien khai bao trong method"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General19">
+          <description>
+          </description>
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-22"
+		  since="5.6.0"
+          message="[General-22] Truong hop For Index - Chi su dung ten bien 1 ky tu trong vong lap for 
+					Truong hop For Object - Phai đat ten bien co y nghaa"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General22">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-23"
+		  since="5.6.0"
+          message="[General-23] Trong vong for va while neu la hang so thi khong đuoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General23">
+          <description>
+          Don't use constant to declare number of loop
+          </description>
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-24"
+		  since="5.6.0"
+          message="[General-24] Trong xu ly loop, khong su dung xu ly @future"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General24">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-33"
+		  since="5.6.0"
+          message="[General-33] Nhung source comment ko can thiet thi phai delete sau khi hoan thanh coding, ke ca cac dong system.debug"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General33">
+          <description>
+          Delete debug after done coding
+          </description>
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-53"
+		  since="5.6.0"
+          message="[General-53] Trong source controller, test class, page KO HARDCODE page apex/confirm ma thay the bang cach Page.Confim"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General53">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-Batch-06"
+		  since="5.6.0"
+          message="[Batch-06] Trong batch ko the dang ki dc nhieu schedule chu y"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch06">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
 </ruleset>
