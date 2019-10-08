@@ -21,6 +21,7 @@ import net.sourceforge.pmd.lang.apex.ast.ApexNode;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 import net.sourceforge.pmd.properties.PropertyDescriptor;
 
+@Deprecated
 public class VariableNamingConventionsRule extends AbstractApexRule {
 
     private boolean checkMembers;
@@ -182,8 +183,7 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
         if (isStatic && isFinal) {
             if (!varName.equals(varName.toUpperCase(Locale.ROOT))) {
                 addViolationWithMessage(data, node,
-                        "Variables that are final and static should be all capitals, ''{0}'' is not all capitals.",
-                        new Object[] { varName });
+                        "[General-16] Hang so phai viet hoa nguyen chu, dung dau gach duoi de ngat tung chu ");
             }
             return data;
         } else if (!isFinal) {
@@ -191,13 +191,11 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
 
             if (normalizedVarName.indexOf('_') >= 0) {
                 addViolationWithMessage(data, node,
-                        "Only variables that are final should contain underscores (except for underscores in standard prefix/suffix), ''{0}'' is not final.",
-                        new Object[] { varName });
+                        "[General-16] Bien binh thuong ky tu đau tien viet thuong, ko duoc su dung \"_\" ");
             }
             if (Character.isUpperCase(varName.charAt(0))) {
                 addViolationWithMessage(data, node,
-                        "Variables should start with a lowercase character, ''{0}'' starts with uppercase character.",
-                        new Object[] { varName });
+                        "[General-1] Ten method phai viet thuong , tu chu thu 2 tro di phai viet hoa chu dau tien");
             }
         }
         return data;

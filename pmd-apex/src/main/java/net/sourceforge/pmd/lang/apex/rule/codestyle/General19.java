@@ -29,19 +29,19 @@ public class General19 extends AbstractApexRule{
 						}
 					}
 					if(lstGrandJr != null && lstGrandJr.size() > 0) {
-						count1 = count1 + 1;
+						count = count + 1;
 					}
 				}
 				
 				List<ASTReferenceExpression> lstJr1 = ele.findDescendantsOfType(ASTReferenceExpression.class);
 				if(lstJr1 != null && lstJr1.size() > 0) {
-					List<ASTVariableExpression> lstGrandJr = new ArrayList<>();
-					for(ASTVariableExpression eleJr : lstJr) {
+					List<ASTReferenceExpression> lstGrandJr1 = new ArrayList<>();
+					for(ASTReferenceExpression eleJr : lstJr1) {
 						if(eleJr.getImage().contentEquals(node.getImage())) {
-							lstGrandJr.add(eleJr);
+							lstGrandJr1.add(eleJr);
 						}
 					}
-					if(lstGrandJr != null && lstGrandJr.size() > 0) {
+					if(lstGrandJr1 != null && lstGrandJr1.size() > 0) {
 						count1 = count1 + 1;
 					}
 				}
