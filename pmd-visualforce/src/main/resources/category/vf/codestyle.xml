@@ -8,4 +8,49 @@
     <description>
 Rules which enforce a specific coding style.
     </description>
+    
+    <rule name="Check-List-VisualPage-19"
+		  since="5.6.0"
+          message="[VisualPage-19] Khi hien thi du lieu thi dung outputtext khong đuoc dung outputField"
+          class="net.sourceforge.pmd.lang.vf.rule.VisualPage19">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-VisualPage-16"
+		  since="5.6.0"
+          message="[VisualPage-16] Dat ten controller theo rule: Ten page + Controller"
+          class="net.sourceforge.pmd.lang.vf.rule.VisualPage16">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-VisualPage-20"
+		  since="5.6.0"
+          message="[VisualPage-20] Su dung function HTMLENCODE khi set title cho apex:sectionHeader"
+          class="net.sourceforge.pmd.lang.vf.rule.VisualPage20">
+       		<description>
+				apex:sectionHeader title="{!HTMLENCODE($Label.Lbl_CLS0300_Title)}
+			</description>
+            <priority>5</priority>
+			
+			
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
 </ruleset>

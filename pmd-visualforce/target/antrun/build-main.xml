@@ -2,7 +2,7 @@
 <project name="maven-antrun-" default="main"  >
 <target name="main">
   <ant antfile="src/main/ant/alljavacc.xml">
-    <property name="target" value="G:\pmd\pmd-master\pmd-visualforce\target/generated-sources/javacc"/>
+    <property name="target" value="C:\Users\Dev001\Desktop\PMD\Content\pmd-src-6.18.0\pmd-visualforce\target/generated-sources/javacc"/>
     <property name="javacc.jar" value="${settings.localRepository}/net/java/dev/javacc/javacc/5.0/javacc-5.0.jar"/>
   </ant>
 </target>
