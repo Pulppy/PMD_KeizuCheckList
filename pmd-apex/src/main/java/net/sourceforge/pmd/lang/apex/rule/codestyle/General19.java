@@ -47,6 +47,12 @@ public class General19 extends AbstractApexRule{
 				}
 			}
 		}
+<<<<<<< Updated upstream
+=======
+		if(count == 0 && count1 == 0) {
+			addViolationWithMessage(data, node, "[General-10] Nhung bien khai bao khong dung thi delete giup");
+		}
+>>>>>>> Stashed changes
 		if(count == 1 && count1 == 1) {
 			return data;
 		}else if((count < 2 && count > 0) || (count1 < 2 && count1 > 0)) {
