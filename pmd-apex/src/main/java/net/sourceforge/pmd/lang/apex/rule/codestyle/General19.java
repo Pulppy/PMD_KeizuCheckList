@@ -47,7 +47,9 @@ public class General19 extends AbstractApexRule{
 				}
 			}
 		}
-		if((count < 2 && count > 0) || (count1 < 2 && count1 > 0)) {
+		if(count == 1 && count1 == 1) {
+			return data;
+		}else if((count < 2 && count > 0) || (count1 < 2 && count1 > 0)) {
 			addViolation(data, node);
 		}
 		return data;

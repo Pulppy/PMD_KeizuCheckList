@@ -4,7 +4,8 @@
 
 package net.sourceforge.pmd.lang.apex.ast;
 
-import java.lang.reflect.Field;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import apex.jorje.data.Identifier;
 import apex.jorje.semantic.ast.compilation.UserTrigger;
@@ -12,32 +13,32 @@ import java.util.stream.Collectors;
 
 public class ASTUserTrigger extends ApexRootNode<UserTrigger> {
 
-	public ASTUserTrigger(UserTrigger userTrigger) {
-		super(userTrigger);
-	}
+    public ASTUserTrigger(UserTrigger userTrigger) {
+        super(userTrigger);
+    }
 
-	@Override
-	public Object jjtAccept(ApexParserVisitor visitor, Object data) {
-		return visitor.visit(this, data);
-	}
+    @Override
+    public Object jjtAccept(ApexParserVisitor visitor, Object data) {
+        return visitor.visit(this, data);
+    }
 
-	@Override
-	public String getImage() {
-		try {
-			Field field = node.getClass().getDeclaredField("name");
-			field.setAccessible(true);
-			Identifier name = (Identifier) field.get(node);
-			return name.getValue();
-		} catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException e) {
-			throw new RuntimeException(e);
-		}
-	}
+    @Override
+    public String getImage() {
+        return node.getDefiningType().getApexName();
+    }
 
-	public String getTargetName() {
-		return node.getTargetName().stream().map(Identifier::getValue).collect(Collectors.joining("."));
-	}
+    public ASTModifierNode getModifiers() {
+        return getFirstChildOfType(ASTModifierNode.class);
+    }
 
-	public ASTModifierNode getModifiers() {
-		return getFirstChildOfType(ASTModifierNode.class);
-	}
+    public String getTargetName() {
+        return node.getTargetName().stream().map(Identifier::getValue).collect(Collectors.joining("."));
+    }
+
+    public List<TriggerUsage> getUsages() {
+        return node.getUsages().stream()
+                .map(TriggerUsage::of)
+                .sorted()
+                .collect(Collectors.toList());
+    }
 }
