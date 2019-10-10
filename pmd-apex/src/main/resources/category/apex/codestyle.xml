@@ -118,59 +118,6 @@ for (int i = 0; i < 42; i++) { // preferred approach
         </example>
     </rule>
 
-    
-
-    <rule name="LocalVariableNamingConventions"
-          since="6.15.0"
-          message="The {0} name ''{1}'' doesn''t match ''{2}''"
-          class="net.sourceforge.pmd.lang.apex.rule.codestyle.LocalVariableNamingConventionsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#localvariablenamingconventions">
-        <description>
-            Configurable naming conventions for local variable declarations.
-            This rule reports variable declarations which do not match the regex that applies to their
-            specific kind (e.g. local variable, or final local variable). Each regex can be configured through
-            properties.
-
-            By default this rule uses the standard Apex naming convention (Camel case).
-        </description>
-        <priority>1</priority>
-        <example>
-<![CDATA[
-public class Foo {
-    public Foo() {
-        Integer localVariable; // This is in camel case, so it's ok
-
-        Integer LOCAL_VARIABLE; // This will be reported unless you change the regex
-    }
-}
-]]>
-        </example>
-    </rule>
-
-    <rule name="MethodNamingConventions"
-          since="5.5.0"
-          message="The {0} name ''{1}'' doesn''t match ''{2}''"
-          class="net.sourceforge.pmd.lang.apex.rule.codestyle.MethodNamingConventionsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#methodnamingconventions">
-        <description>
-            Configurable naming conventions for method declarations. This rule reports
-            method declarations which do not match the regex that applies to their
-            specific kind (e.g. static method, or test method). Each regex can be
-            configured through properties.
-
-            By default this rule uses the standard Apex naming convention (Camel case).
-        </description>
-        <priority>1</priority>
-        <example>
-<![CDATA[
-public class Foo {
-    public void instanceMethod() { } // This is in camel case, so it's ok
-
-    public void INSTANCE_METHOD() { } // This will be reported unless you change the regex
-]]>
-        </example>
-    </rule>
-
     <rule name="OneDeclarationPerLine"
           since="6.7.0"
           message="Use one statement for each line, it enhances code readability."
@@ -235,18 +182,6 @@ public class Foo {
 }
 ]]>
         </example>
-    </rule>
-
-    <rule name="Check-List-General-1"
-          since="5.5.0"
-          deprecated="true"
-          message="[General-1] Ten method phai viet thuong , tu chu thu 2 tro di phai viet hoa chu dau tien "
-          class="net.sourceforge.pmd.lang.apex.rule.codestyle.VariableNamingConventionsRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#variablenamingconventions">
-        <description>
-
-        </description>
-        <priority>5</priority>
     </rule>
 
     <rule name="WhileLoopsMustUseBraces"
@@ -356,7 +291,31 @@ while (true) {  // preferred approach
           </example>
     </rule>
     
-     <rule name="Check-List-General-2"
+    <rule name="Check-List-General-1"
+          since="5.5.0"
+          message="[General-1] Ten method phai viet thuong , tu chu thu 2 tro di phai viet hoa chu dau tien "
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.MethodNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#methodnamingconventions">
+        <description>
+            Configurable naming conventions for method declarations. This rule reports
+            method declarations which do not match the regex that applies to their
+            specific kind (e.g. static method, or test method). Each regex can be
+            configured through properties.
+
+            By default this rule uses the standard Apex naming convention (Camel case).
+        </description>
+        <priority>5</priority>
+        <example>
+<![CDATA[
+public class Foo {
+    public void instanceMethod() { } // This is in camel case, so it's ok
+
+    public void INSTANCE_METHOD() { } // This will be reported unless you change the regex
+]]>
+        </example>
+    </rule>
+    
+    <rule name="Check-List-General-2"
 		  since="5.6.0"
           message="[General-2] Trong xu ly, nhung method hoac funtion public phai co try catch de xu ly loi, Neu tai lieu ko ghi thi confirm lai giup."
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General02">
@@ -368,6 +327,16 @@ while (true) {  // preferred approach
        
     ]]>
           </example>
+    </rule>
+    
+    <rule name="Check-List-General-4"
+          since="5.5.0"
+          message="[General-4] Viet hoa ten class (Ky tu dau tien cua ten class phai viet HOA)"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.ClassNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#classnamingconventions">
+        <description>       
+        </description>
+        <priority>5</priority>
     </rule>
     
     <rule name="Check-List-General-5"
@@ -398,7 +367,21 @@ while (true) {  // preferred approach
           </example>
     </rule>
     
-    <rule name="Check-List-Geneneral-11"
+    <rule name="Check-List-General-9"
+		  since="5.6.0"
+          message="[General-9] Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has….de dat ten bien"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General09">
+       
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <!-- <rule name="Check-List-Geneneral-11"
 		  since="5.6.0"
           message="[General-11] Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
 					Vi du: public final Integer COLUMN_DATE = 0; //実績日付 "
@@ -410,7 +393,7 @@ while (true) {  // preferred approach
        
     ]]>
           </example>
-    </rule>
+    </rule> -->
     
     <rule name="Check-List-General-12"
 		  since="5.6.0"
@@ -426,10 +409,23 @@ while (true) {  // preferred approach
     ]]>
           </example>
     </rule>
+  	
+  	<!-- Handle local variable -->
+    <rule name="Check-List-General-13"
+          since="5.5.0"
+          deprecated="true"
+          message="[General-13] Ten bien bang chu thuong, tu chu thu 2 tro di phai viet hoa chu dau tien "
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.VariableNamingConventionsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#variablenamingconventions">
+        <description>
+
+        </description>
+        <priority>5</priority>
+    </rule>
     
-     <rule name="Check-List-General-15"
+    <rule name="Check-List-General-15"
 		  since="5.6.0"
-          message="Khong duoc thiet lap bien class, bien  instance o trạng thai public, neu thiet lap thi phai xac nhan voi PL"
+          message="[General-15] Khong duoc thiet lap bien class, bien  instance o trang thai public, neu thiet lap thi phai xac nhan voi PL"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General15">
           <description>
           Use Private Variable
@@ -461,6 +457,21 @@ while (true) {  // preferred approach
 		  since="5.6.0"
           message="[General-19] Khong khai bao bien toan cuc ko can thiet, uu tien khai bao trong method"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General19">
+          <description>
+          </description>
+            <priority>5</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-20"
+		  since="5.6.0"
+          message="[General-20] Trong salseforce co gioi han, nen giam thieu toi da su dung loop."
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General20">
           <description>
           </description>
             <priority>5</priority>
@@ -560,4 +571,29 @@ while (true) {  // preferred approach
     ]]>
           </example>
     </rule>
+    <rule name="AvoidDeeplyNestedIfStmts"
+		since="5.5.0"
+		message="Deeply nested if..then statements are hard to read"
+		class="net.sourceforge.pmd.lang.apex.rule.design.AvoidDeeplyNestedIfStmtsRule"
+		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		<description>
+		Avoid creating deeply nested if-then statements since they are harder to read and error-prone to maintain.
+		</description>
+		<priority>3</priority>
+		<example>
+		<![CDATA[
+		public class Foo {
+		public void bar(Integer x, Integer y, Integer z) {
+		if (x>y) {
+		if (y>z) {
+		if (z==x) {
+		// !! too deep
+		}
+		}
+		}
+		}
+		}
+		]]>
+		</example>
+		</rule>
 </ruleset>
