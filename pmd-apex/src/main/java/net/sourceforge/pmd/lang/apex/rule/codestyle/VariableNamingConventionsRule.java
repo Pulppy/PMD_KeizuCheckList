@@ -191,11 +191,11 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
 
             if (normalizedVarName.indexOf('_') >= 0) {
                 addViolationWithMessage(data, node,
-                        "[General-16] Bien binh thuong ky tu đau tien viet thuong, ko duoc su dung \"_\" ");
+                        "[General-16] Bien binh thuong ky tu dau tien viet thuong, ko duoc su dung \"_\" ");
             }
             if (Character.isUpperCase(varName.charAt(0))) {
                 addViolationWithMessage(data, node,
-                        "[General-1] Ten method phai viet thuong , tu chu thu 2 tro di phai viet hoa chu dau tien");
+                        "[General-13] Ten bien bang chu thuong, tu chu thu 2 tro di phai viet hoa chu dau tien");
             }
         }
         return data;
