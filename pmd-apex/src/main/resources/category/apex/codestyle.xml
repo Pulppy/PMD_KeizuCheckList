@@ -14,9 +14,8 @@ Rules which enforce a specific coding style.
     <rule name="IfElseStmtsMustUseBraces"
           language="apex"
           since="5.6.0"
-          message="Avoid using 'if...else' statements without curly braces"
-          class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#ifelsestmtsmustusebraces">
+          message="[General-25] Cau dieu kien if phai co dau () va dau '{}' "
+          class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule">
         <description>
 Avoid using if..else statements without using surrounding braces. If the code formatting
 or indentation is lost then it becomes difficult to separate the code being controlled
@@ -47,41 +46,6 @@ else
 ]]>
         </example>
     </rule>
-
-    <rule name="IfStmtsMustUseBraces"
-          language="apex"
-          since="5.6.0"
-          message="Avoid using if statements without curly braces"
-          class="net.sourceforge.pmd.lang.apex.rule.ApexXPathRule"
-          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#ifstmtsmustusebraces">
-        <description>
-Avoid using if statements without using braces to surround the code block. If the code
-formatting or indentation is lost then it becomes difficult to separate the code being
-controlled from the rest.
-        </description>
-        <priority>3</priority>
-        <properties>
-            <property name="xpath">
-                <value>
-<![CDATA[
-//IfBlockStatement/BlockStatement[@CurlyBrace='false']
-]]>
-                </value>
-            </property>
-        </properties>
-        <example>
- <![CDATA[
-if (foo)    // not recommended
-    x++;
-
-if (foo) {  // preferred approach
-    x++;
-}
-]]>
-        </example>
-    </rule>
-
-    
 
     <rule name="ForLoopsMustUseBraces"
           language="apex"
@@ -341,7 +305,7 @@ public class Foo {
     
     <rule name="Check-List-General-5"
 		  since="5.6.0"
-          message="[General-5] Truong hop la class su dung trong batch thi đat ten theo kieu: danh từ ＋  Batch"
+          message="[General-5] Truong hop la class su dung trong batch thi dat ten theo kieu: danh tu ＋  Batch"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General05">
        
             <priority>5</priority>
