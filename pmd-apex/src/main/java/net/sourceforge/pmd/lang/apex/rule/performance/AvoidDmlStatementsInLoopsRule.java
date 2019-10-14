@@ -111,7 +111,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     	List<ASTMethodCallExpression> lst2 = node.findDescendantsOfType(ASTMethodCallExpression.class);
     	for(ASTMethodCallExpression ele : lst2) {
     		if(mapMethod.get(ele.getMethodName())) {
-    			addViolation(data, node);
+    			addViolation(data, ele);
     		}
     	}
     	return data;
@@ -132,7 +132,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     	List<ASTMethodCallExpression> lst2 = node.findDescendantsOfType(ASTMethodCallExpression.class);
     	for(ASTMethodCallExpression ele : lst2) {
     		if(mapMethod.get(ele.getMethodName())) {
-    			addViolation(data, node);
+    			addViolation(data, ele);
     		}
     	}
     	return data;
@@ -153,7 +153,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     	List<ASTMethodCallExpression> lst2 = node.findDescendantsOfType(ASTMethodCallExpression.class);
     	for(ASTMethodCallExpression ele : lst2) {
     		if(mapMethod.get(ele.getMethodName())) {
-    			addViolation(data, node);
+    			addViolation(data, ele);
     		}
     	}
     	return data;
