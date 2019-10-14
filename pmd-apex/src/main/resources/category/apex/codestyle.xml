@@ -537,27 +537,33 @@ public class Foo {
     </rule>
     <rule name="AvoidDeeplyNestedIfStmts"
 		since="5.5.0"
-		message="Deeply nested if..then statements are hard to read"
+		message="[General-26] Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap"
 		class="net.sourceforge.pmd.lang.apex.rule.design.AvoidDeeplyNestedIfStmtsRule"
-		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
-		<description>
-		Avoid creating deeply nested if-then statements since they are harder to read and error-prone to maintain.
-		</description>
+		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">		
 		<priority>3</priority>
-		<example>
-		<![CDATA[
-		public class Foo {
-		public void bar(Integer x, Integer y, Integer z) {
-		if (x>y) {
-		if (y>z) {
-		if (z==x) {
-		// !! too deep
-		}
-		}
-		}
-		}
-		}
-		]]>
-		</example>
-		</rule>
+	</rule>
+		
+	<rule name="AvoidDmlStatementsInLoops"
+          since="5.5.0"
+          message="[General-39] Trong xu ly loop, khong su dung xu ly DML"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidDmlStatementsInLoopsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoiddmlstatementsinloops">
+        <priority>3</priority>        
+    </rule>
+    
+    <rule name="AvoidSoqlInLoops"
+          since="5.5.0"
+          message="[General-46] Trong xu ly loop khong duoc su dung SOQL, SOSL"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidSoqlInLoopsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoidsoqlinloops">
+        <priority>3</priority>
+    </rule>
+
+    <rule name="AvoidSoslInLoops"
+          since="6.0.0"
+          message="[General-46] Trong xu ly loop khong duoc su dung SOQL, SOSL"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidSoslInLoopsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoidsoslinloops">
+        <priority>3</priority>
+    </rule>
 </ruleset>
