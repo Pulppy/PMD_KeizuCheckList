@@ -45,10 +45,19 @@ public class General18 extends AbstractApexRule{
 			}
 			//So sanh va bao loi
 			for(Integer i = 0; i < listNode2.size() - 1; i++) {
-				if((listNode2.get(i).getEndColumn() + 4 + listNode2.get(i + 1).getType().length()) != listNode2.get(i + 1).getBeginColumn()) {
-					addViolation(data, listNode2.get(i + 1));
-					breakLoop = true;
-					break;
+				if(listNode2.get(i + 1).getType().substring(listNode2.get(i + 1).getType().length() - 3).contentEquals("DTO")) {
+					String typeName = listNode2.get(i + 1).getType().split("\\.")[1];
+					if((listNode2.get(i).getEndColumn() + 4 + typeName.length()) != listNode2.get(i + 1).getBeginColumn()) {
+						addViolation(data, listNode2.get(i + 1));
+						breakLoop = true;
+						break;
+					}
+				}else {
+					if((listNode2.get(i).getEndColumn() + 4 + listNode2.get(i + 1).getType().length()) != listNode2.get(i + 1).getBeginColumn()) {
+						addViolation(data, listNode2.get(i + 1));
+						breakLoop = true;
+						break;
+					}
 				}
 			}
 			listNode2 = new ArrayList<>();
@@ -173,12 +182,14 @@ public class General18 extends AbstractApexRule{
 							
 							//Neu bien sau co prefix
 							if(listNode2.get(i + 1).hasDescendantOfType(ASTReferenceExpression.class)) {
-							
+								
+								
 								//Get prefix
 								ASTReferenceExpression nodeTemp = listNode2.get(i + 1).getFirstDescendantOfType(ASTReferenceExpression.class);
 								
 								//Tham so cuoi truyen vao phai cach prefix bien sau 4 space
 								if(lstTemp.get(lstTemp.size() - 1).getEndColumn() + 4 != nodeTemp.getBeginColumn()) {
+									
 									addViolation(data, listNode2.get(i + 1));
 									return true;
 								}
@@ -258,11 +269,13 @@ public class General18 extends AbstractApexRule{
 						//Neu method sau co prefix
 						if(listNode2.get(i + 1).hasDescendantOfType(ASTReferenceExpression.class)) {
 							
+							
 							//Get prefix
 							ASTReferenceExpression nodeTemp = listNode2.get(i + 1).getFirstDescendantOfType(ASTReferenceExpression.class);
 							
 							//Bien truoc phai cach prefix method sau 3 sapce
 							if(listNode2.get(i).getEndColumn() + 3 != nodeTemp.getBeginColumn()) {
+								
 								addViolation(data, listNode2.get(i + 1));
 								return true;
 							}

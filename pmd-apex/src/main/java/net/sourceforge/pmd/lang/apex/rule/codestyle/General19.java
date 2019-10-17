@@ -15,6 +15,11 @@ import java.util.List;
 public class General19 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTField node, Object data) {
+		//Khong ap dung cho DTO
+		String className = node.getFirstParentOfType(ASTUserClass.class).getImage();
+		if(className.substring(className.length() - 3).contentEquals("DTO")) {
+			return data;
+		}
 		//Bien dem dem so method su dung bien class
 		Integer countVar = 0;
 		Integer countRef = 0;
