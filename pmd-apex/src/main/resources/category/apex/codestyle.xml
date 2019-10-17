@@ -229,7 +229,7 @@ while (true) {  // preferred approach
     
     <rule name="Check-List-VisualPage-6"
 		  since="5.6.0"
-          message="[ViusalPage-6] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
+          message="[VisualPage-6] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage06">
        
             <priority>3</priority>
