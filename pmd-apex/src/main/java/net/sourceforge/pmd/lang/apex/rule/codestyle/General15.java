@@ -12,10 +12,13 @@ public class General15 extends AbstractApexRule {
 		int indexChild = 0;
 		ASTModifierNode modifier;
 		Node child;
+		//Xet tat ca node con cua class
 		while(indexChild < node.jjtGetNumChildren()){
 			child = node.jjtGetChild(indexChild);
+			//Neu node con la mot bien class
 			if(child instanceof ASTField) {
 				modifier = child.getFirstChildOfType(ASTModifierNode.class);
+				//Neu node con khong duoc thiet lap private thi bao loi
 				if(!modifier.isPrivate()) {
 					addViolation(data, child);
 				}

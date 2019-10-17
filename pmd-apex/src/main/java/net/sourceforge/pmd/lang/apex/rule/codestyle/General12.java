@@ -14,9 +14,12 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 public class General12 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTField node, Object data) {
+		//Kiem tra bien class dang xet co phai kieu list
 		if(node.getType().substring(0,4).contentEquals("List")) {
 			ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
+			//Lap danh sach cac ham so sanh
 			List<ASTBooleanExpression> lst = nodeAncestor.findDescendantsOfType(ASTBooleanExpression.class);
+			//Lap danh sach rut gon lai con cac ham so sanh lon hon va bang
 			List<ASTBooleanExpression> lstShort = new ArrayList<>();
 			for(ASTBooleanExpression element : lst) {
 				if(element.getOperator().toString().contentEquals(">") || element.getOperator().toString().contentEquals("==")) {
@@ -26,7 +29,9 @@ public class General12 extends AbstractApexRule{
 			String methodName;
 			if(!lstShort.isEmpty()) {
 				for(ASTBooleanExpression element : lstShort) {
+					//Tim trong danh sach da duoc rut gon co phan tu duoc so sanh la phan tu dang xet
 					methodName = element.getFirstChildOfType(ASTMethodCallExpression.class).getFullMethodName();
+					//Neu su dung .size va so sanh voi 0 thi bao loi
 					if(methodName.contentEquals(node.getImage() + ".size")) {
 						if(element.getFirstChildOfType(ASTLiteralExpression.class).getImage().contentEquals("0")) {
 							addViolation(data, element);
@@ -38,6 +43,7 @@ public class General12 extends AbstractApexRule{
 		return data;
 	}
 	
+	//Thuc hien tuong tu ham tren nhung xet nhung bien cuc bo
 	@Override
 	public Object visit(ASTVariableDeclaration node, Object data) {
 		if(node.getType().substring(0,4).contentEquals("List")) {
