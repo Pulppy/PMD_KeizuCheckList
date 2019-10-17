@@ -17,6 +17,11 @@ import net.sourceforge.pmd.lang.ast.Node;
 public class General18 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTMethod node, Object data ) {
+		//Khong xet method <init> do PMD tao
+		if(node.getImage().contentEquals("<init>")) {
+			return data;
+		}
+		
 		//Tao list chua cac node con la param truyen vao ham
 		List<ASTParameter> listNode = node.findChildrenOfType(ASTParameter.class);
 		if(listNode.isEmpty()) {
@@ -45,6 +50,7 @@ public class General18 extends AbstractApexRule{
 			}
 			//So sanh va bao loi
 			for(Integer i = 0; i < listNode2.size() - 1; i++) {
+				//Xet neu kieu du lieu la mot DTO
 				if(listNode2.get(i + 1).getType().substring(listNode2.get(i + 1).getType().length() - 3).contentEquals("DTO")) {
 					String typeName = listNode2.get(i + 1).getType().split("\\.")[1];
 					if((listNode2.get(i).getEndColumn() + 4 + typeName.length()) != listNode2.get(i + 1).getBeginColumn()) {
