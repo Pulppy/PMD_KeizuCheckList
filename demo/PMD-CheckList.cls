@@ -69,6 +69,10 @@ public class test{
     //     a = 9;
     // }
 
+    // public test(){
+        
+    // }
+
     /**
     * General-16
     */
@@ -248,34 +252,34 @@ public class test{
     * General-46
     */
 
-    private void general46(){
-        int ten = 10;
-        int a;
-        String strQuery = 'SELECT year FROM account LIMIT 1';
-        Account b;
-        for(int i = 0; i < ten; i++){
-            Database.query(strSOQL);
-            a = [SELECT year FROM account LIMIT 1];
-        }
-        for(int i = 0; i < ten; i++){
-           testmethodxxxx(); 
-        }
+    // private void general46(){
+    //     int ten = 10;
+    //     int a;
+    //     String strQuery = 'SELECT year FROM account LIMIT 1';
+    //     Account b;
+    //     for(int i = 0; i < ten; i++){
+    //         Database.query(strSOQL);
+    //         a = [SELECT year FROM account LIMIT 1];
+    //     }
+    //     for(int i = 0; i < ten; i++){
+    //        testmethodxxxx(); 
+    //     }
        
-    }
+    // }
 
-    private void testmethodxxxx(){
-        int a;
-        String strQuery = 'SELECT year FROM account LIMIT 1';
-        a = [SELECT year FROM account LIMIT 1];
+    // private void testmethodxxxx(){
+    //     int a;
+    //     String strQuery = 'SELECT year FROM account LIMIT 1';
+    //     a = [SELECT year FROM account LIMIT 1];
         
-    }
+    // }
 
     /**
-    * General-53
+    * Batch-05
     */
 
-    private void general53(){
-
+    private void Batch05(){
+        
     }
 
     /**
