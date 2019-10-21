@@ -309,13 +309,9 @@ public class Foo {
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General05">
        
             <priority>3</priority>
-
-          <example>
-    <![CDATA[
-       
-    ]]>
-          </example>
-    </rule>
+	</rule>
+    
+    
     
     <rule name="Check-List-General-6"
 		  since="5.6.0"
@@ -551,6 +547,40 @@ public class Foo {
     ]]>
           </example>
     </rule>
+    
+    <rule name="Check-List-Batch-05"
+		  since="5.6.0"
+          message="[Batch-05] Nhung doi tuong chi xu ly update, insert 1 lan chu y de trong finish. (trong truong hop xu ly so luong nhieu record qua gioi han cua salesforce vi neu de trong execute thi co kha nag method se dc xu ly lap lai nhieu lan, vi 1 lan salesforce chi cho xu ly toi da 200 records)h."
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch05">
+       
+            <priority>3</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-Batch-10"
+		  since="5.6.0"
+          message="[Batch-10] Trong test class phai dat method Test.StartTest, Test.StopTest khi goi batch"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch10">
+       
+            <priority>3</priority>
+
+          <example>
+    <![CDATA[
+    Test.StartTest();
+
+　　　		DataMigrateBatch dataMigrateBatch = new　DataMigrateBatch();
+　　　		Database.executeBatch(dataMigrateBatch);
+
+      Test.StopTest();
+    ]]>
+          </example>
+    </rule>
+    
     <rule name="AvoidDeeplyNestedIfStmts"
 		since="5.5.0"
 		message="[General-26] Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap"
