@@ -612,4 +612,20 @@ public class Foo {
           externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoidsoslinloops">
         <priority>3</priority>
     </rule>
+    
+    <rule name="Batch03"
+		  since="5.6.0"
+          message="[Batch-03] Uu tien lay cac doi tuong cutom trong method start"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch03">
+       
+            <priority>3</priority>
+    </rule>
+    
+    <rule name="Batch04"
+		  since="5.6.0"
+          message="[Batch-04] Trong truog hop xu ly du lieu lon bat buoc phai get du lieu trong Database.getQueryLocator de lay"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch04">
+       
+            <priority>3</priority>
+    </rule>
 </ruleset>
