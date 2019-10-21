@@ -1,288 +1,369 @@
-/**
-    * General-4
+/*
+	* PMDCheckListDemo
+	* @created: 2019/10/12 Lu Chi Hao
+	* @modified:
 */
 
-public class test{
-    /**
-    * General-1
-    */
-    // private void GeneralRule1(){  
+public class PMDCheckListDemo{
 
-    // }
+/*
+	* general01
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Tên method phải viết thường , từ chữ thứ 2 trở đi phải viết hoa chữ đầu tiên
+	* @modified:
+*/
 
-    /**
-    * General-2
-    */
+	// private void general01(){
 
-    // public void general2(){
-    //     // try{
+	//}
 
-    //     // }catch(Exception e){}
-    // }
+	//=========================================================================================
+/*
+	* general02
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Trong xu ly, những method hoặc funtion public phai co try catch de xu ly loi.
+	* @modified:
+*/
 
-    /**
-    * General-9
-    */
+	// public void general02(){
+	//     // try{
 
-    // private static Boolean isTest1;
-    // private void general9(){
-    //     isTest1 = true;
-    //     Boolean hasTest2 = false;
-    //     if(test2){}
-    // }
-    // private void test(){
-    //     isTest1 = false;
-    // }
+	//     // }catch(Exception e){}
+	// }
 
-    /**
-    * General-12
-    */
+	//=========================================================================================
+/*
+	* general09
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has….de dat ten bien
+	* @modified:
+*/
 
-    // private void general12(){
-    //     list<int> listTest = new list<int>();
-    //     if(listTest.size() > 0){}
-    //     if(listTest.isEmty()){}
-    // }
+	// private static Boolean isTest1;
+	// private void general09(){
+	//     isTest1 = true;
+	//     Boolean hasTest2 = false;
+	//     if(test2){}
+	// }
+	// private void test(){
+	//     isTest1 = false;
+	// }
 
-    /**
-    * General-13
-    */
+	//=========================================================================================
 
-    // private int test1;
-    // private void general13(){
-    //     int test2 = 5;
-    //     Test1 = true;
-    // }
-    // private void test2(){
-    //     Test1 = true;
-    // }
+/*
+	* general12
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Khi su dung check size of list thi phai su dung ham isEmpty()
+	* @modified:
+*/
 
-    /**
-    * General-15
-    */
+	// private void general12(){
+	//     list<int> listTest = new list<int>();
+	//     if(listTest.size() > 0){}
+	//     if(listTest.isEmty()){}
+	// }
 
-    // public int a;
-    // private void general151(){
-    //     a = 5;
-    // }
-    //  private void general152(){
-    //     a = 9;
-    // }
+	//=========================================================================================
 
-    /**
-    * General-16
-    */
+	/**
+	* general13
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Tên biến bằng chữ thường, từ chữ thứ 2 trở đi phải viết hoa chữ đầu tiên
+	* @modified:
+	*/
 
-    // private static final string aaa = 'XXXXX';
-    // private string b_b_b = 'XXXXX';
-    // private void general161(){
-    //     if(aaa == 'x'){}
-    //     if(b_b_b == 'x'){}
-    // }
-    //  private void general162(){
-    //     if(aaa == 'x'){}
-    //     if(b_b_b == 'x'){}
-    // }
+	// private int test1;
+	// private void general13(){
+	//     int test2 = 5;
+	//     Test1 = true;
+	// }
+	// private void test2(){
+	//     Test1 = true;
+	// }
 
-    /**
-    * General-17
-    */
+	//=========================================================================================
 
-    private void general17(){
-       Integer x = a+b;
-    }
-     
+	/**
+	* general15
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Không được thiết lập biến  class, biến  instance ở trạng thái public.
+	* @modified:
+	*/
 
-    /**
-    * General-18
-    */
+	// public int a;
+	// private void general151(){
+	//     a = 5;
+	// }
+	//  private void general152(){
+	//     a = 9;
+	// }
 
-    // private void general181(){
-    //     int a = 0;
-    //     int c = 1;
-    //     int e = 2;
-    //     general182(a, 'xxxxxx',c,
-    //                 'sxsxsx',   e);
-    // }
-    // private void general182(int a, string b, int c,
-    //                             string d,int e){
-        
-    // }
+	//=========================================================================================
 
-    /**
-    * General-19
-    */
+	/**
+	* general16
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Hằng số phải viết hoa nguyên chữ, dùng dấu gạch dưới để ngắt từng chữ
+	* @modified:
+	*/
 
-    // private string gen19 = 'xxxx';
-    // private void general191(){
-    //     if(gen19.size() > 0){}
-    //     if(gen19 == 'null'){}
-    // }
-    // private void general192(){
-    //     //gen19 += 'asd';
-    // }
+	// private static final string aaa = 'XXXXX';
+	// private string b_b_b = 'XXXXX';
+	// private void general161(){
+	//     if(aaa == 'x'){}
+	//     if(b_b_b == 'x'){}
+	// }
+	//  private void general162(){
+	//     if(aaa == 'x'){}
+	//     if(b_b_b == 'x'){}
+	// }
 
-    /**
-    * General-20
-    */
+	//=========================================================================================
 
-    // private void general20(){
-    //     int ten = 10;
-    //     for (Integer i = 0; i < ten; i++) {
-    //         for (Integer j = 0; j < ten; j++) {
-    //             for (Integer k = 0; k < ten; j++) {
-                
-    //             }
-    //         }
-    //     }
-    // }
+	/**
+	* general17
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Sau trước dấu toán tử phải là space 1 byte
+	* @modified:
+	*/
 
-    /**
-    * General-22
-    */
+	private void general17(){
+	   Integer x = a+b;
+	}
 
-    // private void general22(){
-    //     int ten = 10;
-    //     list<int> lst = new list<int>();
-    //     for(int ad = 0; ad < ten; a++){}
-    //     for(int ad : lst){}
-    // }
+	//=========================================================================================
 
-    /**
-    * General-24
-    */
-    
-    // private void general241(){
-    //     int ten = 10;
-    //     for(int i = 0; i < ten; i++){
-    //         general242();
-    //     }
-    // }
+	/**
+	* general18
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Ngắt từng parameter bằng dấu phẩy,  sau đó phải là 1 space 1byte
+	* @modified:
+	*/
 
-    // @future
-    // private void general242(){
+	// private void general181(){
+	//     int a = 0;
+	//     int c = 1;
+	//     int e = 2;
+	//     general182(a, 'xxxxxx',c,
+	//                 'sxsxsx',   e);
+	// }
+	// private void general182(int a, string b, int c,
+	//                             string d,int e){
+		
+	// }
 
-    // }
+	//=========================================================================================
 
-    /**
-    * General-25
-    */
+	/**
+	* general19
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Khong khai bao bien toan cuc ko can thiet, uu tien khai bao trong method
+	* @modified:
+	*/
 
-    // private void general25(){
-    //     Integer x = 0;
-    //     if(true)
-    //     x++;
-    //     else 
-    //     x--;    
-    // }
-    
-    /**
-    * General-26
-    */
+	// private string gen19 = 'xxxx';
+	// private void general191(){
+	//     if(gen19.size() > 0){}
+	//     if(gen19 == 'null'){}
+	// }
+	// private void general192(){
+	//     //gen19 += 'asd';
+	// }
 
-    // private void general26(){
-    //     if(true){
-    //         if(true){
-    //             if(true){
-    //                 if(true){
-    //                     if(true){
-    //                         if(true){
+	//=========================================================================================
 
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+	/**
+	* general20
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Trong salseforce co gioi han, nen giam thieu toi da su dung loop.
+	* @modified:
+	*/
 
-    /**
-    * General-33
-    */
+	// private void general20(){
+	//     int ten = 10;
+	//     for (Integer i = 0; i < ten; i++) {
+	//         for (Integer j = 0; j < ten; j++) {
+	//             for (Integer k = 0; k < ten; j++) {
+				
+	//             }
+	//         }
+	//     }
+	// }
 
-    // private void general33(){
-    //     system.debug();
-    // }
+	//=========================================================================================
 
-    /**
-    * General-39
-    */
+	/**
+	* general22
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Chỉ sử dụng tên biến 1 ký tự trong vòng lặp for 
+	* @modified:
+	*/
 
-    // private void general39(){
-    //     int ten = 10;
-    //     Account b;
-    //     for(int i = 0; i < ten; i++){
-    //         insert b;
-    //     }
-    //     for(int i = 0; i < ten; i++){
-    //        testmethodxxx(); 
-    //     }
-    // }
+	// private void general22(){
+	//     int ten = 10;
+	//     list<int> lst = new list<int>();
+	//     for(int ad = 0; ad < ten; a++){}
+	//     for(int ad : lst){}
+	// }
 
-    // private void testmethodxxx(){
-    //     Account a;
-    //     insert a;
-    // }
+	//=========================================================================================
 
-    /**
-    * General-43
-    */
+	/**
+	* general24
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Trong xử lý loop, không sử dụng xử lý @future
+	* @modified:
+	*/
+	
+	// private void general241(){
+	//     int ten = 10;
+	//     for(int i = 0; i < ten; i++){
+	//         general242();
+	//     }
+	// }
 
-    // private void general43(){
-    //     String strQuery = 'SELECT year FROM account LIMIT 1';
-    //     int a;
-    //     a = [SELECT year FROM account LIMIT 1];
-    //     a = [SELECT year FROM account LIMIT 1];
-    //     a = [SELECT year FROM account LIMIT 1];
-    //     Database.query(strSOQL);
-    //     Database.query(strSOQL);
-    //     a = [SELECT year FROM account LIMIT 1];
-    //     a = [SELECT year FROM account LIMIT 1];
-    //     a = [SELECT year FROM account LIMIT 1];
-    //     Database.query(strSOQL);
-    //     Database.query(strSOQL);
-    //     Database.query(strSOQL);
-    // }
+	// @future
+	// private void general242(){
 
-    /**
-    * General-46
-    */
+	// }
 
-    private void general46(){
-        int ten = 10;
-        int a;
-        String strQuery = 'SELECT year FROM account LIMIT 1';
-        Account b;
-        for(int i = 0; i < ten; i++){
-            Database.query(strSOQL);
-            a = [SELECT year FROM account LIMIT 1];
-        }
-        for(int i = 0; i < ten; i++){
-           testmethodxxxx(); 
-        }
-       
-    }
+	//=========================================================================================
 
-    private void testmethodxxxx(){
-        int a;
-        String strQuery = 'SELECT year FROM account LIMIT 1';
-        a = [SELECT year FROM account LIMIT 1];
-        
-    }
+	/**
+	* general25
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Cau điều kiện if phải có dấu () va dấu  {}
+	* @modified:
+	*/
 
-    /**
-    * General-53
-    */
+	// private void general25(){
+	//     Integer x = 0;
+	//     if(true)
+	//     x++;
+	//     else 
+	//     x--;    
+	// }
 
-    private void general53(){
+	//=========================================================================================
 
-    }
+	/**
+	* general26
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Trong câu điều kiện if không được lồng vào nhau , không nên lồng phức tạp
+	* @modified: 
+	*/
 
-    /**
-    * VisualPage-06
-    */
+	// private void general26(){
+	//     if(true){
+	//         if(true){
+	//             if(true){
+	//                 if(true){
+	//                     if(true){
+	//                         if(true){
 
-    // private void visualpage06(){
-    //     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,'Please enter Account industry'));    
-    // }
+	//                         }
+	//                     }
+	//                 }
+	//             }
+	//         }
+	//     }
+	// }
+
+	//=========================================================================================
+
+	/**
+	* general33
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Nhung source comment ko can thiet thi phai delete sau khi hoan thanh coding, ke ca cac dong system.debug
+	* @modified: 
+	*/
+
+	// private void general33(){
+	//     system.debug();
+	// }
+
+	//=========================================================================================
+
+	/**
+	* general39
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Trong xử lý loop, không sử dụng xử lý DML
+	* @modified: 
+	*/
+
+	// private void general39(){
+	//     int ten = 10;
+	//     Account b;
+	//     for(int i = 0; i < ten; i++){
+	//         insert b;
+	//     }
+	//     for(int i = 0; i < ten; i++){
+	//        testmethodxxx(); 
+	//     }
+	// }
+
+	// private void testmethodxxx(){
+	//     Account a;
+	//     insert a;
+	// }
+
+	//=========================================================================================
+
+	/**
+	* general43
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot.
+	* @modified: 
+	*/
+
+	// private void general43(){
+	//     String strQuery = 'SELECT year FROM account LIMIT 1';
+	//     int a;
+	//     a = [SELECT year FROM account LIMIT 1];
+	//     a = [SELECT year FROM account LIMIT 1];
+	//     a = [SELECT year FROM account LIMIT 1];
+	//     Database.query(strSOQL);
+	//     Database.query(strSOQL);
+	//     a = [SELECT year FROM account LIMIT 1];
+	//     a = [SELECT year FROM account LIMIT 1];
+	//     a = [SELECT year FROM account LIMIT 1];
+	//     Database.query(strSOQL);
+	//     Database.query(strSOQL);
+	//     Database.query(strSOQL);
+	// }
+
+	//=========================================================================================
+
+	/**
+	* general46
+	* @created: 2019/10/12 Lu Chi Hao
+	* @decription: Trong xử lý loop không được sử dụng SOQL, SOSL
+	* @modified: 
+	*/
+
+	private void general4601(){
+		int ten = 10;
+		int a;
+		String strQuery = 'SELECT year FROM account LIMIT 1';
+		Account b;
+		for(int i = 0; i < ten; i++){
+			Database.query(strSOQL);
+			a = [SELECT year FROM account LIMIT 1];
+		}
+		for(int i = 0; i < ten; i++){
+			general46_02();
+		}
+	}
+
+	private void general4602(){
+		int a;
+		String strQuery = 'SELECT year FROM account LIMIT 1';
+		a = [SELECT year FROM account LIMIT 1];
+		
+	}
+
+	//=========================================================================================
+
+
 }
