@@ -6,9 +6,11 @@ package net.sourceforge.pmd.lang.apex.rule.codestyle;
 
 import static net.sourceforge.pmd.properties.constraints.NumericConstraints.positive;
 
+import net.sourceforge.pmd.lang.apex.ast.ASTForEachStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTForLoopStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTIfBlockStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
+import net.sourceforge.pmd.lang.apex.ast.ASTWhileLoopStatement;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 import net.sourceforge.pmd.properties.PropertyDescriptor;
 import net.sourceforge.pmd.properties.PropertyFactory;
@@ -43,6 +45,32 @@ public class General20 extends AbstractApexRule {
 
     @Override
     public Object visit(ASTForLoopStatement node, Object data) {
+        depth++;
+
+        super.visit(node, data);
+        if (depth == 3) {
+            addViolation(data, node);
+        }
+        depth--;
+
+        return data;
+    }
+    
+    @Override
+    public Object visit(ASTForEachStatement node, Object data) {
+        depth++;
+
+        super.visit(node, data);
+        if (depth == 3) {
+            addViolation(data, node);
+        }
+        depth--;
+
+        return data;
+    }
+    
+    @Override
+    public Object visit(ASTWhileLoopStatement node, Object data) {
         depth++;
 
         super.visit(node, data);

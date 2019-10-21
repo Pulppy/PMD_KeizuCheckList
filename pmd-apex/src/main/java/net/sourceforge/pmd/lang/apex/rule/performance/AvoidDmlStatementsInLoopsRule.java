@@ -104,28 +104,53 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     @Override
     public Object visit(ASTForLoopStatement node, Object data) {
     	List<Node> listNode = checkForDML(node);
+    	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
+    	List<String> lstMethodWithDML = new ArrayList<>();
+    	for(ASTMethod ele : lstMethod) {
+    		if(ele.hasDescendantOfType(ASTDmlInsertStatement.class) 
+					|| ele.hasDescendantOfType(ASTDmlUpdateStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlDeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUndeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUpsertStatement.class)) {
+    			lstMethodWithDML.add(ele.getImage());
+    		}
+    	}
+    	
     	if(!listNode.isEmpty()) {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
     	}
-    	List<ASTMethodCallExpression> lst2 = node.findDescendantsOfType(ASTMethodCallExpression.class);
-    	if(lst2.isEmpty()) {
+    	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	if(lst1.isEmpty()) {
     		return data;
     	}
-    	HashMap<String, Boolean> mapMethod = new HashMap<String, Boolean>();
-    	ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
-    	List<ASTMethod> lst1 = nodeAncestor.findDescendantsOfType(ASTMethod.class);
-    	for(ASTMethod ele : lst1) {
-    		mapMethod.put(ele.getImage(), (ele.hasDescendantOfType(ASTDmlInsertStatement.class) 
-    										|| ele.hasDescendantOfType(ASTDmlUpdateStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlDeleteStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlUndeleteStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlUpsertStatement.class)));
-    	}
-    	for(ASTMethodCallExpression ele : lst2) {
-    		if(mapMethod.get(ele.getMethodName())) {
+    	for(ASTMethodCallExpression ele : lst1) {
+    		if(lstMethodWithDML.contains(ele.getMethodName())) {
     			addViolation(data, ele);
+    			break;
+    		}else {
+    			if(check(data, ele, lstMethod, lstMethodWithDML)) {
+    				break;
+    			}else {
+    				for(ASTMethod ele1 : lstMethod) {
+    					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
+    						
+							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
+							for(ASTMethodCallExpression ele2 : lst2) {
+								if(lstMethodWithDML.contains(ele2.getFullMethodName())) {
+									addViolation(data, ele);
+									addViolation(data, ele2);
+									break;
+								}else {
+									if(check(data, ele2, lstMethod, lstMethodWithDML)) {
+										break;
+									}
+								}
+							}
+    					}
+    				}
+    			}
     		}
     	}
     	return data;
@@ -136,28 +161,53 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     @Override
     public Object visit(ASTWhileLoopStatement node, Object data) {
     	List<Node> listNode = checkForDML(node);
+    	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
+    	List<String> lstMethodWithDML = new ArrayList<>();
+    	for(ASTMethod ele : lstMethod) {
+    		if(ele.hasDescendantOfType(ASTDmlInsertStatement.class) 
+					|| ele.hasDescendantOfType(ASTDmlUpdateStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlDeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUndeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUpsertStatement.class)) {
+    			lstMethodWithDML.add(ele.getImage());
+    		}
+    	}
+    	
     	if(!listNode.isEmpty()) {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
     	}
-    	List<ASTMethodCallExpression> lst2 = node.findDescendantsOfType(ASTMethodCallExpression.class);
-    	if(lst2.isEmpty()) {
+    	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	if(lst1.isEmpty()) {
     		return data;
     	}
-    	HashMap<String, Boolean> mapMethod = new HashMap<String, Boolean>();
-    	ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
-    	List<ASTMethod> lst1 = nodeAncestor.findDescendantsOfType(ASTMethod.class);
-    	for(ASTMethod ele : lst1) {
-    		mapMethod.put(ele.getImage(), (ele.hasDescendantOfType(ASTDmlInsertStatement.class) 
-    										|| ele.hasDescendantOfType(ASTDmlUpdateStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlDeleteStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlUndeleteStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlUpsertStatement.class)));
-    	}
-    	for(ASTMethodCallExpression ele : lst2) {
-    		if(mapMethod.get(ele.getMethodName())) {
+    	for(ASTMethodCallExpression ele : lst1) {
+    		if(lstMethodWithDML.contains(ele.getMethodName())) {
     			addViolation(data, ele);
+    			break;
+    		}else {
+    			if(check(data, ele, lstMethod, lstMethodWithDML)) {
+    				addViolation(data, ele);
+    				break;
+    			}else {
+    				for(ASTMethod ele1 : lstMethod) {
+    					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
+							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
+							for(ASTMethodCallExpression ele2 : lst2) {
+								if(lstMethodWithDML.contains(ele2.getFullMethodName())) {
+									addViolation(data, ele);
+									addViolation(data, ele2);
+								}else {
+									if(check(data, ele, lstMethod, lstMethodWithDML)) {
+										addViolation(data, ele);
+										break;
+									}
+								}
+							}
+    					}
+    				}
+    			}
     		}
     	}
     	return data;
@@ -168,32 +218,102 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     @Override
     public Object visit(ASTForEachStatement node, Object data) {
     	List<Node> listNode = checkForDML(node);
+    	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
+    	List<String> lstMethodWithDML = new ArrayList<>();
+    	for(ASTMethod ele : lstMethod) {
+    		if(ele.hasDescendantOfType(ASTDmlInsertStatement.class) 
+					|| ele.hasDescendantOfType(ASTDmlUpdateStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlDeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUndeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUpsertStatement.class)) {
+    			lstMethodWithDML.add(ele.getImage());
+    		}
+    	}
+    	
     	if(!listNode.isEmpty()) {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
     	}
-    	List<ASTMethodCallExpression> lst2 = node.findDescendantsOfType(ASTMethodCallExpression.class);
-    	if(lst2.isEmpty()) {
+    	
+    	//Lap list cac method duoc call trong loop
+    	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	
+    	//Neu khong co method nao duoc call thi khong xet nua
+    	if(lst1.isEmpty()) {
     		return data;
     	}
-    	HashMap<String, Boolean> mapMethod = new HashMap<String, Boolean>();
-    	ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
-    	List<ASTMethod> lst1 = nodeAncestor.findDescendantsOfType(ASTMethod.class);
-    	for(ASTMethod ele : lst1) {
-    		mapMethod.put(ele.getImage(), (ele.hasDescendantOfType(ASTDmlInsertStatement.class) 
-    										|| ele.hasDescendantOfType(ASTDmlUpdateStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlDeleteStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlUndeleteStatement.class)
-    										|| ele.hasDescendantOfType(ASTDmlUpsertStatement.class)));
-    	}
-    	for(ASTMethodCallExpression ele : lst2) {
-    		if(mapMethod.get(ele.getMethodName())) {
+    	
+    	//Neu co xet tung method duoc call
+    	for(ASTMethodCallExpression ele : lst1) {
+    		
+    		//Neu method duoc call co trong list cac method chua DML thi add loi
+    		if(lstMethodWithDML.contains(ele.getMethodName())) {
     			addViolation(data, ele);
+    			break;
+    			
+    		//Neu khong trong danh sach chua DML thi xet xem method co goi toi mot method nao khac khong
+    		}else {
+    			if(check(data, ele, lstMethod, lstMethodWithDML)) {
+    				break;
+    				
+    			//Di sau them 1 cap
+    			}else {
+    				
+    				//Xet tat ca cac method trong class
+    				for(ASTMethod ele1 : lstMethod) {
+    					
+    					//Tim vi tri method dang xet duoc khai bao
+    					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
+							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
+							for(ASTMethodCallExpression ele2 : lst2) {
+								
+								//Xem neu method dang xet co trong danh sach cac method co DML khong
+								if(lstMethodWithDML.contains(ele2.getFullMethodName())) {
+									addViolation(data, ele);
+									addViolation(data, ele2);
+									break;
+								}else {
+									if(check(data, ele2, lstMethod, lstMethodWithDML)) {
+										addViolation(data, ele);
+										break;
+									}
+								}
+							}
+    					}
+    				}
+    			}
     		}
     	}
     	return data;
     }
+    
+    private Boolean check(Object data, ASTMethodCallExpression nodeToCheck, List<ASTMethod> lstMethod, List<String> lstMethodWithDML) {
+    	
+    	//Xet tung method trong list tat ca method trong class
+    	for(ASTMethod ele : lstMethod) {
+    		
+    		//Neu tim duoc vi tri khai bao method
+    		if(ele.getImage().contentEquals(nodeToCheck.getFullMethodName())) {
+    			
+    			//Lap list tat ca cac method duoc goi trong do
+    			List<ASTMethodCallExpression> lst = ele.findDescendantsOfType(ASTMethodCallExpression.class);
+    			
+    			//Check tung method goi trong list tren
+    			for(ASTMethodCallExpression ele1 : lst) {
+    				
+    				//Neu method co trong list cac method co DML
+    				if(lstMethodWithDML.contains(ele1.getFullMethodName())) {
+    					
+    					//Bao loi ngay method goi no va chinh no
+    					return true;
+    				}
+    			}
+    		}
+    	}
+    	return false;
+    }
+    
     private List<Node> checkForDML(AbstractNode node) {
     	List<Node> listNode = new ArrayList<>();
     	if(node.hasDescendantOfType(ASTDmlInsertStatement.class)) {
