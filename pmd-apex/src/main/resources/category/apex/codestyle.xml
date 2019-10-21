@@ -188,7 +188,7 @@ while (true) {  // preferred approach
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass06">
           <description>
           </description>
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -204,7 +204,7 @@ while (true) {  // preferred approach
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass07">
           <description>
           </description>
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -218,7 +218,7 @@ while (true) {  // preferred approach
           message="[Trigger-2] Khi xu ly trigger thi phai tao cac lop handler de xe ly, trong file trigger chi xu ly su kien va delegate cho cac lop handler thuc hien"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.Trigger02">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -229,10 +229,10 @@ while (true) {  // preferred approach
     
     <rule name="Check-List-VisualPage-6"
 		  since="5.6.0"
-          message="[ViusalPage-6] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
+          message="[VisualPage-6] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage06">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -246,7 +246,7 @@ while (true) {  // preferred approach
           message="[VisualPage-18] Nhung method nao return la Pagereference thi phai co try cacth"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage18">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -268,7 +268,7 @@ while (true) {  // preferred approach
 
             By default this rule uses the standard Apex naming convention (Camel case).
         </description>
-        <priority>5</priority>
+        <priority>3</priority>
         <example>
 <![CDATA[
 public class Foo {
@@ -284,7 +284,7 @@ public class Foo {
           message="[General-2] Trong xu ly, nhung method hoac funtion public phai co try catch de xu ly loi, Neu tai lieu ko ghi thi confirm lai giup."
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General02">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -300,7 +300,7 @@ public class Foo {
           externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_codestyle.html#classnamingconventions">
         <description>       
         </description>
-        <priority>5</priority>
+        <priority>3</priority>
     </rule>
     
     <rule name="Check-List-General-5"
@@ -308,7 +308,7 @@ public class Foo {
           message="[General-5] Truong hop la class su dung trong batch thi dat ten theo kieu: danh tu ＋  Batch"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General05">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -322,7 +322,7 @@ public class Foo {
           message="[General-6] Truong hop la class su dung trong trigger thi đat ten theo kieu : ten Object (xoa chu __c)　＋　Trigger"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General06">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -336,7 +336,7 @@ public class Foo {
           message="[General-9] Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has….de dat ten bien"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General09">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -350,7 +350,7 @@ public class Foo {
           message="[General-11] Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
 					Vi du: public final Integer COLUMN_DATE = 0; //実績日付 "
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General11">
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -365,7 +365,7 @@ public class Foo {
 					if (membershipHistoryList.size() > 0) -> if (!membershipHistoryList.isEmpty())"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General12">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -384,7 +384,7 @@ public class Foo {
         <description>
 
         </description>
-        <priority>5</priority>
+        <priority>3</priority>
     </rule>
     
     <rule name="Check-List-General-15"
@@ -394,7 +394,7 @@ public class Foo {
           <description>
           Use Private Variable
           </description>
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -408,7 +408,7 @@ public class Foo {
           message="[General-18] Ngat tung parameter bang dau phay,  sau do phai la 1 space 1byte"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General18">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -423,7 +423,7 @@ public class Foo {
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General19">
           <description>
           </description>
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -438,7 +438,7 @@ public class Foo {
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General20">
           <description>
           </description>
-            <priority>5</priority>
+            <priority>1</priority>
 
           <example>
     <![CDATA[
@@ -453,7 +453,7 @@ public class Foo {
 					Truong hop For Object - Phai đat ten bien co y nghaa"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General22">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -469,7 +469,7 @@ public class Foo {
           <description>
           Don't use constant to declare number of loop
           </description>
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -483,7 +483,7 @@ public class Foo {
           message="[General-24] Trong xu ly loop, khong su dung xu ly @future"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General24">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -499,7 +499,23 @@ public class Foo {
           <description>
           Delete debug after done coding
           </description>
-            <priority>5</priority>
+            <priority>3</priority>
+
+          <example>
+    <![CDATA[
+       
+    ]]>
+          </example>
+    </rule>
+    
+    <rule name="Check-List-General-43"
+		  since="5.6.0"
+          message="[General-43] Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot. Toi da 10 SOQL"
+          class="net.sourceforge.pmd.lang.apex.rule.codestyle.General43">
+          <description>
+          Delete debug after done coding
+          </description>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -513,7 +529,7 @@ public class Foo {
           message="[General-53] Trong source controller, test class, page KO HARDCODE page apex/confirm ma thay the bang cach Page.Confim"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.General53">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -527,7 +543,7 @@ public class Foo {
           message="[Batch-06] Trong batch ko the dang ki dc nhieu schedule chu y"
           class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch06">
        
-            <priority>5</priority>
+            <priority>3</priority>
 
           <example>
     <![CDATA[
@@ -537,27 +553,33 @@ public class Foo {
     </rule>
     <rule name="AvoidDeeplyNestedIfStmts"
 		since="5.5.0"
-		message="Deeply nested if..then statements are hard to read"
+		message="[General-26] Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap"
 		class="net.sourceforge.pmd.lang.apex.rule.design.AvoidDeeplyNestedIfStmtsRule"
-		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
-		<description>
-		Avoid creating deeply nested if-then statements since they are harder to read and error-prone to maintain.
-		</description>
+		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">		
 		<priority>3</priority>
-		<example>
-		<![CDATA[
-		public class Foo {
-		public void bar(Integer x, Integer y, Integer z) {
-		if (x>y) {
-		if (y>z) {
-		if (z==x) {
-		// !! too deep
-		}
-		}
-		}
-		}
-		}
-		]]>
-		</example>
-		</rule>
+	</rule>
+		
+	<rule name="AvoidDmlStatementsInLoops"
+          since="5.5.0"
+          message="[General-39] Trong xu ly loop, khong su dung xu ly DML"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidDmlStatementsInLoopsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoiddmlstatementsinloops">
+        <priority>3</priority>        
+    </rule>
+    
+    <rule name="AvoidSoqlInLoops"
+          since="5.5.0"
+          message="[General-46] Trong xu ly loop khong duoc su dung SOQL, SOSL"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidSoqlInLoopsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoidsoqlinloops">
+        <priority>3</priority>
+    </rule>
+
+    <rule name="AvoidSoslInLoops"
+          since="6.0.0"
+          message="[General-46] Trong xu ly loop khong duoc su dung SOQL, SOSL"
+          class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidSoslInLoopsRule"
+          externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoidsoslinloops">
+        <priority>3</priority>
+    </rule>
 </ruleset>

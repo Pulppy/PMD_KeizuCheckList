@@ -15,6 +15,7 @@ public class General02 extends AbstractNamingConventionsRule{
 	}
 	@Override
 	public Object visit(ASTMethod node, Object data) {
+		//Neu ham public check xem ca ham co duoc try catch boc khong
 		if(node.getModifiers().isPublic()) {
 
 			ASTBlockStatement blockStatement = node.findChildrenOfType(ASTBlockStatement.class).get(0);
