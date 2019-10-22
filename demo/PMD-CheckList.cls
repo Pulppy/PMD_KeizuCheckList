@@ -175,21 +175,38 @@ public class PMDCheckListDemo{
 
 	/**
 	* general20
-	* @created: 2019/10/12 Lu Chi Hao
+	* @created: 2019/10/22 Truong Trang Ngoc Phuc
 	* @decription: Trong salseforce co gioi han, nen giam thieu toi da su dung loop.
 	* @modified:
 	*/
 
 	// private void general20(){
-	//     int ten = 10;
-	//     for (Integer i = 0; i < ten; i++) {
-	//         for (Integer j = 0; j < ten; j++) {
-	//             for (Integer k = 0; k < ten; j++) {
-				
-	//             }
-	//         }
-	//     }
-	// }
+    //      Boolean isTrue= true;
+    //      List<String> stringList = new List<String>();
+    //     //  Loop: 1
+    //      for (String str : stringList) {
+    //         // Loop: 2
+    //         for (Integer i = 0; i < stringList.size(); i++){
+    //             // Loop: 3
+    //             while(true){}
+    //          }
+
+    //         // Loop: 2
+    //         while(isTrue){
+    //             // Loop: 3
+    //             for (String str : stringList) {
+    //                 // Loop: 4
+    //                 while(true){}
+    //             }
+
+    //             // Loop: 3
+    //             while(isTrue){}
+    //         }
+
+    //         // Loop: 2
+    //         for (Integer i = 0; i < stringList.size(); i++){}
+    //      }
+    }
 
 	//=========================================================================================
 
