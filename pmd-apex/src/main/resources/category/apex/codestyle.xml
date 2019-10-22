@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
-<ruleset name="Keizu Checklist Rule">
+<ruleset name="Code Style"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
 	<description>
 		Rules which enforce a specific coding style.
 	</description>
@@ -79,7 +82,7 @@
 -->
 	<rule name="Check-List-General-5"
 		since="5.6.0"
-		message="[General-5] Truong hop la class su dung trong batch thi dat ten theo kieu: danh tu ＋  Batch"
+		message="[General-5] Truong hop la class su dung trong batch thi dat ten theo kieu: danh tu + Batch"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General05">
 		<priority>3</priority>
 	</rule>
