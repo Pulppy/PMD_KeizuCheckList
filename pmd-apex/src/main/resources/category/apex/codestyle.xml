@@ -397,6 +397,19 @@
 	</rule>
 
 <!--
+	General_41
+	@created: 2019/10/22 Lu Chi Hao
+	@decription: Khi insert, delete, update phai check isEmpty
+	@modified:
+-->
+	<rule name="Check-List-General-41"
+		since="5.5.0"
+		message="[General-41] Khi insert, delete, update phai check isEmpty"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General41">
+		<priority>3</priority>
+	</rule>
+
+<!--
 	General_43
 	@created: 2019/10/12 Lu Chi Hao
 	@decription: Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot. Toi da 10 SOQL
@@ -407,7 +420,6 @@
 		message="[General-43] Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot. Toi da 10 SOQL"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General43">
 		<description>
-			Delete debug after done coding
 		</description>
 		<priority>3</priority>
 		<example>
