@@ -133,6 +133,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     			if(check(data, ele, lstMethod, lstMethodWithDML)) {
     				break;
     			}else {
+    				
     				for(ASTMethod ele1 : lstMethod) {
     					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
     						
@@ -143,7 +144,9 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
 									addViolation(data, ele2);
 									break;
 								}else {
+									
 									if(check(data, ele2, lstMethod, lstMethodWithDML)) {
+										addViolation(data, ele);
 										break;
 									}
 								}
@@ -188,18 +191,21 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     			break;
     		}else {
     			if(check(data, ele, lstMethod, lstMethodWithDML)) {
-    				addViolation(data, ele);
     				break;
     			}else {
+    				
     				for(ASTMethod ele1 : lstMethod) {
     					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
+    						
 							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
 							for(ASTMethodCallExpression ele2 : lst2) {
 								if(lstMethodWithDML.contains(ele2.getFullMethodName())) {
 									addViolation(data, ele);
 									addViolation(data, ele2);
+									break;
 								}else {
-									if(check(data, ele, lstMethod, lstMethodWithDML)) {
+									
+									if(check(data, ele2, lstMethod, lstMethodWithDML)) {
 										addViolation(data, ele);
 										break;
 									}
@@ -235,45 +241,30 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     			addViolation(data, ele);
     		}
     	}
-    	
-    	//Lap list cac method duoc call trong loop
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
-    	
-    	//Neu khong co method nao duoc call thi khong xet nua
     	if(lst1.isEmpty()) {
     		return data;
     	}
-    	
-    	//Neu co xet tung method duoc call
     	for(ASTMethodCallExpression ele : lst1) {
-    		
-    		//Neu method duoc call co trong list cac method chua DML thi add loi
     		if(lstMethodWithDML.contains(ele.getMethodName())) {
     			addViolation(data, ele);
     			break;
-    			
-    		//Neu khong trong danh sach chua DML thi xet xem method co goi toi mot method nao khac khong
     		}else {
     			if(check(data, ele, lstMethod, lstMethodWithDML)) {
     				break;
-    				
-    			//Di sau them 1 cap
     			}else {
     				
-    				//Xet tat ca cac method trong class
     				for(ASTMethod ele1 : lstMethod) {
-    					
-    					//Tim vi tri method dang xet duoc khai bao
     					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
+    						
 							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
 							for(ASTMethodCallExpression ele2 : lst2) {
-								
-								//Xem neu method dang xet co trong danh sach cac method co DML khong
 								if(lstMethodWithDML.contains(ele2.getFullMethodName())) {
 									addViolation(data, ele);
 									addViolation(data, ele2);
 									break;
 								}else {
+									
 									if(check(data, ele2, lstMethod, lstMethodWithDML)) {
 										addViolation(data, ele);
 										break;
@@ -306,6 +297,8 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     				if(lstMethodWithDML.contains(ele1.getFullMethodName())) {
     					
     					//Bao loi ngay method goi no va chinh no
+    					addViolation(data, nodeToCheck);
+						addViolation(data, ele1);
     					return true;
     				}
     			}

@@ -17,25 +17,28 @@ public class Batch03 extends AbstractApexRule{
 			add("getvalues");
 		}
 	};
-//	@Override
-//	public Object visit(ASTUserClass node, Object data) {
-//		boolean isBatch = false;
-//		List<String> interfaceList = node.getInterfaceNames();
-//		
-//		for(String interfaceName : interfaceList) {
-//			if (interfaceName.toLowerCase().contains("batch")) {
-//				isBatch = true;
-//				break;
-//			}
-//		}
-//		
-//		if (!isBatch) {
-//			return data;
-//		}
-//	}
 	
 	@Override
 	public Object visit(ASTMethodCallExpression node, Object data) {
+		ASTUserClass userClass = node.getFirstParentOfType(ASTUserClass.class);
+		boolean isBatch = false;
+		List<String> interfaceList = userClass.getInterfaceNames();
+		
+		if (interfaceList.isEmpty()) {
+			return data;
+		}
+		
+		for(String interfaceName : interfaceList) {
+			if (interfaceName.toLowerCase().contains("batch")) {
+				isBatch = true;
+				break;
+			}
+		}
+		
+		if (!isBatch) {
+			return data;
+		}
+		
 		for (String customset : CUSTOMSETTINGLIST) {
 			if (node.getMethodName().toLowerCase().contentEquals(customset)) {
 				if (!isInStartMethod(node)) {
