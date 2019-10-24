@@ -14,7 +14,7 @@ public class Batch04 extends AbstractApexRule{
 	public Object visit(ASTUserClass node, Object data) {
 		boolean isBatch = false;
 		List<String> interfaceList = node.getInterfaceNames();
-		
+		// Kiem tra co phai Batch ko
 		for(String interfaceName : interfaceList) {
 			if (interfaceName.toLowerCase().contains("batch")) {
 				isBatch = true;
@@ -25,21 +25,7 @@ public class Batch04 extends AbstractApexRule{
 		if (!isBatch) {
 			return data;
 		}
-		
-		List<ASTSoqlExpression> soqlList = node.findDescendantsOfType(ASTSoqlExpression.class);
-		if (!soqlList.isEmpty()) {
-			for (ASTSoqlExpression soql : soqlList) {
-				addViolation(data, soql);
-			}
-		}
-		
 		List<ASTMethodCallExpression> methodCallList = node.findDescendantsOfType(ASTMethodCallExpression.class);
-		for (ASTMethodCallExpression methodCall : methodCallList) {
-			if(methodCall.getFullMethodName().toLowerCase().contentEquals("database.query")) {
-				addViolation(data, methodCall);
-			}
-		}
-		
 		ASTMethod startMethod = getMethodStart(node);
 		
 		if (startMethod != null) {
@@ -67,6 +53,10 @@ public class Batch04 extends AbstractApexRule{
 					if (mce.getFullMethodName().toLowerCase().contentEquals(method.getImage().toLowerCase())) {
 						return data;
 					}
+				}
+				
+				if (method.getImage().toLowerCase().contentEquals("start")) {
+					return data;
 				}
 				addViolation(data, method);
 			}
