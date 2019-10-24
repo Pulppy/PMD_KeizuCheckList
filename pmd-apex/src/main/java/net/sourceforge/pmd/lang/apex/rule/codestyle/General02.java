@@ -5,6 +5,7 @@ import java.util.List;
 import net.sourceforge.pmd.lang.apex.ast.ASTBlockStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTTryCatchFinallyBlockStatement;
+import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 
 public class General02 extends AbstractNamingConventionsRule{
 
@@ -15,6 +16,11 @@ public class General02 extends AbstractNamingConventionsRule{
 	}
 	@Override
 	public Object visit(ASTMethod node, Object data) {
+		ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
+		if(node.getImage().contentEquals(nodeAncestor.getImage())) {
+			return data;
+		}
+		
 		//Neu ham public check xem ca ham co duoc try catch boc khong
 		if(node.getModifiers().isPublic()) {
 
