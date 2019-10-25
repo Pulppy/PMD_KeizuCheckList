@@ -2,51 +2,85 @@ package net.sourceforge.pmd.lang.apex.rule.codestyle;
 
 import java.util.List;
 
+import net.sourceforge.pmd.lang.apex.ast.ASTAssignmentExpression;
+import net.sourceforge.pmd.lang.apex.ast.ASTLiteralExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
-import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTNewObjectExpression;
-import net.sourceforge.pmd.lang.apex.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTVariableDeclaration;
 import net.sourceforge.pmd.lang.apex.ast.ASTVariableExpression;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
-
+/*
+ * Class		: General53
+ * Author		: Truong Trang Ngoc Phuc
+ * Created		: 2019/10/25
+ * Discription	: Trong source controller, test class, page KO HARDCODE page apex/confirm ma thay the bang cach Page.Confim
+ */
 public class General53 extends AbstractApexRule {
-	private static final String GET_CURRENT_PAGE = "apexPage.getcurrentpage";
-	private static final String GET_PARAMETER = "getparameters.get";
-	
 	@Override
 	public Object visit(ASTMethod node, Object data) {
-		if(node.getReturnType().toLowerCase().contentEquals("pagereference")) {
-			List<ASTReturnStatement> returnStmList = node.findChildrenOfType(ASTReturnStatement.class);
-			for (ASTReturnStatement returnStm : returnStmList) {
-				ASTNewObjectExpression newObjExpression = returnStm.getFirstChildOfType(ASTNewObjectExpression.class);
-				ASTVariableExpression varExpression = returnStm.getFirstChildOfType(ASTVariableExpression.class);
-				
-				if(newObjExpression != null) {
-					if(newObjExpression.getType().toLowerCase().contentEquals("pagereference")) {
-						addViolation(data, node);
+		List<ASTLiteralExpression> litExpList = node.findDescendantsOfType(ASTLiteralExpression.class);
+		if (!litExpList.isEmpty()) {
+			for (ASTLiteralExpression litExp : litExpList) {
+				// Truong hop la hard-code trong new PageReference
+				ASTNewObjectExpression parentNewObj = litExp.getFirstParentOfType(ASTNewObjectExpression.class);
+				if (parentNewObj != null) {
+					if (parentNewObj.getType().toLowerCase().contentEquals("pagereference")) {
+						addViolation(data, parentNewObj);
 					}
 				}
-				if(varExpression != null) {
-					List<ASTVariableDeclaration> varExpList = node.findDescendantsOfType(ASTVariableDeclaration.class);
-					for(ASTVariableDeclaration varExp : varExpList) {
-						if(varExp.getImage().contentEquals(varExpression.getImage()) 
-						 && varExp.getType().toLowerCase().contentEquals("pagereference")) {
-							addViolation(data, varExpression);
+			}
+			
+			List<ASTNewObjectExpression> newObjList = node.findDescendantsOfType(ASTNewObjectExpression.class);
+			if (!newObjList.isEmpty()) {
+				for (ASTNewObjectExpression newObj : newObjList) {
+					if (newObj.getType().toLowerCase().contentEquals("pagereference")) {
+						ASTVariableExpression childVarExp = newObj.getFirstChildOfType(ASTVariableExpression.class);
+						if (childVarExp != null) {
+							String varName = childVarExp.getImage();
+							ASTMethod parentMethod = newObj.getFirstParentOfType(ASTMethod.class);
+							List<ASTVariableDeclaration> varDecList = parentMethod.findDescendantsOfType(ASTVariableDeclaration.class);
+							List<ASTAssignmentExpression> assExpList = parentMethod.findDescendantsOfType(ASTAssignmentExpression.class);
+							if (!varDecList.isEmpty()) {
+								ASTVariableDeclaration variableDeclaration = null;
+								for (ASTVariableDeclaration varDec : varDecList) {
+									if(varDec.getImage().contentEquals(varName) && varDec.getBeginLine() < newObj.getBeginLine()) {
+										if (varDec.getFirstChildOfType(ASTLiteralExpression.class) != null) {
+											variableDeclaration = varDec;
+										}
+									}
+								}
+								
+								if (variableDeclaration != null) {
+									addViolation(data, newObj);
+									
+								}
+							}
+							
+							if (!assExpList.isEmpty()) {
+								ASTVariableExpression variableExpression = null;
+								ASTLiteralExpression literalExpression = null;
+								
+								for (ASTAssignmentExpression assExp :  assExpList) {
+									ASTVariableExpression varExp = assExp.getFirstChildOfType(ASTVariableExpression.class);
+									ASTLiteralExpression litExp = assExp.getFirstChildOfType(ASTLiteralExpression.class);
+									
+									if (varExp != null) {
+										if (varExp.getImage().contentEquals(varName) && varExp.getBeginLine() < newObj.getBeginLine()) {
+											variableExpression = varExp;
+											literalExpression = litExp;
+										}
+									}
+								}
+								
+								if (variableExpression != null && literalExpression != null) {
+									addViolation(data, newObj);
+								}
+							}
 						}
 					}
 				}
 			}
 		}
-		return data;
-	}
-	@Override
-	public Object visit(ASTMethodCallExpression node, Object data) {
-		String methodName = node.getFullMethodName().toLowerCase();
-		if (methodName.toLowerCase().contains(GET_CURRENT_PAGE) || methodName.toLowerCase().contains(GET_PARAMETER)) {
-			addViolation(data, node);
-		}
-		
 		return data;
 	}
 }
