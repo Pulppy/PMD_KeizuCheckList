@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.apex.ast.ASTVariableExpression;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
 public class General41 extends AbstractApexRule{
-	public final String IS_EMTY = ".isEmty";
+	public final String IS_EMPTY = ".isEmpty";
 	public final String IS_BLANK = ".isBlank";
 	@Override
 	public Object visit(ASTDmlUpdateStatement node, Object data) {
@@ -34,7 +34,7 @@ public class General41 extends AbstractApexRule{
 				if(i == lstMethodCallName.size()) {
 					addViolation(data, node);
 				}else {
-					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
+					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMPTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
 						break;
 					}
 				}
@@ -63,7 +63,7 @@ public class General41 extends AbstractApexRule{
 				if(i == lstMethodCallName.size()) {
 					addViolation(data, node);
 				}else {
-					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
+					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMPTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
 						break;
 					}
 				}
@@ -92,7 +92,7 @@ public class General41 extends AbstractApexRule{
 				if(i == lstMethodCallName.size()) {
 					addViolation(data, node);
 				}else {
-					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
+					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMPTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
 						break;
 					}
 				}
@@ -121,7 +121,7 @@ public class General41 extends AbstractApexRule{
 				if(i == lstMethodCallName.size()) {
 					addViolation(data, node);
 				}else {
-					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
+					if(lstMethodCallName.get(i).contentEquals(variableName + IS_EMPTY) || lstMethodCallName.get(i).contentEquals(variableName + IS_BLANK)) {
 						break;
 					}
 				}
