@@ -6,9 +6,9 @@ package net.sourceforge.pmd.lang.apex.rule.codestyle;
 
 import static net.sourceforge.pmd.properties.constraints.NumericConstraints.positive;
 
+import net.sourceforge.pmd.lang.apex.ast.ASTDoLoopStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTForEachStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTForLoopStatement;
-import net.sourceforge.pmd.lang.apex.ast.ASTIfBlockStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.ASTWhileLoopStatement;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
@@ -19,7 +19,7 @@ import net.sourceforge.pmd.properties.PropertyFactory;
 public class General20 extends AbstractApexRule {
 
     private int depth;
-    private int depthLimit;
+//    private int depthLimit;
 
     private static final PropertyDescriptor<Integer> PROBLEM_DEPTH_DESCRIPTOR
             = PropertyFactory.intProperty("problemDepth")
@@ -38,7 +38,7 @@ public class General20 extends AbstractApexRule {
     @Override
     public Object visit(ASTUserClass node, Object data) {
         depth = 0;
-        depthLimit = getProperty(PROBLEM_DEPTH_DESCRIPTOR);
+//        depthLimit = getProperty(PROBLEM_DEPTH_DESCRIPTOR);
 
         return super.visit(node, data);
     }
@@ -71,6 +71,19 @@ public class General20 extends AbstractApexRule {
     
     @Override
     public Object visit(ASTWhileLoopStatement node, Object data) {
+        depth++;
+
+        super.visit(node, data);
+        if (depth == 3) {
+            addViolation(data, node);
+        }
+        depth--;
+
+        return data;
+    }
+    
+    @Override
+    public Object visit(ASTDoLoopStatement node, Object data) {
         depth++;
 
         super.visit(node, data);

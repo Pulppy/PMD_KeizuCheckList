@@ -5,20 +5,13 @@
 package net.sourceforge.pmd.lang.apex.rule.performance;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import net.sourceforge.pmd.lang.apex.ast.ASTDmlDeleteStatement;
-import net.sourceforge.pmd.lang.apex.ast.ASTDmlInsertStatement;
-import net.sourceforge.pmd.lang.apex.ast.ASTDmlUndeleteStatement;
-import net.sourceforge.pmd.lang.apex.ast.ASTDmlUpdateStatement;
-import net.sourceforge.pmd.lang.apex.ast.ASTDmlUpsertStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTDoLoopStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTForEachStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTForLoopStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
-import net.sourceforge.pmd.lang.apex.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTSoqlExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.ASTWhileLoopStatement;
@@ -202,6 +195,70 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     //Method with DML inside loop
     @Override
     public Object visit(ASTForEachStatement node, Object data) {
+    	List<Node> listNode = checkForSOQL(node);
+    	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
+    	List<String> lstMethodWithSOQL = new ArrayList<>();
+    	for(ASTMethod ele : lstMethod) {
+    		if(ele.hasDescendantOfType(ASTSoqlExpression.class)) {
+    			lstMethodWithSOQL.add(ele.getImage());
+    		}
+    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class)) {
+    			List<ASTMethodCallExpression> lst = ele.findDescendantsOfType(ASTMethodCallExpression.class);
+    			for(Integer i = 0; i <= lst.size(); i++) {
+    				if(i == lst.size()) {
+    					break;
+    				}else {
+    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query")) {
+    						lstMethodWithSOQL.add(ele.getImage());
+    						break;
+    					}
+    				}
+    			}
+    		}
+    	}
+    	
+    	if(!listNode.isEmpty()) {
+    		for(Node ele : listNode) {
+    			addViolation(data, ele);
+    		}
+    	}
+    	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	if(lst1.isEmpty()) {
+    		return data;
+    	}
+    	for(ASTMethodCallExpression ele : lst1) {
+    		if(lstMethodWithSOQL.contains(ele.getMethodName())) {
+    			addViolation(data, ele);
+    			break;
+    		}else {
+    			if(check(data, ele, lstMethod, lstMethodWithSOQL)) {
+    				break;
+    			}else {
+    				for(ASTMethod ele1 : lstMethod) {
+    					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
+    						
+							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
+							for(ASTMethodCallExpression ele2 : lst2) {
+								if(lstMethodWithSOQL.contains(ele2.getFullMethodName())) {
+									addViolation(data, ele);
+									addViolation(data, ele2);
+									break;
+								}else {
+									if(check(data, ele2, lstMethod, lstMethodWithSOQL)) {
+										addViolation(data, ele);
+										break;
+									}
+								}
+							}
+    					}
+    				}
+    			}
+    		}
+    	}
+    	return data;
+    }
+    
+    public Object visit(ASTDoLoopStatement node, Object data) {
     	List<Node> listNode = checkForSOQL(node);
     	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
     	List<String> lstMethodWithSOQL = new ArrayList<>();
