@@ -12,6 +12,9 @@ import net.sourceforge.pmd.lang.vf.ast.ASTElement;
 public class VisualPage08 extends AbstractVfRule {
 	@Override
 	public Object visit(ASTElement node, Object data) {
+		if (!node.getName().toLowerCase().contentEquals("apex:page")) {
+			return data;
+		}
 		// Tim kiem cac node con
 		List<ASTElement> childNodeList = node.findDescendantsOfType(ASTElement.class);
 		// So the apex:form
@@ -24,7 +27,6 @@ public class VisualPage08 extends AbstractVfRule {
 				addViolation(data, child);
 			}
 		}
-
 		return data;
 	}
 }
