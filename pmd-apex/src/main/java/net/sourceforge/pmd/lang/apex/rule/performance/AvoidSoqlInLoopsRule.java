@@ -13,6 +13,7 @@ import net.sourceforge.pmd.lang.apex.ast.ASTForLoopStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTSoqlExpression;
+import net.sourceforge.pmd.lang.apex.ast.ASTSoslExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.ASTWhileLoopStatement;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
@@ -61,20 +62,27 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
 	
 	@Override
     public Object visit(ASTForLoopStatement node, Object data) {
+		//Lap list chua cac soql va sosl trong loop
 		List<Node> listNode = checkForSOQL(node);
+		
+		//Lap list chua tat ca method co soql hoac sosl
     	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
     	List<String> lstMethodWithSOQL = new ArrayList<>();
     	for(ASTMethod ele : lstMethod) {
     		if(ele.hasDescendantOfType(ASTSoqlExpression.class)) {
     			lstMethodWithSOQL.add(ele.getImage());
     		}
-    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class)) {
+    		if(ele.hasDescendantOfType(ASTSoslExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
+    			lstMethodWithSOQL.add(ele.getImage());
+    		}
+    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
     			List<ASTMethodCallExpression> lst = ele.findDescendantsOfType(ASTMethodCallExpression.class);
     			for(Integer i = 0; i <= lst.size(); i++) {
     				if(i == lst.size()) {
     					break;
     				}else {
-    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query")) {
+    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query") ||
+    							lst.get(i).getFullMethodName().toLowerCase().contentEquals("search.query")) {
     						lstMethodWithSOQL.add(ele.getImage());
     						break;
     					}
@@ -83,32 +91,54 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     		}
     	}
     	
+    	//Neu trong loop co sosl va soql thi bao loi
     	if(!listNode.isEmpty()) {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
     	}
+    	
+    	//Neu khong co method nao chua soql thi ket thuc
+    	if(lstMethodWithSOQL.isEmpty()) {
+    		return data;
+    	}
+    	//Lap list chua tat ca method duoc goi trong loop
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	
+    	//Neu khong co method nao duoc goi thi khong xet nua
     	if(lst1.isEmpty()) {
     		return data;
     	}
     	for(ASTMethodCallExpression ele : lst1) {
+    		
+    		//Neu method duoc goi nam trong list chua cac method co soql hoac sosl thi bao loi
     		if(lstMethodWithSOQL.contains(ele.getMethodName())) {
     			addViolation(data, ele);
     			break;
+    		
+    		//Kiem tra xem method duoc call nay co call toi mot method nao khac chua soql sosl khong
     		}else {
     			if(check(data, ele, lstMethod, lstMethodWithSOQL)) {
     				break;
+    				
+    			//Di sau them 1 cap nua	
     			}else {
     				for(ASTMethod ele1 : lstMethod) {
+    					
+    					//Tim vi tri method dang xet duoc khai bao
     					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
     						
+    						//Lap list tat ca cac method duoc goi trong method dang xet
 							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
 							for(ASTMethodCallExpression ele2 : lst2) {
+								
+								//Xem neu method dang xet co trong danh sach cac method co soql sosl khong
 								if(lstMethodWithSOQL.contains(ele2.getFullMethodName())) {
 									addViolation(data, ele);
 									addViolation(data, ele2);
 									break;
+									
+								//Kiem tra xem method duoc call nay co call toi mot method nao khac chua sosl, soql khong
 								}else {
 									if(check(data, ele2, lstMethod, lstMethodWithSOQL)) {
 										addViolation(data, ele);
@@ -124,8 +154,7 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     	return data;
     }
     
-    //KSVC Hao PMD-checkList
-    //Method with DML inside loop
+
     @Override
     public Object visit(ASTWhileLoopStatement node, Object data) {
     	List<Node> listNode = checkForSOQL(node);
@@ -135,13 +164,17 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     		if(ele.hasDescendantOfType(ASTSoqlExpression.class)) {
     			lstMethodWithSOQL.add(ele.getImage());
     		}
-    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class)) {
+    		if(ele.hasDescendantOfType(ASTSoslExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
+    			lstMethodWithSOQL.add(ele.getImage());
+    		}
+    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
     			List<ASTMethodCallExpression> lst = ele.findDescendantsOfType(ASTMethodCallExpression.class);
     			for(Integer i = 0; i <= lst.size(); i++) {
     				if(i == lst.size()) {
     					break;
     				}else {
-    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query")) {
+    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query") ||
+    							lst.get(i).getFullMethodName().toLowerCase().contentEquals("search.query")) {
     						lstMethodWithSOQL.add(ele.getImage());
     						break;
     					}
@@ -154,6 +187,10 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
+    	}
+    	
+    	if(lstMethodWithSOQL.isEmpty()) {
+    		return data;
     	}
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
     	if(lst1.isEmpty()) {
@@ -191,8 +228,7 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     	return data;
     }
     
-    //KSVC Hao PMD-checkList
-    //Method with DML inside loop
+
     @Override
     public Object visit(ASTForEachStatement node, Object data) {
     	List<Node> listNode = checkForSOQL(node);
@@ -202,13 +238,17 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     		if(ele.hasDescendantOfType(ASTSoqlExpression.class)) {
     			lstMethodWithSOQL.add(ele.getImage());
     		}
-    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class)) {
+    		if(ele.hasDescendantOfType(ASTSoslExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
+    			lstMethodWithSOQL.add(ele.getImage());
+    		}
+    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
     			List<ASTMethodCallExpression> lst = ele.findDescendantsOfType(ASTMethodCallExpression.class);
     			for(Integer i = 0; i <= lst.size(); i++) {
     				if(i == lst.size()) {
     					break;
     				}else {
-    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query")) {
+    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query") ||
+    							lst.get(i).getFullMethodName().toLowerCase().contentEquals("search.query")) {
     						lstMethodWithSOQL.add(ele.getImage());
     						break;
     					}
@@ -221,6 +261,9 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
+    	}
+    	if(lstMethodWithSOQL.isEmpty()) {
+    		return data;
     	}
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
     	if(lst1.isEmpty()) {
@@ -266,13 +309,19 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     		if(ele.hasDescendantOfType(ASTSoqlExpression.class)) {
     			lstMethodWithSOQL.add(ele.getImage());
     		}
-    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class)) {
+    		if(ele.hasDescendantOfType(ASTSoslExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
+    			lstMethodWithSOQL.add(ele.getImage());
+    		}
+    		if(ele.hasDescendantOfType(ASTMethodCallExpression.class) && !lstMethodWithSOQL.contains(ele.getImage())) {
     			List<ASTMethodCallExpression> lst = ele.findDescendantsOfType(ASTMethodCallExpression.class);
     			for(Integer i = 0; i <= lst.size(); i++) {
     				if(i == lst.size()) {
     					break;
     				}else {
-    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query")) {
+    					if(lst.get(i).getFullMethodName().toLowerCase().contentEquals("database.query") ||
+    							lst.get(i).getFullMethodName().toLowerCase().contentEquals("search.query") 
+    							/* || lst.get(i).getFullMethodName().toLowerCase().contentEquals("search.find")*/
+    							) {
     						lstMethodWithSOQL.add(ele.getImage());
     						break;
     					}
@@ -285,6 +334,9 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
+    	}
+    	if(lstMethodWithSOQL.isEmpty()) {
+    		return data;
     	}
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
     	if(lst1.isEmpty()) {
@@ -350,7 +402,7 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     	return false;
     }
     private List<Node> checkForSOQL(AbstractNode node) {
-    	//Tao list chua tat ca cac cau SOQL
+    	//Tao list chua tat ca cac cau SOQL, SOSL
     	List<Node> listNode = new ArrayList<>();
     	if(node.hasDescendantOfType(ASTSoqlExpression.class)) {
     		List<ASTSoqlExpression> list1 = node.findDescendantsOfType(ASTSoqlExpression.class);
@@ -358,12 +410,22 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
 				listNode.add(ele);
 			}
     	}
+    	
+    	//Tao list chua tat ca cac method database.query va search.query
     	if(node.hasDescendantOfType(ASTMethodCallExpression.class)) {
     		List<ASTMethodCallExpression> list2 = node.findDescendantsOfType(ASTMethodCallExpression.class);
     		for(ASTMethodCallExpression ele : list2) {
-    			if(ele.getFullMethodName().toLowerCase().contentEquals("database.query")) {
+    			if(ele.getFullMethodName().toLowerCase().contentEquals("database.query") || 
+    				ele.getFullMethodName().toLowerCase().contentEquals("search.query")) {
     				listNode.add(ele);
-    			}				
+    			}
+			}
+    	}
+    	
+    	if(node.hasDescendantOfType(ASTSoslExpression.class)) {
+    		List<ASTSoqlExpression> list3 = node.findDescendantsOfType(ASTSoqlExpression.class);
+    		for(Node ele : list3) {
+				listNode.add(ele);
 			}
     	}
     	return listNode;

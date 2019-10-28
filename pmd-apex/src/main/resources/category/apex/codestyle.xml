@@ -90,12 +90,12 @@
 <!--
 	General_06
 	@created: 2019/10/12 Lu Chi Hao
-	@decription: Truong hop la class su dung trong trigger thi đat ten theo kieu : ten Object (xoa chu __c) ＋ Trigger
+	@decription: Truong hop la class su dung trong trigger thi dat ten theo kieu : ten Object (xoa chu __c) ＋ Trigger
 	@modified:
 -->
 	<rule name="Check-List-General-6"
 		since="5.6.0"
-		message="[General-6] Truong hop la class su dung trong trigger thi đat ten theo kieu : ten Object (xoa chu __c) + Trigger"
+		message="[General-6] Truong hop la class su dung trong trigger thi dat ten theo kieu : ten Object (xoa chu __c) + Trigger"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General06">
 		<priority>3</priority>
 		<example>
@@ -276,7 +276,7 @@
 	<rule name="Check-List-General-22"
 		since="5.6.0"
 		message="[General-22] Truong hop For Index - Chi su dung ten bien 1 ky tu trong vong lap for 
-					Truong hop For Object - Phai đat ten bien co y nghaa"
+					Truong hop For Object - Phai dat ten bien co y nghaa"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General22">
 		<priority>3</priority>
 		<example>
@@ -288,12 +288,12 @@
 <!--
 	General_23
 	@created: 2019/10/12 Lu Chi Hao
-	@decription: Trong vong for va while neu la hang so thi khong đuoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung
+	@decription: Trong vong for va while neu la hang so thi khong duoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung
 	@modified:
 -->
 	<rule name="Check-List-General-23"
 		since="5.6.0"
-		message="[General-23] Trong vong for va while neu la hang so thi khong đuoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung"
+		message="[General-23] Trong vong for va while neu la hang so thi khong duoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General23">
 		<description>
 			Don't use constant to declare number of loop
