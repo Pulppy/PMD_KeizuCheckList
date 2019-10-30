@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTProperty;
+import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserEnum;
 import net.sourceforge.pmd.properties.PropertyDescriptor;
 
@@ -49,6 +50,14 @@ public class MethodNamingConventionsRule extends AbstractNamingConventionsRule {
 
     @Override
     public Object visit(ASTMethod node, Object data) {
+    	String className = node.getFirstParentOfType(ASTUserClass.class).getImage();
+    	if(className.length() > 5 && !className.substring(className.length() - 5).contentEquals("Batch")) {
+    		if(node.getImage().toLowerCase().contentEquals("execute")
+    				||node.getImage().toLowerCase().contentEquals("start")
+    				||node.getImage().toLowerCase().contentEquals("finish")) {
+    			return data;
+    		}
+    	}
         if (isOverriddenMethod(node) || isPropertyAccessor(node) || isConstructor(node)) {
             return data;
         }
