@@ -105,6 +105,23 @@
 	</rule>
 
 <!--
+	General_08
+	@created: 2019/10/30 Lu Chi Hao
+	@decription: Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet
+	@modified:
+-->
+	<rule name="Check-List-General-8"
+		since="5.6.0"
+		message="[General-8] Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General08">
+		<priority>3</priority>
+		<example>
+			<![CDATA[
+			]]>
+		</example>
+	</rule>
+
+<!--
 	General_09
 	@created: 2019/10/12 Lu Chi Hao
 	@decription: Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has….de dat ten bien
@@ -140,7 +157,7 @@
 	@decription: Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
 	@modified:
 -->
-<!--
+
 	<rule name="Check-List-Geneneral-11"
 		since="5.6.0"
 		message="[General-11] Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
@@ -152,7 +169,7 @@
 			]]>
 		</example>
 	</rule>
--->
+
 
 <!--
 	General_12
@@ -291,6 +308,7 @@
 	@decription: Trong vong for va while neu la hang so thi khong duoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung
 	@modified:
 -->
+<!--
 	<rule name="Check-List-General-23"
 		since="5.6.0"
 		message="[General-23] Trong vong for va while neu la hang so thi khong duoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung"
@@ -304,6 +322,7 @@
 			]]>
 		</example>
 	</rule>
+-->
 
 <!--
 	General_24
@@ -553,6 +572,34 @@
 				Test.StopTest();
 			]]>
 		</example>
+	</rule>
+
+<!--
+	VisualPage_06
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap
+	@modified:
+-->
+	<rule name="Check-List-VisualPage-06"
+		since="5.5.0"
+		message="[VisualPage-06] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage06"
+		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	VisualPage_18
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap
+	@modified:
+-->
+	<rule name="Check-List-VisualPage-18"
+		since="5.5.0"
+		message="[VisualPage-18] Nhung method nao return la Pagereference thi phai co try cacth"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage18"
+		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		<priority>3</priority>
 	</rule>
 
 </ruleset>
