@@ -76,10 +76,10 @@ public class PMDCheckListDemo{
 	// private int test1;
 	// private void general13(){
 	//     int test2 = 5;
-	//     Test1 = true;
+	//     test1 = true;
 	// }
 	// private void test2(){
-	//     Test1 = true;
+	//     test1 = true;
 	// }
 
 	//=========================================================================================
@@ -97,6 +97,9 @@ public class PMDCheckListDemo{
 	// }
 	//  private void general152(){
 	//     a = 9;
+	// }
+	// public PMDCheckListDemo(){
+	// 	int bbbbbbb;
 	// }
 
 	//=========================================================================================
@@ -206,7 +209,6 @@ public class PMDCheckListDemo{
     //         // Loop: 2
     //         for (Integer i = 0; i < stringList.size(); i++){}
     //      }
-    }
 
 	//=========================================================================================
 
@@ -359,26 +361,162 @@ public class PMDCheckListDemo{
 	* @modified: 
 	*/
 
-	private void general4601(){
-		int ten = 10;
-		int a;
-		String strQuery = 'SELECT year FROM account LIMIT 1';
-		Account b;
-		for(int i = 0; i < ten; i++){
-			Database.query(strSOQL);
-			a = [SELECT year FROM account LIMIT 1];
-		}
-		for(int i = 0; i < ten; i++){
-			general46_02();
-		}
-	}
+	// private void general4601(){
+	// 	int ten = 10;
+	// 	int a;
+	// 	String strQuery = 'SELECT year FROM account LIMIT 1';
+	// 	Account b;
+	// 	for(int i = 0; i < ten; i++){
+	// 		Database.query(strSOQL);
+	// 		a = [SELECT year FROM account LIMIT 1];
+	// 	}
+	// 	for(int i = 0; i < ten; i++){
+	// 		general46_02();
+	// 	}
+	// }
 
-	private void general4602(){
-		int a;
-		String strQuery = 'SELECT year FROM account LIMIT 1';
-		a = [SELECT year FROM account LIMIT 1];
+	// private void general4602(){
+	// 	int a;
+	// 	String strQuery = 'SELECT year FROM account LIMIT 1';
+	// 	a = [SELECT year FROM account LIMIT 1];
 		
-	}
+	// }
 
 	//=========================================================================================
+
+	/* Demo code - General 53
+    *
+    */
+    // private PageReference page() {
+    //     String unsafeLocation = ApexPage.getCurrentPage().getParameters.get('url_param');
+    //     return new PageReference(unsafeLocation);
+    // }
+
+
+	//Batch 03, 04
+
+// global with sharing class HocSinhBatch implements Database.Batchable<sObject>, Schedulable{
+//     private list<Diem__c> diemList;
+// 	global Database.QueryLocator start(Database.batchableContext bc){
+
+// 		String query = 'SELECT Name, ID, Diem1__c, Diem2__c, Diem3__c FROM HocSinh__c';
+//       	 Database.query(query);
+// 		hj();
+// 	}
+
+// 	global void execute(Database.BatchableContext bc, List<HocSinh__c> scope){
+//         PaymentRequest__c objSetting = PaymentRequest__c.getOrgDefaults();
+// 		diemList = new list<Diem__c>();
+// 		Diem__c diem;
+// 		Database.query(query);
+
+// 		for(HocSinh__c hs: scope){
+// 			//Thêm điểm Hóa
+// 			diem = new Diem__c();
+// 			diem.HocSinh__c = hs.ID;
+// 			diem.Mon__c = 'Hóa';
+// 			diem.Diem__c = hs.Diem1__c;
+// 			diem.Name = hs.Name + '-' + diem.Mon__c;
+// 			diem.Key__c = diem.HocSinh__c + '-hoa';
+// 			diemList.add(diem);
+// return Database.getquerylocator(query);
+// 			//Thêm điểm Lý
+// 			diem = new Diem__c();
+// 			diem.HocSinh__c = hs.ID;
+// 			diem.Mon__c = 'Lý';
+// 			diem.Diem__c = hs.Diem2__c;
+// 			diem.Name = hs.Name + '-' + diem.Mon__c;
+// 			diem.Key__c = diem.HocSinh__c + '-ly';
+// 			diemList.add(diem);
+
+// 			//Thêm điểm Toán
+// 			diem = new Diem__c();
+// 			diem.HocSinh__c = hs.ID;
+// 			diem.Mon__c = 'Toán';
+// 			diem.Diem__c = hs.Diem3__c;
+// 			diem.Name = hs.Name + '-' + diem.Mon__c;
+// 			diem.Key__c = diem.HocSinh__c + '-toan';
+// 			diemList.add(diem);
+            
+			
+// 		}
+		
+		
+// 	}
+// 	global void execute(final SchedulableContext context){
+// 		try{
+// 			Database.executeBatch(this);
+// 		}finally{
+// 			System.abortJob(context.getTriggerId());
+// 		}
+// 	}
+// 	global void finish(Database.BatchableContext bc){
+// 		//DateTime dt = DateTime.now();
+// 		//Integer miNow = dt.minute();
+// 		//string miSet;
+// 		//if(miNow >= 0 && miNow < 15){
+// 		//	miSet = '15';
+// 		//}else if(miNow >=15 && miNow < 30){
+// 		//	miSet = '30';
+// 		//}else if(miNow >=30 && miNow < 45){
+// 		//	miSet = '45';
+// 		//}else{
+// 		//	miSet = '0';
+// 		//}
+// 		//string cron = '0 ' + miSet + ' * * * ?';
+//         insertMethod();
+//                 insert a;
+// 		System.schedule('Update score every hour', '0 0 * * * ?' , new HocSinhBatch());
+// 	}
+
+//     private void insertMethod(){
+//         insert diemList;
+//     }
+// }
+
+//General10
+
+// @isTest
+// private class BillingControlTest {
+//     static testMethod void testInitSearchCondition(){
+        
+// 　　DataMigrateBatch dataMigrateBatch = new　DataMigrateBatch();
+//     Database.executeBatch(dataMigrateBatch);
+//     Test.StartTest();
+//     Test.StopTest();
+   
+//     }
+// }
+
+// public class test{
+//     public void test2(){
+//         List<int> listA;
+//         if(!listA.isEmty()){
+//             update listA;
+//         }
+//         if(!listA.isBlank() && !listC.isEmty()){
+//             update listA;
+// 			List<int> listB;
+		
+// 			insert listB;
+		
+// 		}
+//     }
+// }
+
+
+//General-06
+
+// trigger ContextExampleTrigger on Account (before insert, after insert, after delete) {
+//     if (Trigger.isInsert) {
+//         if (Trigger.isBefore) {
+//             // Process before insert
+//         } else if (Trigger.isAfter) {
+//             // Process after insert
+//         }        
+//     }
+//     else if (Trigger.isDelete) {
+//         // Process after delete
+//     }
+// }
 }

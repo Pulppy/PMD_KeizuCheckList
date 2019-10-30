@@ -14,10 +14,16 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 public class TestClass07 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTMethod node, Object data) {
+		
+		//Khong xet mot so method do PMD tao
 		if(node.getFirstChildOfType(ASTModifierNode.class).isTest()&&!node.getImage().contentEquals("<clinit>")&&!node.getImage().contentEquals("clone")&&!node.getImage().contentEquals("<init>")) {
+			
+			//Xet xem method hien tai co thuoc test class khong
 			ASTUserClass nodeFather = node.getFirstParentOfType(ASTUserClass.class);
 			if(nodeFather.hasDescendantOfType(ASTAnnotation.class)) {
 				ASTAnnotation annoNode = nodeFather.getFirstDescendantOfType(ASTAnnotation.class);
+				
+				//Xet format ten method phai bat dau bang chu test
 				if(annoNode.getImage().contentEquals("IsTest")) {
 					String name = node.getImage();
 					if(name.length() < 4) {
@@ -30,6 +36,8 @@ public class TestClass07 extends AbstractApexRule{
 					}
 				}
 			}
+			
+			//Xet xem method nay co system.assert khong, neu khong thi bao loi
 			if(!node.hasDescendantOfType(ASTMethodCallExpression.class)) {
 				addViolationWithMessage(data, node, "Test method phai co Assert");
 			}else {

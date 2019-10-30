@@ -11,26 +11,35 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 public class Batch10 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTMethodCallExpression node, Object data) {
+		
+		//Xet xem method duoc call co phai la method goi batch chay khong
 		if(!node.getFullMethodName().toLowerCase().contentEquals("database.executebatch")) {
 			return data;
 		}
 		
+		//Kiem tra xem method hien dang xet co nam trong test class khong
 		ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
 		if(!nodeAncestor.getModifiers().isTest()) {
 			return data;
 		}
 		
+		//Kiem tra xem method chua method goi batch co la mot test method khong
 		ASTMethod nodeMethod = node.getFirstParentOfType(ASTMethod.class);
 		if(!nodeMethod.getModifiers().isTest()) {
 			return data;
 		}
 		
+		//Lap danh sach tat ca cac method duoc goi
 		List<ASTMethodCallExpression> listMethodCall = nodeMethod.findDescendantsOfType(ASTMethodCallExpression.class);
 		List<String> listMethodCallName = new ArrayList<>();
 		for(ASTMethodCallExpression ele : listMethodCall) {
 			listMethodCallName.add(ele.getFullMethodName().toLowerCase());
 		}
+		
+		//Kiem tra method test co chua test.startTest và test.stopTest khong
 		if(listMethodCallName.contains("test.starttest") && listMethodCallName.contains("test.stoptest")) {
+			
+			//Kiem tra xem hàm gọi batch có nằm trong start và stop test
 			for(ASTMethodCallExpression ele : listMethodCall) {
 				if(ele.getFullMethodName().toLowerCase().contentEquals("test.starttest")) {
 					if(node.getBeginLine() == ele.getEndLine()) {

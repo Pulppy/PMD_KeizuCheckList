@@ -10,24 +10,19 @@ import java.util.List;
 
 import net.sourceforge.pmd.lang.apex.ast.ASTDmlDeleteStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTDmlInsertStatement;
-import net.sourceforge.pmd.lang.apex.ast.ASTDmlMergeStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTDmlUndeleteStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTDmlUpdateStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTDmlUpsertStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTDoLoopStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTForEachStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTForLoopStatement;
-import net.sourceforge.pmd.lang.apex.ast.ASTLiteralExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
-import net.sourceforge.pmd.lang.apex.ast.ASTVariableExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTWhileLoopStatement;
-import net.sourceforge.pmd.lang.apex.ast.ApexNode;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 import net.sourceforge.pmd.lang.ast.AbstractNode;
 import net.sourceforge.pmd.lang.ast.Node;
-
 public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
 //
 //    public AvoidDmlStatementsInLoopsRule() {
@@ -103,7 +98,10 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     //Method with DML inside loop
     @Override
     public Object visit(ASTForLoopStatement node, Object data) {
+    	//Lap list chua cac DML trong loop
     	List<Node> listNode = checkForDML(node);
+    	
+    	//Lap list chua tat ca method co DML
     	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
     	List<String> lstMethodWithDML = new ArrayList<>();
     	for(ASTMethod ele : lstMethod) {
@@ -116,35 +114,57 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     		}
     	}
     	
+    	//Neu trong loop co DML thi bao loi
     	if(!listNode.isEmpty()) {
     		for(Node ele : listNode) {
     			addViolation(data, ele);
     		}
     	}
+    	
+    	//Neu khong co method nao chua DML thi ket thuc
+    	if(lstMethodWithDML.isEmpty()) {
+    		return data;
+    	}
+    	//Lap list chua tat ca method duoc goi trong loop
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	
+    	//Neu khong co method nao duoc goi thi khong xet nua
     	if(lst1.isEmpty()) {
     		return data;
     	}
+    	
     	for(ASTMethodCallExpression ele : lst1) {
+    		
+    		//Neu method duoc goi nam trong list chua cac method co DML thi bao loi
     		if(lstMethodWithDML.contains(ele.getMethodName())) {
     			addViolation(data, ele);
     			break;
+    			
+    		//Kiem tra xem method duoc call nay co call toi mot method nao khac chua DML khong	
     		}else {
     			if(check(data, ele, lstMethod, lstMethodWithDML)) {
     				break;
+    				
+    			//Di sau them 1 cap nua	
     			}else {
     				
     				for(ASTMethod ele1 : lstMethod) {
+    					
+    					//Tim vi tri method dang xet duoc khai bao
     					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
     						
-							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
+    						//Lap list tat ca cac method duoc goi trong method dang xet
+    						List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
 							for(ASTMethodCallExpression ele2 : lst2) {
+								
+								//Xem neu method dang xet co trong danh sach cac method co DML khong
 								if(lstMethodWithDML.contains(ele2.getFullMethodName())) {
 									addViolation(data, ele);
 									addViolation(data, ele2);
 									break;
-								}else {
 									
+								//Kiem tra xem method duoc call nay co call toi mot method nao khac chua DML khong
+								}else {
 									if(check(data, ele2, lstMethod, lstMethodWithDML)) {
 										addViolation(data, ele);
 										break;
@@ -279,6 +299,64 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     	return data;
     }
     
+    @Override
+    public Object visit(ASTDoLoopStatement node, Object data) {
+    	List<Node> listNode = checkForDML(node);
+    	List<ASTMethod> lstMethod = node.getFirstParentOfType(ASTUserClass.class).findDescendantsOfType(ASTMethod.class);
+    	List<String> lstMethodWithDML = new ArrayList<>();
+    	for(ASTMethod ele : lstMethod) {
+    		if(ele.hasDescendantOfType(ASTDmlInsertStatement.class) 
+					|| ele.hasDescendantOfType(ASTDmlUpdateStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlDeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUndeleteStatement.class)
+					|| ele.hasDescendantOfType(ASTDmlUpsertStatement.class)) {
+    			lstMethodWithDML.add(ele.getImage());
+    		}
+    	}
+    	
+    	if(!listNode.isEmpty()) {
+    		for(Node ele : listNode) {
+    			addViolation(data, ele);
+    		}
+    	}
+    	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	if(lst1.isEmpty()) {
+    		return data;
+    	}
+    	for(ASTMethodCallExpression ele : lst1) {
+    		if(lstMethodWithDML.contains(ele.getMethodName())) {
+    			addViolation(data, ele);
+    			break;
+    		}else {
+    			if(check(data, ele, lstMethod, lstMethodWithDML)) {
+    				break;
+    			}else {
+    				
+    				for(ASTMethod ele1 : lstMethod) {
+    					if(ele1.getImage().contentEquals(ele.getFullMethodName())) {
+    						
+							List<ASTMethodCallExpression> lst2 = ele1.findDescendantsOfType(ASTMethodCallExpression.class);
+							for(ASTMethodCallExpression ele2 : lst2) {
+								if(lstMethodWithDML.contains(ele2.getFullMethodName())) {
+									addViolation(data, ele);
+									addViolation(data, ele2);
+									break;
+								}else {
+									
+									if(check(data, ele2, lstMethod, lstMethodWithDML)) {
+										addViolation(data, ele);
+										break;
+									}
+								}
+							}
+    					}
+    				}
+    			}
+    		}
+    	}
+    	return data;
+    }
+    
     private Boolean check(Object data, ASTMethodCallExpression nodeToCheck, List<ASTMethod> lstMethod, List<String> lstMethodWithDML) {
     	
     	//Xet tung method trong list tat ca method trong class
@@ -307,6 +385,7 @@ public class AvoidDmlStatementsInLoopsRule extends AbstractApexRule {
     	return false;
     }
     
+    //Lap list cac DML trong loop
     private List<Node> checkForDML(AbstractNode node) {
     	List<Node> listNode = new ArrayList<>();
     	if(node.hasDescendantOfType(ASTDmlInsertStatement.class)) {
