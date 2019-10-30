@@ -22,6 +22,18 @@ public class TestClass08 extends AbstractApexRule {
         return data;
     }
 
+    @Override
+    public Object visit(ASTLiteralExpression node, Object data) {
+    	Object o = node.getNode().getLiteral();
+        if (o instanceof String) {
+            String literal = (String) o;
+            if (PATTERN.matcher(literal).matches()) {
+                addViolation(data, node);
+            }
+        }
+        return data;
+    }
+    
     private void findHardcodedId(AbstractApexNode<?> node, Object data) {
         ASTLiteralExpression literalNode = node.getFirstChildOfType(ASTLiteralExpression.class);
 
