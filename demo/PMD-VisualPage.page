@@ -1,0 +1,34 @@
+<!-- 
+    * PMD-VisualPage
+	* @created: 2019/10/30 Truong Trang Ngoc Phuc
+	* @modified:
+-->
+<apex:page controller="PMDController">
+
+<!-- 
+	* VisualPage08
+	* @created: 2019/10/28 Truong Trang Ngoc Phuc
+	* @decription: Khai bao 1 page, 1 form tuong ung. Ko khai bao 2 form cho 1 page
+	* @modified:
+ -->
+	<!-- <apex:form>
+	</apex:form>
+
+	<apex:form>
+		<apex:form>
+		</apex:form>
+	</apex:form>  -->
+
+    <!-- ================================================================================ -->
+
+<!-- 
+	* VisualPage20
+	* @created: 2019/10/30 Truong Trang Ngoc Phuc
+	* @decription: Su dung function HTMLENCODE khi set title cho apex:sectionHeader
+                <apex:sectionHeader title="{!HTMLENCODE($Label.Lbl_CLS0300_Title)}"/> 
+
+	* @modified:
+ -->
+    <!-- <apex:sectionHeader title="$Label.Lbl_CLS0300_Title"/> 
+    <apex:sectionHeader title="{!HTMLENCODE($Label.Lbl_CLS0300_Title)}"/> -->
+</apex:page>

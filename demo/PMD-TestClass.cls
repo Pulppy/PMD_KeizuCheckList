@@ -48,4 +48,39 @@ private class PMDTestClassTest {
     //     Test.stopTest();
     // }
 
+    // =================================================================
+
+/*
+	* testclass08
+	* @created: 2019/10/30 Truong Trang Ngoc Phuc
+	* @decription: Khong duoc hardcode Id trong testclass
+	* @modified:
+*/
+    // private static testMethod void testMethod08() {
+    //     String strID01;
+    //     strID01 = '04i6D0000007A1EQAU';
+    //     String strID02 = '04i6D0000007A1EQAU';
+
+    //     String name = 'TrangNgocPhucTruog';
+    //     Test.startTest();
+    //     Test.stopTest();
+    //     System.assertEquals();
+    // }
+
+    // =================================================================
+
+/*
+	* batch10
+	* @created: 2019/10/30 Truong Trang Ngoc Phuc
+	* @decription: Trong test class phai dat method Test.StartTest, Test.StopTest khi goi batch
+	* @modified:
+*/
+    // private static testMethod void testBatch10(){
+    //     DataMigrateBatch dataMigrateBatch = new　DataMigrateBatch();
+    //     Database.executeBatch(dataMigrateBatch);
+    //     Test.startTest();
+    //         Database.executeBatch(dataMigrateBatch);
+    //     Test.stopTest();
+    //     System.assertEquals();
+    // }
 }

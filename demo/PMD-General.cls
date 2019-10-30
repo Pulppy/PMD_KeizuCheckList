@@ -446,4 +446,31 @@ public class PMDGeneral{
     //     PageReference p = new PageReference(link);
     //     return Page.Confim;
     // }
+
+	//=========================================================================================
+
+	/**
+	* visualpage06
+	* @created: 2019/10/30 Truong Trang Ngoc Phuc
+	* @decription: Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup
+	* @modified: 
+	*/
+	// private void visualPage06(){
+	// 	Apexpages.addMessage(new ApexPages.message(Apexpages.Severity.ERROR,  'Lỗi: ' + e.getMessage()));
+	// 	Apexpages.addMessage(new ApexPages.message(Apexpages.Severity.FATAL,  'Lỗi: ' + e.getMessage()));
+	// }
+
+	//=========================================================================================
+	
+/*
+	* VisualPage_18
+	* @created: 2019/10/30 Truong Trang Ngoc Phuc
+	* @decription: Những method nào return là Pagereference thì phải có try cacth
+	* @modified:
+*/
+	// private PageReference visualPage18(){
+	// 	// try{
+	// 	// } catch (Exception ex) {
+	// 	// }
+	// }
 }

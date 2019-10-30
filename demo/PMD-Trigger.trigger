@@ -17,8 +17,9 @@ trigger AccountTrigger on Account (before insert, after insert, after delete) {
                 * @decription: Khi xu ly trigger thi phai tao cac lop handler de xe ly, trong file trigger chi xu ly su kien va delegate cho cac lop handler thuc hien
                 * @modified: 
                 */
-                handler.doBeforeInsert();
+                // handler.doBeforeInsert();
                 // demoTrigger();
-	    }
-        // private void demoTrigger(){}
+	        }
+        }
+        private void demoTrigger(){}
 }

@@ -47,7 +47,6 @@ global class PMDBatch implements Database.Batchable<sObject>, Schedulable{
 //    }
 
    global void execute(Database.BatchableContext bc, List<sObject> scope){
-      HocSinh__c hs = HocSinh__c.getOrgDefaults();
       for(Sobject s : scope){
             s.put(Field, Value); 
       }
