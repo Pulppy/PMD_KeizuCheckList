@@ -73,10 +73,20 @@ public class General12 extends AbstractApexRule{
 			ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
 			List<ASTBooleanExpression> lst = nodeAncestor.findDescendantsOfType(ASTBooleanExpression.class);
 			List<ASTBooleanExpression> lstShort = new ArrayList<>();
+			List<ASTBooleanExpression> lstShort1 = new ArrayList<>();
 			for(ASTBooleanExpression element : lst) {
-				if(element.getOperator().toString().contentEquals(">") || element.getOperator().toString().contentEquals("==")) {
+				if(element.getOperator().toString().contentEquals(">")
+						|| element.getOperator().toString().contentEquals("==")
+						|| element.getOperator().toString().contentEquals("!=")){
 					lstShort.add(element);
 				}
+			}
+			for(ASTBooleanExpression element : lst) {
+				if(element.getOperator().toString().contentEquals(">=") 
+						|| element.getOperator().toString().contentEquals("<")) {
+					lstShort1.add(element);
+				}
+				
 			}
 			String methodName;
 			for(ASTBooleanExpression element : lstShort) {
@@ -87,6 +97,15 @@ public class General12 extends AbstractApexRule{
 					}
 				}
 			}
+			for(ASTBooleanExpression element : lstShort1) {
+				methodName = element.getFirstChildOfType(ASTMethodCallExpression.class).getFullMethodName();
+				if(methodName.contentEquals(node.getImage() + ".size")) {
+					if(element.getFirstChildOfType(ASTLiteralExpression.class).getImage().contentEquals("1")) {
+						addViolation(data, element);
+					}
+				}
+			}
+			
 		}
 		return data;
 	}
