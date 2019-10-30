@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.sourceforge.pmd.lang.apex.ast.ASTField;
 import net.sourceforge.pmd.lang.apex.ast.ASTLiteralExpression;
+import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
@@ -17,10 +18,12 @@ public class General11 extends  AbstractApexRule {
 		List<ASTLiteralExpression> lst1 = new ArrayList<>();
 		List<ASTLiteralExpression> lst2 = new ArrayList<>();
 		for(ASTLiteralExpression ele : lst0) {
-			if(ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()) {
-				lst1.add(ele);
-			}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()){
-				lst2.add(ele);
+			if(!ele.getFirstParentOfType(ASTMethod.class).getImage().contentEquals("<clinit>")) {
+				if(ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()) {
+					lst1.add(ele);
+				}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()){
+					lst2.add(ele);
+				}
 			}
 		}
 		addViolationWithMessage(data, node, String.valueOf(lst1.size()));
