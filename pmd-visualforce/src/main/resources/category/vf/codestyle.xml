@@ -45,12 +45,17 @@ Rules which enforce a specific coding style.
 				apex:sectionHeader title="{!HTMLENCODE($Label.Lbl_CLS0300_Title)}
 			</description>
             <priority>5</priority>
-			
-			
-          <example>
-    <![CDATA[
-       
-    ]]>
-          </example>
+    </rule>
+    
+    <!--
+    Rule		: VisualPage-08
+    @created	: 2019/10/28 Truong Trang Ngoc Phuc
+    @description: Khai bao 1 page, 1 form tuong ung. Ko khai bao 2 form cho 1 page
+     -->
+     <rule name="Check-List-VisualPage-08"
+		  since="5.6.0"
+          message="[VisualPage-08] Khai bao 1 page, 1 form tuong ung. Ko khai bao 2 form cho 1 page"
+          class="net.sourceforge.pmd.lang.vf.rule.VisualPage08">
+            <priority>5</priority>
     </rule>
 </ruleset>

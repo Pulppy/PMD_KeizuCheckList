@@ -459,8 +459,8 @@
 
 <!--
 	General_53
-	@created: 2019/10/12 Lu Chi Hao
-	@decription: Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot. Toi da 10 SOQL
+	@created: 2019/10/25 Truong Trang Ngoc Phuc
+	@decription: Trong source controller, test class, page KO HARDCODE page apex/confirm ma thay the bang cach Page.Confim
 	@modified:
 -->
 	<rule name="Check-List-General-53"
@@ -476,7 +476,7 @@
 
 <!--
 	Batch_03
-	@created: 2019/10/12 Lu Chi Hao
+	@created: 2019/10/24 Truong Trang Ngoc Phuc
 	@decription: Uu tien lay cac doi tuong cutom trong method start
 	@modified:
 -->
@@ -489,7 +489,7 @@
 
 <!--
 	Batch_04
-	@created: 2019/10/12 Lu Chi Hao
+	@created: 2019/10/25 Truong Trang Ngoc Phuc
 	@decription: Trong truog hop xu ly du lieu lon bat buoc phai get du lieu trong Database.getQueryLocator de lay
 	@modified:
 -->
@@ -519,7 +519,7 @@
 
 <!--
 	Batch_08
-	@created: 2019/10/12 Lu Chi Hao
+	@created: 2019/10/24 Truong Trang Ngoc Phuc
 	@decription: Trong batch ko the dang ki dc nhieu schedule chu y
 	@modified:
 -->
@@ -551,6 +551,31 @@
 					DataMigrateBatch dataMigrateBatch = new　DataMigrateBatch();
 					Database.executeBatch(dataMigrateBatch);
 				Test.StopTest();
+			]]>
+		</example>
+	</rule>
+	
+	<!--
+	VisualPage_07
+	@created: 2019/10/25 Truong Trang Ngoc Phuc
+	@decription: Trong su ly thuc hien insert, upate DB thi phai su dung savepoint de tao transaction.
+                 Truong hop tai lieu ko mo ta thi confirm lai giup.
+	@modified:
+	-->
+	<rule name="Check-List-VisualPage-07"
+		since="5.6.0"
+		message="[VisualPage-07] Trong su ly thuc hien insert, upate DB thi phai su dung savepoint de tao transaction. Truong hop tai lieu ko mo ta thi confirm lai giup."
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage07">
+		<priority>3</priority>
+		<example>
+			<![CDATA[
+				SavePoint sp = Database.setSavePoint();
+				try {
+					insert accountList;
+				} catch (Exception ex) {
+					Database.rollback(sp);
+					throw TxExceptionUtils.handleAuraError(ex);
+				}
 			]]>
 		</example>
 	</rule>

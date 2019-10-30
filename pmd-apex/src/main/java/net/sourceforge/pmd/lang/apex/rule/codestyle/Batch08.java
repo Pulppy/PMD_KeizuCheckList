@@ -7,7 +7,7 @@ import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
 public class Batch08 extends AbstractApexRule{
-	private static final String STR_BATCH = "Batch";
+	private static final String STR_BATCH = "batch";
 	private static final String SYSTEM_SCHEDULE = "system.schedule";
 	private static final int MAX_NO_SCHEDULE = 2;
 	@Override
@@ -17,7 +17,7 @@ public class Batch08 extends AbstractApexRule{
 		int noSchedule = 0;
 		if (!interfaceNameList.isEmpty()) {
 			for (String intf : interfaceNameList) {
-				if (intf.contains(STR_BATCH)) {
+				if (intf.toLowerCase().contains(STR_BATCH)) {
 					isBatch = true;
 					break;
 				}
@@ -27,11 +27,11 @@ public class Batch08 extends AbstractApexRule{
 		if (isBatch) {
 			List<ASTMethodCallExpression> methodCallList = node.findDescendantsOfType(ASTMethodCallExpression.class);
 			for (ASTMethodCallExpression methodCall : methodCallList) {
-				if (methodCall.getFullMethodName().equalsIgnoreCase(SYSTEM_SCHEDULE)) {
+				if (methodCall.getFullMethodName().toLowerCase().contentEquals(SYSTEM_SCHEDULE)) {
 					noSchedule++;
-				}
-				if (noSchedule > MAX_NO_SCHEDULE) {
-					addViolation(data, methodCall);	
+					if (noSchedule > MAX_NO_SCHEDULE) {
+						addViolation(data, methodCall);	
+					}
 				}
 			}
 		}

@@ -8,13 +8,18 @@ import net.sourceforge.pmd.lang.apex.ast.ASTReturnStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTSoqlExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
-
+/*
+ * Class		: Batch04
+ * @Created		: 2019/10/24 Truong Trang Ngoc Phuc
+ * @Description	: Trong truog hop xu ly du lieu lon bat buoc phai get du lieu trong Database.getQueryLocator de lay
+ * @Modified	:
+ * */
 public class Batch04 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTUserClass node, Object data) {
 		boolean isBatch = false;
 		List<String> interfaceList = node.getInterfaceNames();
-		
+		// Kiem tra co phai Batch ko
 		for(String interfaceName : interfaceList) {
 			if (interfaceName.toLowerCase().contains("batch")) {
 				isBatch = true;
@@ -25,79 +30,79 @@ public class Batch04 extends AbstractApexRule{
 		if (!isBatch) {
 			return data;
 		}
-		
-		List<ASTSoqlExpression> soqlList = node.findDescendantsOfType(ASTSoqlExpression.class);
-		if (!soqlList.isEmpty()) {
-			for (ASTSoqlExpression soql : soqlList) {
-				addViolation(data, soql);
-			}
-		}
-		
+		// Tim nhung node Method Call trong User Class
 		List<ASTMethodCallExpression> methodCallList = node.findDescendantsOfType(ASTMethodCallExpression.class);
-		for (ASTMethodCallExpression methodCall : methodCallList) {
-			if(methodCall.getFullMethodName().toLowerCase().contentEquals("database.query")) {
-				addViolation(data, methodCall);
-			}
-		}
 		
+		// Tim method start trong batch
 		ASTMethod startMethod = getMethodStart(node);
 		
 		if (startMethod != null) {
+			// Tim node return de kiem tra xem co phai tra ve QueryLocator hay ko
 			ASTReturnStatement returnNode = startMethod.getFirstDescendantOfType(ASTReturnStatement.class);
 			
 			if (returnNode != null) {
+				// Bat buoc tra ve la mot function
+				// Database.queryLocator hoac mot ham tu ghi
 				ASTMethodCallExpression returnMethod = returnNode.getFirstChildOfType(ASTMethodCallExpression.class);
 				if (returnMethod == null) {
 					addViolation(data, startMethod);
 				}
 			} else {
+				// Neu ko co return thi bao loi
 				addViolation(data, startMethod);
 			}
 		}
 		
+		// Tim Database.queryLocator trong toan bo User Class
 		ASTMethodCallExpression dbGetQueryLocatorNode = null;
 		for (ASTMethodCallExpression methodCall : methodCallList) {
 			if(methodCall.getFullMethodName().toLowerCase().contentEquals("database.getquerylocator")) {
 				dbGetQueryLocatorNode = methodCall;
 			}
 		}
+		
+		// Neu ko co Database.queryLocator thi vang loi va ket thuc
+		if (dbGetQueryLocatorNode == null) {
+			addViolation(data, startMethod);
+			return data;
+		}
+		
+		// Tim method chua Database.queryLocator
 		ASTMethod method = dbGetQueryLocatorNode.getFirstParentOfType(ASTMethod.class);
+		// Neu method nay duoc goi ngoai ham start thi bao loi
+		for (ASTMethodCallExpression mce : methodCallList) {
+			if (mce.getFullMethodName().contentEquals(method.getImage())) {
+				ASTMethod parMethod = mce.getFirstParentOfType(ASTMethod.class);
+				if (!parMethod.getImage().toLowerCase().contentEquals("start")) {
+					addViolation(data, mce);
+				}
+			}
+		}
+		// Tim nhung method Call trong ham start
+		List<ASTMethodCallExpression> startMethodCallList = startMethod.findDescendantsOfType(ASTMethodCallExpression.class);
 			if (startMethod != null) {
-				for (ASTMethodCallExpression mce : methodCallList) {
-					if (mce.getFullMethodName().toLowerCase().contentEquals(method.getImage().toLowerCase())) {
+				ASTReturnStatement returnNode = startMethod.getFirstDescendantOfType(ASTReturnStatement.class);
+				ASTMethodCallExpression returnMethod = null;
+				if (returnNode != null) {
+					returnMethod = returnNode.getFirstChildOfType(ASTMethodCallExpression.class);
+					// Neu start return dung voi ten ham chua Database.getQueryLocator thi ket thuc
+					if (returnMethod.getFullMethodName().contentEquals(method.getImage())) {
 						return data;
 					}
+					// Neu Database.getQueryLocator nam trong ham start thi ket thuc
+					if (method.getImage().toLowerCase().contentEquals("start")) {
+						return data;
+					}
+					// Neu ko roi vao 2 truong hop tren thi bao loi
+					addViolation(data, method);
+					addViolation(data, startMethod);
 				}
-				addViolation(data, method);
 			}
 		
 		return data;
 	}
-	
-//	@Override
-//	public Object visit(ASTMethodCallExpression node, Object data) {
-//		ASTUserClass userClass = node.getFirstParentOfType(ASTUserClass.class);
-//		
-//		if (node.getFullMethodName().toLowerCase().contentEquals("database.getquerylocator")) {
-//			ASTMethod method = node.getFirstParentOfType(ASTMethod.class);
-//			
-//			if (!method.getImage().toLowerCase().contentEquals("start")) {
-//				ASTMethod startMethod = getMethodStart(userClass);
-//				
-//				if (startMethod != null) {
-//					List<ASTMethodCallExpression> methodCallList = startMethod.findDescendantsOfType(ASTMethodCallExpression.class);
-//					for (ASTMethodCallExpression mce : methodCallList) {
-//						if (mce.getFullMethodName().toLowerCase().contentEquals(method.getImage().toLowerCase())) {
-//							return data;
-//						}
-//					}
-//					addViolation(data, method);
-//				}
-//			}
-//		}
-//		return data;
-//	}
-	
+
+
 	private ASTMethod getMethodStart(ASTUserClass userClass) {
 		List<ASTMethod> methodList = userClass.findChildrenOfType(ASTMethod.class);
 		
