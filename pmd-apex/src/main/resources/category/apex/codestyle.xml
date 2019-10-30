@@ -602,4 +602,17 @@
 		<priority>3</priority>
 	</rule>
 
+<!--
+	Trigger_02
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap
+	@modified:
+-->
+	<rule name="Check-List-Trigger-02"
+			since="5.5.0"
+		message="[Trigger-02] Khi xu ly trigger thi phai tao cac lop handler de xe ly, trong file trigger chi xu ly su kien va delegate cho cac lop handler thuc hien"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.Trigger02">
+		<priority>3</priority>
+	</rule>
+
 </ruleset>
