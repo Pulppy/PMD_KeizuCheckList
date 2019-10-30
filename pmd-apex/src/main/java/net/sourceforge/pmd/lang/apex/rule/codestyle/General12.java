@@ -21,10 +21,21 @@ public class General12 extends AbstractApexRule{
 			List<ASTBooleanExpression> lst = nodeAncestor.findDescendantsOfType(ASTBooleanExpression.class);
 			//Lap danh sach rut gon lai con cac ham so sanh lon hon va bang
 			List<ASTBooleanExpression> lstShort = new ArrayList<>();
+			List<ASTBooleanExpression> lstShort1 = new ArrayList<>();
 			for(ASTBooleanExpression element : lst) {
-				if(element.getOperator().toString().contentEquals(">") || element.getOperator().toString().contentEquals("==")) {
+				if(element.getOperator().toString().contentEquals(">") 
+						|| element.getOperator().toString().contentEquals("==")
+						|| element.getOperator().toString().contentEquals("!=")) {
 					lstShort.add(element);
 				}
+				
+			}
+			for(ASTBooleanExpression element : lst) {
+				if(element.getOperator().toString().contentEquals(">=") 
+						|| element.getOperator().toString().contentEquals("<")) {
+					lstShort1.add(element);
+				}
+				
 			}
 			String methodName;
 			if(!lstShort.isEmpty()) {
@@ -34,6 +45,18 @@ public class General12 extends AbstractApexRule{
 					//Neu su dung .size va so sanh voi 0 thi bao loi
 					if(methodName.contentEquals(node.getImage() + ".size")) {
 						if(element.getFirstChildOfType(ASTLiteralExpression.class).getImage().contentEquals("0")) {
+							addViolation(data, element);
+						}
+					}
+				}
+			}
+			if(!lstShort1.isEmpty()) {
+				for(ASTBooleanExpression element : lstShort1) {
+					//Tim trong danh sach da duoc rut gon co phan tu duoc so sanh la phan tu dang xet
+					methodName = element.getFirstChildOfType(ASTMethodCallExpression.class).getFullMethodName();
+					//Neu su dung .size va so sanh voi 0 thi bao loi
+					if(methodName.contentEquals(node.getImage() + ".size")) {
+						if(element.getFirstChildOfType(ASTLiteralExpression.class).getImage().contentEquals("1")) {
 							addViolation(data, element);
 						}
 					}
@@ -50,10 +73,20 @@ public class General12 extends AbstractApexRule{
 			ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
 			List<ASTBooleanExpression> lst = nodeAncestor.findDescendantsOfType(ASTBooleanExpression.class);
 			List<ASTBooleanExpression> lstShort = new ArrayList<>();
+			List<ASTBooleanExpression> lstShort1 = new ArrayList<>();
 			for(ASTBooleanExpression element : lst) {
-				if(element.getOperator().toString().contentEquals(">") || element.getOperator().toString().contentEquals("==")) {
+				if(element.getOperator().toString().contentEquals(">")
+						|| element.getOperator().toString().contentEquals("==")
+						|| element.getOperator().toString().contentEquals("!=")){
 					lstShort.add(element);
 				}
+			}
+			for(ASTBooleanExpression element : lst) {
+				if(element.getOperator().toString().contentEquals(">=") 
+						|| element.getOperator().toString().contentEquals("<")) {
+					lstShort1.add(element);
+				}
+				
 			}
 			String methodName;
 			for(ASTBooleanExpression element : lstShort) {
@@ -64,6 +97,15 @@ public class General12 extends AbstractApexRule{
 					}
 				}
 			}
+			for(ASTBooleanExpression element : lstShort1) {
+				methodName = element.getFirstChildOfType(ASTMethodCallExpression.class).getFullMethodName();
+				if(methodName.contentEquals(node.getImage() + ".size")) {
+					if(element.getFirstChildOfType(ASTLiteralExpression.class).getImage().contentEquals("1")) {
+						addViolation(data, element);
+					}
+				}
+			}
+			
 		}
 		return data;
 	}

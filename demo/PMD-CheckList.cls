@@ -131,9 +131,9 @@ public class PMDCheckListDemo{
 	* @modified:
 	*/
 
-	private void general17(){
-	   Integer x = a+b;
-	}
+	// private void general17(){
+	//    Integer x = a+b;
+	// }
 
 	//=========================================================================================
 
@@ -168,10 +168,10 @@ public class PMDCheckListDemo{
 	// private string gen19 = 'xxxx';
 	// private void general191(){
 	//     if(gen19.size() > 0){}
-	//     if(gen19 == 'null'){}
+	//     gen19 += 'asd';
 	// }
 	// private void general192(){
-	//     //gen19 += 'asd';
+	    
 	// }
 
 	//=========================================================================================
@@ -519,4 +519,13 @@ public class PMDCheckListDemo{
 //         // Process after delete
 //     }
 // }
+
+public List<HocSinh__c> lstHocSinh_Page {get; set;}
+	private void test(){
+		int a1 = 10;
+		a1 = a;
+		lstHocSinh_Page.add(new HocSinh__c());
+	}
+	
+
 }
