@@ -189,7 +189,7 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
         } else if (!isFinal) {
             String normalizedVarName = normalizeVariableName(varName, prefixes, suffixes);
 
-            if (normalizedVarName.indexOf('_') >= 0) {
+            if (normalizedVarName.indexOf('_') >= 0  && !varName.substring(varName.length() - 5).contentEquals("_PAGE")) {
                 addViolationWithMessage(data, node,
                         "[General-16] Bien binh thuong ky tu dau tien viet thuong, ko duoc su dung \"_\" ");
             }
