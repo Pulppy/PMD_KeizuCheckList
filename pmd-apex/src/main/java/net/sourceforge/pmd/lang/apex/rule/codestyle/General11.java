@@ -14,7 +14,6 @@ public class General11 extends  AbstractApexRule {
 	@Override
 	public Object visit(ASTUserClass node, Object data) {
 		List<ASTLiteralExpression> lst0 = node.findDescendantsOfType(ASTLiteralExpression.class);
-		addViolationWithMessage(data, node, String.valueOf(lst0.size()));
 		List<ASTLiteralExpression> lst1 = new ArrayList<>();
 		List<ASTLiteralExpression> lst2 = new ArrayList<>();
 		for(ASTLiteralExpression ele : lst0) {
@@ -26,8 +25,7 @@ public class General11 extends  AbstractApexRule {
 				}
 			}
 		}
-		addViolationWithMessage(data, node, String.valueOf(lst1.size()));
-		addViolationWithMessage(data, node, String.valueOf(lst2.size()));
+
 		if(!lst1.isEmpty()) {
 			HashMap<String, List<ASTLiteralExpression>> mapLit = createMap(lst1);
 			addVio(mapLit, data);
