@@ -23,9 +23,11 @@ public class General02 extends AbstractNamingConventionsRule{
 		
 		//Neu ham public check xem ca ham co duoc try catch boc khong
 		if(node.getModifiers().isPublic()) {
-
+			if (node.findChildrenOfType(ASTBlockStatement.class).isEmpty()) {
+				return data;
+			}
 			ASTBlockStatement blockStatement = node.findChildrenOfType(ASTBlockStatement.class).get(0);
-			
+			addViolationWithMessage(data, node, "line 22: " + String.valueOf(node.findChildrenOfType(ASTBlockStatement.class).size()));
 			List<ASTTryCatchFinallyBlockStatement> tryCatchBlockList = blockStatement.findDescendantsOfType(ASTTryCatchFinallyBlockStatement.class);
 			if(tryCatchBlockList.isEmpty()) {
 				addViolation(data, node);	
