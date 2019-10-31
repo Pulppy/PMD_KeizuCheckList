@@ -10,6 +10,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class General11 extends  AbstractApexRule {
 	@Override
 	public Object visit(ASTUserClass node, Object data) {

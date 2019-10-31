@@ -4,6 +4,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTAnnotation;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class TestClass06 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTUserClass node, Object data) {

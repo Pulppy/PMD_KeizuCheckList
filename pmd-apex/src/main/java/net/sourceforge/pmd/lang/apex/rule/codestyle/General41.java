@@ -13,6 +13,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTStandardCondition;
 import net.sourceforge.pmd.lang.apex.ast.ASTVariableExpression;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class General41 extends AbstractApexRule{
 	public final String IS_EMPTY = ".isEmpty";
 	public final String IS_BLANK = ".isBlank";

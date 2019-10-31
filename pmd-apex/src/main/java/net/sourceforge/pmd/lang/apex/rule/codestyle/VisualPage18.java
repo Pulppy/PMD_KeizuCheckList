@@ -5,6 +5,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTTryCatchFinallyBlockStatement;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class VisualPage18 extends AbstractApexRule {
 	@Override
 	public Object visit(ASTMethod node, Object data) {
