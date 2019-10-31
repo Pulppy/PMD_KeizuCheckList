@@ -24,7 +24,7 @@ public class PMDGeneral{
 	* @decription: Trong xu ly, những method hoặc funtion public phai co try catch de xu ly loi.
 	* @modified:
 */
-
+	public List<HocSinh__c> lstHocSinh_Page {get; set;}
 	public void general02(){
 	    // try{
 
@@ -435,18 +435,18 @@ public class PMDGeneral{
 	* @decription: Trong source controller, test class, page KO HARDCODE page 'apex/confirm' ma thay the bang cach Page.Confirm
 	* @modified: 
 	*/
-    // private PageReference page() {
-    //      PageReference p = new PageReference(url);
-    //     String url = 'url';
-    //     String link;
-    //     String unsafeLocation = ApexPage.getCurrentPage().getParameters.get(link);
-    //     PageReference p = new PageReference(url);
-    //     link = '/apex/Detail';
+    private PageReference page() {
+         PageReference p = new PageReference(url);
+        String url = 'url';
+        String link;
+        String unsafeLocation = ApexPage.getCurrentPage().getParameters.get(link);
+        PageReference p = new PageReference(url);
+        link = '/apex/Detail';
 
-    //     PageReference pr = new PageReference(link);
-    //     PageReference p = new PageReference(link);
-    //     return Page.Confim;
-    // }
+        PageReference pr = new PageReference(link);
+        PageReference p = new PageReference(link);
+        return Page.Confim;
+    }
 
 	//=========================================================================================
 
