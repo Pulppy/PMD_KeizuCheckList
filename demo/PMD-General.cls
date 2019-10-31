@@ -25,11 +25,11 @@ public class PMDGeneral{
 	* @modified:
 */
 
-	// public void general02(){
-	//     // try{
+	public void general02(){
+	    // try{
 
-	//     // }catch(Exception e){}
-	// }
+	    // }catch(Exception e){}
+	}
 
 	//=========================================================================================
 /*
@@ -72,6 +72,7 @@ public class PMDGeneral{
 
 	// private void general12(){
 	//     list<int> listTest = new list<int>();
+	// 	int a = 0;
 	//     if(listTest.size() > 0) {}
 	//     if(listTest.size() == 0) {}
 	//     if(listTest.size() != 0) {}
