@@ -14,7 +14,7 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 public class Batch08 extends AbstractApexRule{
 	private static final String STR_BATCH = "Batch";
 	private static final String SYSTEM_SCHEDULE = "system.schedule";
-	private static final int MAX_NO_SCHEDULE = 2;
+	private static final int MAX_NO_SCHEDULE = 1;
 	@Override
 	public Object visit(ASTUserClass node, Object data) {
 		List<String> interfaceNameList = node.getInterfaceNames();
