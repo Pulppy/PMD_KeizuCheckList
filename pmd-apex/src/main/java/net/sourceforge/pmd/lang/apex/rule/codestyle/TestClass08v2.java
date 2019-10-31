@@ -10,10 +10,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.AbstractApexNode;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
-public class TestClass08 extends AbstractApexRule {
+public class TestClass08v2 extends AbstractApexRule {
     private static final Pattern PATTERN = Pattern.compile("^[a-zA-Z0-9]{5}[0][a-zA-Z0-9]{9,12}$", Pattern.CASE_INSENSITIVE);
     private List<String> idList = new ArrayList<>();
-    public TestClass08(){
+    public TestClass08v2(){
     	Collections.addAll(idList, "000", "001", "002", "003", "005", "006", "007", "008", "00A", "00B");
     	Collections.addAll(idList, "00C", "00D", "00E", "00F", "00G", "00I", "00J", "00K", "00M", "00N");
     	Collections.addAll(idList, "00O", "00P", "00Q", "00R", "00S", "00T", "00U", "00X", "00Y", "00a");
@@ -170,7 +170,7 @@ public class TestClass08 extends AbstractApexRule {
     			Object o = ele.getNode().getLiteral();
     	        if (o instanceof String) {
     	            String literal = (String) o;
-    	            if (PATTERN.matcher(literal).matches() && idList.contains(literal.substring(0, 3))) {
+    	            if (PATTERN.matcher(literal).matches() && !idList.contains(literal.substring(0, 3))) {
     	                addViolation(data, ele);
     	            }
     	        }
@@ -199,12 +199,12 @@ public class TestClass08 extends AbstractApexRule {
     
     private void findHardcodedId(AbstractApexNode<?> node, Object data) {
         ASTLiteralExpression literalNode = node.getFirstChildOfType(ASTLiteralExpression.class);
-        
+
         if (literalNode != null) {
             Object o = literalNode.getNode().getLiteral();
             if (o instanceof String) {
                 String literal = (String) o;
-                if (PATTERN.matcher(literal).matches() && idList.contains(literal.substring(0, 3))) {
+                if (PATTERN.matcher(literal).matches() && !idList.contains(literal.substring(0, 3))) {
                     addViolation(data, literalNode);
                 }
             }
