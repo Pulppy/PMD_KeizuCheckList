@@ -18,6 +18,9 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 public class General12 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTField node, Object data) {
+		if(node.getType().length() < 4) {
+			return data;
+		}
 		//Kiem tra bien class dang xet co phai kieu list
 		if(node.getType().substring(0,4).contentEquals("List")) {
 			ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
