@@ -708,7 +708,7 @@
 			since="5.5.0"
 		message="[TestClass-08] Khong duoc hardcode ID trong testclass"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass08">
-		<priority>3</priority>
+		<priority>1</priority>
 	</rule>
 
 <!--
@@ -721,6 +721,6 @@
 			since="5.5.0"
 		message="[TestClass-08] Khong duoc hardcode ID trong testclass"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass08v2">
-		<priority>3</priority>
+		<priority>5</priority>
 	</rule>
 </ruleset>
