@@ -90,13 +90,30 @@
 <!--
 	General_06
 	@created: 2019/10/12 Lu Chi Hao
-	@decription: Truong hop la class su dung trong trigger thi đat ten theo kieu : ten Object (xoa chu __c) ＋ Trigger
+	@decription: Truong hop la class su dung trong trigger thi dat ten theo kieu : ten Object (xoa chu __c) ＋ Trigger
 	@modified:
 -->
 	<rule name="Check-List-General-6"
 		since="5.6.0"
-		message="[General-6] Truong hop la class su dung trong trigger thi đat ten theo kieu : ten Object (xoa chu __c) + Trigger"
+		message="[General-6] Truong hop la class su dung trong trigger thi dat ten theo kieu : ten Object (xoa chu __c) + Trigger"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General06">
+		<priority>3</priority>
+		<example>
+			<![CDATA[
+			]]>
+		</example>
+	</rule>
+
+<!--
+	General_08
+	@created: 2019/10/30 Lu Chi Hao
+	@decription: Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet
+	@modified:
+-->
+	<rule name="Check-List-General-8"
+		since="5.6.0"
+		message="[General-8] Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General08">
 		<priority>3</priority>
 		<example>
 			<![CDATA[
@@ -122,11 +139,25 @@
 	</rule>
 
 <!--
+	General_10
+	@created: 2019/10/25 Lu Chi Hao
+	@decription: Nhung bien khai bao khong dung thi delete giup
+	@modified:
+-->
+	<rule name="Check-List-General-10"
+		since="5.6.0"
+		message="[General-10] Nhung bien khai bao khong dung thi delete giup"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General10">
+		<priority>3</priority>
+	</rule>
+
+<!--
 	General_11
 	@created: 2019/10/12 Lu Chi Hao
 	@decription: Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
 	@modified:
 -->
+
 	<rule name="Check-List-Geneneral-11"
 		since="5.6.0"
 		message="[General-11] Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
@@ -138,6 +169,7 @@
 			]]>
 		</example>
 	</rule>
+
 
 <!--
 	General_12
@@ -181,6 +213,7 @@
 	@decription: Ten bien bang chu thuong, tu chu thu 2 tro di phai viet hoa chu dau tien
 	@modified:
 -->
+<!--
 	<rule name="Check-List-General-15"
 		since="5.6.0"
 		message="[General-15] Khong duoc thiet lap bien class, bien  instance o trang thai public"
@@ -195,7 +228,7 @@
 			]]>
 		</example>
 	</rule>
-
+-->
 <!--
 	General_18
 	@created: 2019/10/12 Lu Chi Hao
@@ -255,13 +288,13 @@
 <!--
 	General_22
 	@created: 2019/10/12 Lu Chi Hao
-	@decription: Truong hop For Index - Chi su dung ten bien 1 ky tu trong vong lap for - Truong hop For Object - Phai đat ten bien co y nghia
+	@decription: Truong hop For Index - Chi su dung ten bien 1 ky tu trong vong lap for - Truong hop For Object - Phai dat ten bien co y nghia
 	@modified:
 -->
 	<rule name="Check-List-General-22"
 		since="5.6.0"
 		message="[General-22] Truong hop For Index - Chi su dung ten bien 1 ky tu trong vong lap for 
-					Truong hop For Object - Phai đat ten bien co y nghaa"
+					Truong hop For Object - Phai dat ten bien co y nghaa"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General22">
 		<priority>3</priority>
 		<example>
@@ -273,12 +306,13 @@
 <!--
 	General_23
 	@created: 2019/10/12 Lu Chi Hao
-	@decription: Trong vong for va while neu la hang so thi khong đuoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung
+	@decription: Trong vong for va while neu la hang so thi khong duoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung
 	@modified:
 -->
+<!--
 	<rule name="Check-List-General-23"
 		since="5.6.0"
-		message="[General-23] Trong vong for va while neu la hang so thi khong đuoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung"
+		message="[General-23] Trong vong for va while neu la hang so thi khong duoc viet -1 ，0 ，1 ma dat ra cac hang so de su dung"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General23">
 		<description>
 			Don't use constant to declare number of loop
@@ -289,6 +323,7 @@
 			]]>
 		</example>
 	</rule>
+-->
 
 <!--
 	General_24
@@ -397,6 +432,19 @@
 	</rule>
 
 <!--
+	General_41
+	@created: 2019/10/22 Lu Chi Hao
+	@decription: Khi insert, delete, update phai check isEmpty
+	@modified:
+-->
+	<rule name="Check-List-General-41"
+		since="5.5.0"
+		message="[General-41] Khi insert, delete, update phai check isEmpty"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General41">
+		<priority>3</priority>
+	</rule>
+
+<!--
 	General_43
 	@created: 2019/10/12 Lu Chi Hao
 	@decription: Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot. Toi da 10 SOQL
@@ -407,7 +455,6 @@
 		message="[General-43] Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot. Toi da 10 SOQL"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General43">
 		<description>
-			Delete debug after done coding
 		</description>
 		<priority>3</priority>
 		<example>
@@ -432,8 +479,8 @@
 
 <!--
 	General_53
-	@created: 2019/10/12 Lu Chi Hao
-	@decription: Tranh su dung nhieu SOQL khong can thiet, giam thieu phat sinh SOQL cang nhieu cang tot. Toi da 10 SOQL
+	@created: 2019/10/25 Truong Trang Ngoc Phuc
+	@decription: Trong source controller, test class, page KO HARDCODE page apex/confirm ma thay the bang cach Page.Confim
 	@modified:
 -->
 	<rule name="Check-List-General-53"
@@ -449,7 +496,7 @@
 
 <!--
 	Batch_03
-	@created: 2019/10/12 Lu Chi Hao
+	@created: 2019/10/24 Truong Trang Ngoc Phuc
 	@decription: Uu tien lay cac doi tuong cutom trong method start
 	@modified:
 -->
@@ -462,7 +509,7 @@
 
 <!--
 	Batch_04
-	@created: 2019/10/12 Lu Chi Hao
+	@created: 2019/10/25 Truong Trang Ngoc Phuc
 	@decription: Trong truog hop xu ly du lieu lon bat buoc phai get du lieu trong Database.getQueryLocator de lay
 	@modified:
 -->
@@ -491,15 +538,15 @@
 	</rule>
 
 <!--
-	Batch_06
-	@created: 2019/10/12 Lu Chi Hao
+	Batch_08
+	@created: 2019/10/24 Truong Trang Ngoc Phuc
 	@decription: Trong batch ko the dang ki dc nhieu schedule chu y
 	@modified:
 -->
-	<rule name="Check-List-Batch-06"
+	<rule name="Check-List-Batch-08"
 		since="5.6.0"
-		message="[Batch-06] Trong batch ko the dang ki dc nhieu schedule chu y"
-		class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch06">
+		message="[Batch-08] Trong batch ko the dang ki dc nhieu schedule chu y"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.Batch08">
 		<priority>3</priority>
 		<example>
 		<![CDATA[
@@ -527,5 +574,153 @@
 			]]>
 		</example>
 	</rule>
+	
+	<!--
+	VisualPage_07
+	@created: 2019/10/25 Truong Trang Ngoc Phuc
+	@decription: Trong su ly thuc hien insert, upate DB thi phai su dung savepoint de tao transaction.
+                 Truong hop tai lieu ko mo ta thi confirm lai giup.
+	@modified:
+	-->
+	<rule name="Check-List-VisualPage-07"
+		since="5.6.0"
+		message="[VisualPage-07] Trong su ly thuc hien insert, upate DB thi phai su dung savepoint de tao transaction. Truong hop tai lieu ko mo ta thi confirm lai giup."
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage07">
+		<priority>3</priority>
+		<example>
+			<![CDATA[
+				SavePoint sp = Database.setSavePoint();
+				try {
+					insert accountList;
+				} catch (Exception ex) {
+					Database.rollback(sp);
+					throw TxExceptionUtils.handleAuraError(ex);
+				}
+			]]>
+		</example>
+	</rule>
 
+<!--
+	VisualPage_06
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap
+	@modified:
+-->
+	<rule name="Check-List-VisualPage-06"
+		since="5.5.0"
+		message="[VisualPage-06] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage06"
+		externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	VisualPage_18
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap
+	@modified:
+-->
+	<rule name="Check-List-VisualPage-18"
+		since="5.5.0"
+		message="[VisualPage-18] Nhung method nao return la Pagereference thi phai co try cacth"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage18"
+		externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	Trigger_02
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap
+	@modified:
+-->
+	<rule name="Check-List-Trigger-02"
+			since="5.5.0"
+		message="[Trigger-02] Khi xu ly trigger thi phai tao cac lop handler de xe ly, trong file trigger chi xu ly su kien va delegate cho cac lop handler thuc hien"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.Trigger02">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_01
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong file test ko duoc su dung @isTest(see = allData)
+	@modified:
+-->
+	<rule name="Check-List-TestClass-01"
+			since="5.5.0"
+		message="[TestClass-01] Trong file test ko duoc su dung @isTest(see = allData)"
+		class="net.sourceforge.pmd.lang.apex.rule.bestpractices.ApexUnitTestShouldNotUseSeeAllDataTrueRule">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_02
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Phai su dung method Test.startTest(), Test.testStop de giam governor limits khi thuc thi test
+	@modified:
+-->
+	<rule name="Check-List-TestClass-02"
+			since="5.5.0"
+		message="[TestClass-02] Phai su dung method Test.startTest(), Test.testStop de giam governor limits khi thuc thi test"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass02">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_06
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Ten testClass phai la dang ten controler + "Test". Truong hop trong tai lieu co ghi khac thi confirm lai voi nguoi viet tai lieu
+	@modified:
+-->
+	<rule name="Check-List-TestClass-06"
+			since="5.5.0"
+		message="[TestClass-06] Ten testClass phai la dang ten controler + Test. Truong hop trong tai lieu co ghi khac thi confirm lai voi nguoi viet tai lieu"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass06">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_07
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Ten method test phai bat dau va chu test + Method muon test.
+	@modified:
+-->
+	<rule name="Check-List-TestClass-07"
+			since="5.5.0"
+		message="[TestClass-07] Ten method test phai bat dau va chu test + Method muon test."
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass07">
+		<priority>3</priority>
+		<example>
+			<![CDATA[
+				testSubString()
+			]]>
+		</example>
+	</rule>
+
+<!--
+	TestClass_08
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Khong duoc hardcode ID trong testclass
+	@modified:
+-->
+	<rule name="Check-List-TestClass-08"
+			since="5.5.0"
+		message="[TestClass-08] Khong duoc hardcode ID trong testclass"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass08">
+		<priority>1</priority>
+	</rule>
+
+<!--
+	TestClass_08
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Khong duoc hardcode ID trong testclass
+	@modified:
+-->
+	<rule name="Check-List-TestClass-08.2"
+			since="5.5.0"
+		message="[TestClass-08] Khong duoc hardcode ID trong testclass"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass08v2">
+		<priority>5</priority>
+	</rule>
 </ruleset>
