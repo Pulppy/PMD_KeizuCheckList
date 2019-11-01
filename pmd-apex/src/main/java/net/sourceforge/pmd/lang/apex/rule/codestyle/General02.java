@@ -6,7 +6,13 @@ import net.sourceforge.pmd.lang.apex.ast.ASTBlockStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTTryCatchFinallyBlockStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
-
+/*
+ * General02
+ * @created 		: 2019/10/31 Truong Trang Ngoc Phuc
+ * @discription		: Trong xu ly, những method hoặc funtion public phai co try catch de xu ly loi.
+ * @modified		:
+ * 
+ * */
 public class General02 extends AbstractNamingConventionsRule{
 
 	@Override
@@ -16,6 +22,7 @@ public class General02 extends AbstractNamingConventionsRule{
 	}
 	@Override
 	public Object visit(ASTMethod node, Object data) {
+		// Xet trong constructor
 		ASTUserClass nodeAncestor = node.getFirstParentOfType(ASTUserClass.class);
 		if(node.getImage().contentEquals(nodeAncestor.getImage())) {
 			return data;
@@ -27,12 +34,11 @@ public class General02 extends AbstractNamingConventionsRule{
 				return data;
 			}
 			ASTBlockStatement blockStatement = node.findChildrenOfType(ASTBlockStatement.class).get(0);
-			addViolationWithMessage(data, node, "line 22: " + String.valueOf(node.findChildrenOfType(ASTBlockStatement.class).size()));
 			List<ASTTryCatchFinallyBlockStatement> tryCatchBlockList = blockStatement.findDescendantsOfType(ASTTryCatchFinallyBlockStatement.class);
 			if(tryCatchBlockList.isEmpty()) {
 				addViolation(data, node);	
 			}
 		}
-        return data;
+		return data;
     }
 }

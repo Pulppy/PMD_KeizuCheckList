@@ -40,18 +40,22 @@ global class PMDBatch implements Database.Batchable<sObject>, Schedulable{
 	 * @modified:
 	*/
 
-//    global Database.QueryLocator start(Database.BatchableContext bc){
-//     //   return foo();
-//     //   return Database.getQueryLocator(strQuery);
-//     //   return [SELECT Id FROM HocSinh__c];
-//    }
+   global Database.QueryLocator start(Database.BatchableContext bc){
+      // return foo();
+      // return Database.getQueryLocator(strQuery);
+      // return [SELECT Id FROM HocSinh__c];
+   }
+   global Database.QueryLocator foo(Database.BatchableContext bc){
+      return Database.getQueryLocator(query);
+   }
 
    global void execute(Database.BatchableContext bc, List<sObject> scope){
-      for(Sobject s : scope){
-            s.put(Field, Value); 
-      }
       [SELECT Id FROM HocSinh__c];
       Database.query();
+      Database.getQueryLocator();
+   }
+   global void finish(Database.BatchableContext bc) {
+      Database.getQueryLocator();
    }
    /*
 	 * Batch-08
@@ -59,15 +63,12 @@ global class PMDBatch implements Database.Batchable<sObject>, Schedulable{
 	 * @decription: Trong batch ko the dang ki dc nhieu schedule chu y
 	 * @modified:
 	 */
-   global void finish(Database.BatchableContext bc) {
-        HocSinh_Batch hsBatch = new HocSinh_Batch();
-        System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
-        System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
-        // System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
-        // System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
-	}
+   // global void finish(Database.BatchableContext bc) {
+   //      HocSinh_Batch hsBatch = new HocSinh_Batch();
+   //      System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
+   //      System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
+   //      // System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
+   //      // System.schedule('Hoc_Sinh_Batch', '0 0 * * * ?', hsBatch);
+	// }
 
-   global Database.QueryLocator foo(Database.BatchableContext bc){
-      return Database.getQueryLocator(query);
-   }
 }

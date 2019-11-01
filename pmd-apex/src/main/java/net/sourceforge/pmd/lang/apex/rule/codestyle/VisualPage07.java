@@ -8,10 +8,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 /*
- * Class		: VisualPage07
- * Author		: Truong Trang Ngoc Phuc
- * Created		: 2019/10/25
- * Discription	: Trong su ly thuc hien insert, upate DB thi phai su dung savepoint de tao transaction. Truong hop tai lieu ko mo ta thi confirm lai giup.
+ * @class		: VisualPage07
+ * @created		: 2019/10/25 Truong Trang Ngoc Phuc
+ * @discription	: Trong su ly thuc hien insert, upate DB thi phai su dung savepoint de tao transaction. Truong hop tai lieu ko mo ta thi confirm lai giup.
+ * @modified	:
  */
 public class VisualPage07 extends AbstractApexRule {
 	@Override

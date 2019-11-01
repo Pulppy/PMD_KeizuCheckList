@@ -5,11 +5,16 @@ import java.util.List;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
-
+/*
+ * Batch08
+ * @created 		: 2019/10/31 Truong Trang Ngoc Phuc
+ * @discription		: Trong batch ko the dang ki dc nhieu schedule chu y
+ * @modified		:
+ */
 public class Batch08 extends AbstractApexRule{
 	private static final String STR_BATCH = "Batch";
 	private static final String SYSTEM_SCHEDULE = "system.schedule";
-	private static final int MAX_NO_SCHEDULE = 2;
+	private static final int MAX_NO_SCHEDULE = 1;
 	@Override
 	public Object visit(ASTUserClass node, Object data) {
 		List<String> interfaceNameList = node.getInterfaceNames();

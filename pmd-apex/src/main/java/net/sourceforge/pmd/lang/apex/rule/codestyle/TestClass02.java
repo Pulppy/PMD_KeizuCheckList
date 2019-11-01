@@ -6,12 +6,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTModifierNode;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 /*
- * @class:  MustUseTestStartTestStopInTestMethod
- * @created by: KSVC Truong Trang Ngoc Phuc
- * @created date:  2019/09/30
- * 
- * 
- * 
+ * @class		: TestClass02
+ * @created		: 2019/09/30 Truong Trang Ngoc Phuc
+ * @discription	: Phai su dung method Test.startTest(), Test.testStop de giam governor limits khi thuc thi test
+ * @modified	:
  */
 public class TestClass02 extends AbstractApexRule {
 	private static final String START_TEST = "Test.startTest";
