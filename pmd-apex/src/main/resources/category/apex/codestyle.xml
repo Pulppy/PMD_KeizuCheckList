@@ -213,6 +213,7 @@
 	@decription: Ten bien bang chu thuong, tu chu thu 2 tro di phai viet hoa chu dau tien
 	@modified:
 -->
+<!--
 	<rule name="Check-List-General-15"
 		since="5.6.0"
 		message="[General-15] Khong duoc thiet lap bien class, bien  instance o trang thai public"
@@ -227,7 +228,7 @@
 			]]>
 		</example>
 	</rule>
-
+-->
 <!--
 	General_18
 	@created: 2019/10/12 Lu Chi Hao
@@ -640,4 +641,86 @@
 		<priority>3</priority>
 	</rule>
 
+<!--
+	TestClass_01
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Trong file test ko duoc su dung @isTest(see = allData)
+	@modified:
+-->
+	<rule name="Check-List-TestClass-01"
+			since="5.5.0"
+		message="[TestClass-01] Trong file test ko duoc su dung @isTest(see = allData)"
+		class="net.sourceforge.pmd.lang.apex.rule.bestpractices.ApexUnitTestShouldNotUseSeeAllDataTrueRule">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_02
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Phai su dung method Test.startTest(), Test.testStop de giam governor limits khi thuc thi test
+	@modified:
+-->
+	<rule name="Check-List-TestClass-02"
+			since="5.5.0"
+		message="[TestClass-02] Phai su dung method Test.startTest(), Test.testStop de giam governor limits khi thuc thi test"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass02">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_06
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Ten testClass phai la dang ten controler + "Test". Truong hop trong tai lieu co ghi khac thi confirm lai voi nguoi viet tai lieu
+	@modified:
+-->
+	<rule name="Check-List-TestClass-06"
+			since="5.5.0"
+		message="[TestClass-06] Ten testClass phai la dang ten controler + Test. Truong hop trong tai lieu co ghi khac thi confirm lai voi nguoi viet tai lieu"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass06">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_07
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Ten method test phai bat dau va chu test + Method muon test.
+	@modified:
+-->
+	<rule name="Check-List-TestClass-07"
+			since="5.5.0"
+		message="[TestClass-07] Ten method test phai bat dau va chu test + Method muon test."
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass07">
+		<priority>3</priority>
+		<example>
+			<![CDATA[
+				testSubString()
+			]]>
+		</example>
+	</rule>
+
+<!--
+	TestClass_08
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Khong duoc hardcode ID trong testclass
+	@modified:
+-->
+	<rule name="Check-List-TestClass-08"
+			since="5.5.0"
+		message="[TestClass-08] Khong duoc hardcode ID trong testclass"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass08">
+		<priority>3</priority>
+	</rule>
+
+<!--
+	TestClass_08
+	@created: 2019/10/12 Lu Chi Hao
+	@decription: Khong duoc hardcode ID trong testclass
+	@modified:
+-->
+	<rule name="Check-List-TestClass-08.2"
+			since="5.5.0"
+		message="[TestClass-08] Khong duoc hardcode ID trong testclass"
+		class="net.sourceforge.pmd.lang.apex.rule.codestyle.TestClass08v2">
+		<priority>3</priority>
+	</rule>
 </ruleset>
