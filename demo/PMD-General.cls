@@ -62,6 +62,27 @@ public class PMDGeneral{
 	// }
 
 	//=========================================================================================
+/*
+	* general11
+	* @created: 2019/10/31 Truong Trang Ngoc Phuc
+	* @decription: Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
+	* @modified:
+*/
+	// private final TEN = 10;
+	// private void general11(){
+	// 	String str = 'aaa';
+	// 	if (str == 'bb'){
+	// 	} else if (str != 'bb') {}
+
+	// 	Integer i = 0;
+	// 	while (i > 10){}
+	// 	for (Integer k = 2; k < 10; k++){}
+
+	// 	while (i > TEN){}
+	// 	for (Integer j = 1; j < TEN; j++){}
+	// }
+
+	//=========================================================================================
 
 /*
 	* general12
@@ -435,27 +456,27 @@ public class PMDGeneral{
 	* @decription: Trong source controller, test class, page KO HARDCODE page 'apex/confirm' ma thay the bang cach Page.Confirm
 	* @modified: 
 	*/
-    private PageReference page() {
-		try{
-			String url = 'url';
-			String link;
-			String unsafeLocation = ApexPage.getCurrentPage().getParameters.get(link);
-			link = '/apex/Detail';
-			PageReference pe = new PageReference(unsafeLocation);
-			PageReference pr = new PageReference('link');
-			PageReference pg = new PageReference(link);
-			PageReference p;
-			p = new PageReference(link);
-			return new PageReference(unsafeLocation);
-			return pr;
-			return pe;
-			return pg;
-			return p;
-		} catch(Exception ex){
+    // private PageReference page() {
+	// 	try{
+	// 		String url = 'url';
+	// 		String link;
+	// 		String unsafeLocation = ApexPage.getCurrentPage().getParameters.get(link);
+	// 		link = '/apex/Detail';
+	// 		PageReference pe = new PageReference(unsafeLocation);
+	// 		PageReference pr = new PageReference('link');
+	// 		PageReference pg = new PageReference(link);
+	// 		PageReference p;
+	// 		p = new PageReference(link);
+	// 		return new PageReference(unsafeLocation);
+	// 		return pr;
+	// 		return pe;
+	// 		return pg;
+	// 		return p;
+	// 	} catch(Exception ex){
 
-		}
+	// 	}
         
-    }
+    // }
 
 	//=========================================================================================
 
