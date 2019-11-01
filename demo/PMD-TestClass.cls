@@ -39,14 +39,16 @@ private class PMDTestClassTest {
 	* @decription: Ten method test phai bat dau va chu test + Method muon test. Vidu: testSubString()
 	* @modified:
 */
-    // private static testMethod void method07() {
-    //     Test.startTest();
-    //     Test.stopTest();
-    // }
-    // private static testMethod void testMethod07() {
-    //     Test.startTest();
-    //     Test.stopTest();
-    // }
+    private static testMethod void method07() {
+        Test.startTest();
+        Test.stopTest();
+        System.assertEquals();
+    }
+    private static testMethod void testaaMethod07() {
+        Test.startTest();
+        Test.stopTest();
+        System.assertEquals();
+    }
 
     // =================================================================
 
@@ -59,9 +61,9 @@ private class PMDTestClassTest {
     // private static testMethod void testMethod08() {
     //     String strID01;
     //     strID01 = '04i6D0000007A1EQAU';
-    //     String strID02 = '04i6D0000007A1EQAU';
+    //     String strID02 = '0016D0000007A1EQAU';
 
-    //     String name = 'TrangNgocPhucTruog';
+    //     String name = '001TrangNgocPhucTr';
     //     Test.startTest();
     //     Test.stopTest();
     //     System.assertEquals();

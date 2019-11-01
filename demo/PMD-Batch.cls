@@ -42,7 +42,7 @@ global class PMDBatch implements Database.Batchable<sObject>, Schedulable{
 
    global Database.QueryLocator start(Database.BatchableContext bc){
       // return foo();
-      return Database.getQueryLocator(strQuery);
+      // return Database.getQueryLocator(strQuery);
       // return [SELECT Id FROM HocSinh__c];
    }
    global Database.QueryLocator foo(Database.BatchableContext bc){
@@ -52,6 +52,9 @@ global class PMDBatch implements Database.Batchable<sObject>, Schedulable{
    global void execute(Database.BatchableContext bc, List<sObject> scope){
       [SELECT Id FROM HocSinh__c];
       Database.query();
+      Database.getQueryLocator();
+   }
+   global void finish(Database.BatchableContext bc) {
       Database.getQueryLocator();
    }
    /*

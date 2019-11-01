@@ -24,12 +24,12 @@ public class PMDGeneral{
 	* @decription: Trong xu ly, những method hoặc funtion public phai co try catch de xu ly loi.
 	* @modified:
 */
-	public List<HocSinh__c> lstHocSinh_Page {get; set;}
-	public void general02(){
-	    // try{
+	// public List<HocSinh__c> lstHocSinh_Page {get; set;}
+	// public void general02(){
+	//     // try{
 
-	    // }catch(Exception e){}
-	}
+	//     // }catch(Exception e){}
+	// }
 
 	//=========================================================================================
 /*
@@ -436,16 +436,25 @@ public class PMDGeneral{
 	* @modified: 
 	*/
     private PageReference page() {
-         PageReference p = new PageReference(url);
-        String url = 'url';
-        String link;
-        String unsafeLocation = ApexPage.getCurrentPage().getParameters.get(link);
-        PageReference p = new PageReference(url);
-        link = '/apex/Detail';
+		try{
+			String url = 'url';
+			String link;
+			String unsafeLocation = ApexPage.getCurrentPage().getParameters.get(link);
+			link = '/apex/Detail';
+			PageReference pe = new PageReference(unsafeLocation);
+			PageReference pr = new PageReference('link');
+			PageReference pg = new PageReference(link);
+			PageReference p;
+			p = new PageReference(link);
+			return new PageReference(unsafeLocation);
+			return pr;
+			return pe;
+			return pg;
+			return p;
+		} catch(Exception ex){
 
-        PageReference pr = new PageReference(link);
-        PageReference p = new PageReference(link);
-        return Page.Confim;
+		}
+        
     }
 
 	//=========================================================================================
@@ -471,7 +480,10 @@ public class PMDGeneral{
 */
 	// private PageReference visualPage18(){
 	// 	// try{
+	// 	// 	return new PageReference();
 	// 	// } catch (Exception ex) {
+		
 	// 	// }
+	// 	return new PageReference();
 	// }
 }
