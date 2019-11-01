@@ -13,6 +13,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.ASTWhileLoopStatement;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class General24 extends AbstractApexRule {
 	
 	@Override

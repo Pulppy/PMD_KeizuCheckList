@@ -10,6 +10,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.AbstractApexNode;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class TestClass08 extends AbstractApexRule {
     private static final Pattern PATTERN = Pattern.compile("^[a-zA-Z0-9]{5}[0][a-zA-Z0-9]{9,12}$", Pattern.CASE_INSENSITIVE);
     private List<String> idList = new ArrayList<>();

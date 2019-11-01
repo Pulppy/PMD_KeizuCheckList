@@ -8,6 +8,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTVariableDeclaration;
 import net.sourceforge.pmd.lang.apex.ast.ASTVariableExpression;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class General10 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTVariableDeclaration node, Object data) {

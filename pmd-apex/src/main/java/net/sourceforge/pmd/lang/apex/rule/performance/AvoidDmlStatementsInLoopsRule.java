@@ -4,6 +4,10 @@
 
 package net.sourceforge.pmd.lang.apex.rule.performance;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

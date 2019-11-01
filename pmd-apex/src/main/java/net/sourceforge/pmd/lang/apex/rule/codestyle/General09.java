@@ -4,6 +4,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTField;
 import net.sourceforge.pmd.lang.apex.ast.ASTVariableDeclaration;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class General09 extends  AbstractApexRule {
 	//kiem tra bien class kieu boolean co bat dau bang is hay has
 	@Override

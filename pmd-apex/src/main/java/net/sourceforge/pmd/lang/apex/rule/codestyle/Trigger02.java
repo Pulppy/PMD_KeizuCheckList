@@ -10,6 +10,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTReferenceExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserTrigger;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class Trigger02 extends AbstractApexRule {
 	@Override
 	public Object visit(ASTUserTrigger node, Object data) {

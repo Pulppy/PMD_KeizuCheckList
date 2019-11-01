@@ -11,6 +11,10 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class General19 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTField node, Object data) {

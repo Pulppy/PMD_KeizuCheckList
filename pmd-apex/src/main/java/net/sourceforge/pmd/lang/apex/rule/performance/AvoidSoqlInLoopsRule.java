@@ -20,6 +20,10 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 import net.sourceforge.pmd.lang.ast.AbstractNode;
 import net.sourceforge.pmd.lang.ast.Node;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class AvoidSoqlInLoopsRule extends AbstractApexRule {
 
 //    public AvoidSoqlInLoopsRule() {

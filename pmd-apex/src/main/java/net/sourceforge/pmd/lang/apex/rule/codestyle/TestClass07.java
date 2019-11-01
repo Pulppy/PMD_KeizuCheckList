@@ -11,6 +11,10 @@ import net.sourceforge.pmd.lang.apex.ast.ASTModifierNode;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
+/*
+* @created: Lu Chi Hao
+*/
+
 public class TestClass07 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTMethod node, Object data) {

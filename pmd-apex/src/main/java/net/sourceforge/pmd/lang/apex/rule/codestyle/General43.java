@@ -8,6 +8,9 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+* @created: Lu Chi Hao
+*/
 
 public class General43 extends AbstractApexRule{
 	@Override
