@@ -40,17 +40,14 @@ public class General53 extends AbstractApexRule {
 						addViolation(data, parentNewObj, "line 40");
 						ASTVariableDeclaration parentVarDec = parentNewObj.getFirstParentOfType(ASTVariableDeclaration.class);
 						if(parentVarDec != null) {
-//							addViolation(data, parentVarDec, "line 43" + parentVarDec.getImage());// parentVarDec
 							// 2029/11/01 start
 							// Kiem tra return co tra ve cai bien hard code ko
 							String variableName_Direct = "";
 							for (ASTReturnStatement returnStm : returnStmList) {
 								ASTVariableExpression returnVarExp = returnStm.getFirstChildOfType(ASTVariableExpression.class);
-//									addViolationWithMessage(data, returnStm, returnVarExp.getImage() + " -line 94- " + varExp.getImage());
 								if (returnVarExp != null) {
 									if (returnVarExp.getImage().contentEquals(parentVarDec.getImage()) 
 											&& !parentVarDec.getImage().contentEquals(variableName_Direct)) {
-//										addViolationWithMessage(data, returnStm, returnVarExp.getImage() + " --- " + variableName_NonDirect);
 										addViolation(data, returnStm);
 										variableName_Direct = returnVarExp.getImage();
 									}
@@ -73,7 +70,6 @@ public class General53 extends AbstractApexRule {
 					
 					if (childVarExp != null) {
 						String varName = childVarExp.getImage();
-//							addViolationWithMessage(data, childVarExp, "childVarExp: " + varName);
 						List<ASTVariableDeclaration> varDecList = node.findDescendantsOfType(ASTVariableDeclaration.class);
 						List<ASTAssignmentExpression> assExpList = node.findDescendantsOfType(ASTAssignmentExpression.class);
 						if (!varDecList.isEmpty()) {
@@ -108,16 +104,13 @@ public class General53 extends AbstractApexRule {
 										// 2029/11/01 start
 										ASTVariableDeclaration varDec = newObj.getFirstParentOfType(ASTVariableDeclaration.class);
 										if (varDec != null) {
-//											addViolationWithMessage(data, varDec, "line 111 " +  varDec.getImage());
 											// Kiem tra return co tra ve cai bien hard code ko
 											String variableName = "";
 											for (ASTReturnStatement returnStm : returnStmList) {
 												ASTVariableExpression returnVarExp = returnStm.getFirstChildOfType(ASTVariableExpression.class);
-//													addViolationWithMessage(data, returnStm, returnVarExp.getImage() + " -line 94- " + varExp.getImage());
 												if (returnVarExp != null) {
 													if (returnVarExp.getImage().contentEquals(varDec.getImage()) 
 															&& !varExp.getImage().contentEquals(variableName)) {
-//														addViolationWithMessage(data, returnStm, returnVarExp.getImage() + " --- " + variableName_NonDirect);
 														addViolation(data, returnStm);
 														variableName = returnVarExp.getImage();
 													}
@@ -130,11 +123,9 @@ public class General53 extends AbstractApexRule {
 								// Kiem tra return co tra ve cai bien hard code ko
 								for (ASTReturnStatement returnStm : returnStmList) {
 									ASTVariableExpression returnVarExp = returnStm.getFirstChildOfType(ASTVariableExpression.class);
-//										addViolationWithMessage(data, returnStm, returnVarExp.getImage() + " -line 94- " + varExp.getImage());
 									if (returnVarExp != null) {
 										if (returnVarExp.getImage().contentEquals(varExp.getImage()) 
 												&& !varExp.getImage().contentEquals(variableName_NonDirect)) {
-//											addViolationWithMessage(data, returnStm, returnVarExp.getImage() + " --- " + variableName_NonDirect);
 											addViolation(data, returnStm);
 											variableName_NonDirect = returnVarExp.getImage();
 										}
@@ -149,14 +140,6 @@ public class General53 extends AbstractApexRule {
 							}
 						}
 					}
-//					// 2019/11/01 start
-//					ASTVariableDeclaration parentVarDec = newObj.getFirstParentOfType(ASTVariableDeclaration.class);
-//					if (parentVarDec != null) {
-//						addViolationWithMessage(data, newObj, "line 78: " + parentVarDec.getImage());
-//					} else {
-//						addViolationWithMessage(data, newObj, "line 78 null");
-//					}
-//					// 2019/11/01 end
 				}
 			}
 		}
