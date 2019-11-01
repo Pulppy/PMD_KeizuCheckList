@@ -24,7 +24,7 @@ public class General11 extends  AbstractApexRule {
 			if(!ele.getFirstParentOfType(ASTMethod.class).getImage().contentEquals("<clinit>")) {
 				if(ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()) {
 					lst1.add(ele);
-				}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()){
+				}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty() && !ele.isNull()){
 					lst2.add(ele);
 				}
 			}
