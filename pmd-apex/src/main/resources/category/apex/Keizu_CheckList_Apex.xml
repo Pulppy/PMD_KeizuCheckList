@@ -110,6 +110,7 @@
 	@decription: Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet
 	@modified:
 -->
+<!--
 	<rule name="Check-List-General-8"
 		since="5.6.0"
 		message="[General-8] Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet"
@@ -120,6 +121,7 @@
 			]]>
 		</example>
 	</rule>
+-->
 
 <!--
 	General_09
