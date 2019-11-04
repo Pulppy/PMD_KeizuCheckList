@@ -22,9 +22,12 @@ public class General11 extends  AbstractApexRule {
 		List<ASTLiteralExpression> lst2 = new ArrayList<>();
 		for(ASTLiteralExpression ele : lst0) {
 			if(!ele.getFirstParentOfType(ASTMethod.class).getImage().contentEquals("<clinit>")) {
-				if(ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()) {
+				if(ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()
+						&& !ele.getImage().contentEquals("")) {
 					lst1.add(ele);
-				}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty() && !ele.isNull()){
+				}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty() && !ele.isNull()
+						&& !ele.getLiteralType().equals("TRUE") && !ele.getLiteralType().equals("FALSE")
+						&& !ele.getImage().contentEquals("0")){
 					lst2.add(ele);
 				}
 			}
