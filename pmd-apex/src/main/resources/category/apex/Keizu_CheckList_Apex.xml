@@ -163,7 +163,7 @@
 	<rule name="Check-List-Geneneral-11"
 		since="5.6.0"
 		message="[General-11] Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
-					Vi du: public final Integer COLUMN_DATE = 0; //実績日付 "
+					Vi du: public final Integer COLUMN_DATE = 0;"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General11">
 		<priority>3</priority>
 		<example>
