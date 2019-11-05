@@ -26,8 +26,7 @@ public class General11 extends  AbstractApexRule {
 						&& !ele.getImage().contentEquals("")) {
 					lst1.add(ele);
 				}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty() && !ele.isNull()
-						&& !ele.getLiteralType().equals("TRUE") && !ele.getLiteralType().equals("FALSE")
-						&& !ele.getImage().contentEquals("0")){
+						&& !ele.isBoolean()	&& !ele.getImage().contentEquals("0")){
 					lst2.add(ele);
 				}
 			}
