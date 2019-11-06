@@ -28,6 +28,12 @@ public class General02 extends AbstractNamingConventionsRule{
 			return data;
 		}
 		
+		if(node.getImage().length() > 7) {
+			if(node.getImage().substring(0, 7).contentEquals("__sfdc_")) {
+				return data;
+			}
+		}
+		
 		//Neu ham public check xem ca ham co duoc try catch boc khong
 		if(node.getModifiers().isPublic()) {
 			if (node.findChildrenOfType(ASTBlockStatement.class).isEmpty()) {
