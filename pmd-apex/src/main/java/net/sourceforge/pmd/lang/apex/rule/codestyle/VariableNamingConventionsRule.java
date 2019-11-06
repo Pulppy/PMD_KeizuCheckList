@@ -20,7 +20,9 @@ import net.sourceforge.pmd.lang.apex.ast.ASTVariableDeclarationStatements;
 import net.sourceforge.pmd.lang.apex.ast.ApexNode;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 import net.sourceforge.pmd.properties.PropertyDescriptor;
-
+/*
+ * @modified		: 2019/11/06 Truong Trang Ngoc Phuc
+ * */
 @Deprecated
 public class VariableNamingConventionsRule extends AbstractApexRule {
 
@@ -194,6 +196,13 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
                         "[General-16] Bien binh thuong ky tu dau tien viet thuong, ko duoc su dung \"_\" ");
             }
             if (Character.isUpperCase(varName.charAt(0))) {
+            // 2019/11/06 Truong Trang Ngoc Phuc add start
+            // Khong kiem tra ten bien loai Database.BatchableContext
+            	ASTParameter param = (ASTParameter)node;
+            	if (param.getType().toLowerCase().contentEquals("database.batchablecontext")) {
+            		return data;
+            	}
+            // 2019/11/06 Truong Trang Ngoc Phuc add end
                 addViolationWithMessage(data, node,
                         "[General-13] Ten bien bang chu thuong, tu chu thu 2 tro di phai viet hoa chu dau tien");
             }
