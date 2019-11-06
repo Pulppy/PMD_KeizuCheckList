@@ -131,7 +131,7 @@
 -->
 	<rule name="Check-List-General-9"
 		since="5.6.0"
-		message="[General-9] Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has….de dat ten bien"
+		message="[General-9] Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has... de dat ten bien"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General09">
 		<priority>3</priority>
 		<example>
