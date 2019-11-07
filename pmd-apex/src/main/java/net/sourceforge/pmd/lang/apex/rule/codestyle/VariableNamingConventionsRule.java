@@ -198,10 +198,12 @@ public class VariableNamingConventionsRule extends AbstractApexRule {
             if (Character.isUpperCase(varName.charAt(0))) {
             // 2019/11/06 Truong Trang Ngoc Phuc add start
             // Khong kiem tra ten bien loai Database.BatchableContext
-            	ASTParameter param = (ASTParameter)node;
-            	if (param.getType().toLowerCase().contentEquals("database.batchablecontext")) {
-            		return data;
-            	}
+        	// 2019/11/07 Truong Trang Ngoc Phuc delete end	
+//            	ASTParameter param = (ASTParameter)node;
+//            	if (param.getType().toLowerCase().contentEquals("database.batchablecontext")) {
+//            		return data;
+//            	}
+        	// 2019/11/07 Truong Trang Ngoc Phuc delete end	
             // 2019/11/06 Truong Trang Ngoc Phuc add end
                 addViolationWithMessage(data, node,
                         "[General-13] Ten bien bang chu thuong, tu chu thu 2 tro di phai viet hoa chu dau tien");
