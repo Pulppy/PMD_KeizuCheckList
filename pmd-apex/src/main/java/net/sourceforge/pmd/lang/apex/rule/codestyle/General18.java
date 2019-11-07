@@ -356,7 +356,6 @@ public class General18 extends AbstractApexRule {
 
 		// Ghep list vao lam mot
 		List<Node> listNode = addList(listLit, listVar, listMeth);
-
 		// Tao list chua cac dong ma cac param truyen vao chiem
 		List<Integer> listLine = new ArrayList<Integer>();
 		for (Node ele : listNode) {
@@ -370,12 +369,18 @@ public class General18 extends AbstractApexRule {
 		// Tao list chua cac node chung hang
 		List<Node> listNode2 = new ArrayList<>();
 		for (Integer line : listLine) {
+			listNode2 =  new ArrayList<>();
 			// Dua nhung param chung ham vao listNode2
 			for (Node ele : listNode) {
 				if (ele.getBeginLine() == line) {
 					listNode2.add(ele);
 				}
 			}
+			
+			if(listNode2.size() == 1) {
+				continue;
+			}
+			
 			int level;
 
 			listNode2 = organize(listNode2);
