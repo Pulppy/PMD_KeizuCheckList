@@ -12,7 +12,7 @@
 */
 // global class PMDBatc implements Database.Batchable<sObject>, Schedulable{
 global class PMDBatch implements Database.Batchable<sObject>, Schedulable{
-
+    private Boolean ko{get; set}
     /*
 	 * Batch-03
 	 * @created: 2019/10/30 Truong Trang Ngoc Phuc
@@ -41,8 +41,9 @@ global class PMDBatch implements Database.Batchable<sObject>, Schedulable{
 	*/
 
    global Database.QueryLocator start(Database.BatchableContext bc){
+       Boolean o;
       // return foo();
-      // return Database.getQueryLocator(strQuery);
+      return Database.getQueryLocator(strQuery);
       // return [SELECT Id FROM HocSinh__c];
    }
    global Database.QueryLocator foo(Database.BatchableContext bc){

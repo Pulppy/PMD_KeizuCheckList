@@ -32,12 +32,13 @@ public class Batch08 extends AbstractApexRule{
 		if (isBatch) {
 			List<ASTMethodCallExpression> methodCallList = node.findDescendantsOfType(ASTMethodCallExpression.class);
 			for (ASTMethodCallExpression methodCall : methodCallList) {
-				if (methodCall.getFullMethodName().equalsIgnoreCase(SYSTEM_SCHEDULE)) {
+				if (methodCall.getFullMethodName().toLowerCase().contentEquals(SYSTEM_SCHEDULE)) {
 					noSchedule++;
+					if (noSchedule > MAX_NO_SCHEDULE) {
+						addViolation(data, methodCall);	
+					}
 				}
-				if (noSchedule > MAX_NO_SCHEDULE) {
-					addViolation(data, methodCall);	
-				}
+				
 			}
 		}
 		

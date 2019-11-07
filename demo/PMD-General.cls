@@ -49,17 +49,17 @@ public class PMDGeneral{
 	* @modified:
 */
 
-	// private static Boolean isTest1;
-	// // private static Boolean Test1;
-	// private void general09(){
-	//     isTest1 = true;
-	// 	// Test1 = false;
-	//     Boolean hasTest2 = false;
-	//     if(test2){}
-	// }
-	// private void test(){
-	//     isTest1 = false;
-	// }
+	private static Boolean sTest1;
+	// private static Boolean Test1;
+	private void general09(){
+	    isTest1 = true;
+		// Test1 = false;
+	    Boolean hasTest2 = false;
+	    if(test2){}
+	}
+	private void test(){
+	    isTest1 = false;
+	}
 
 	//=========================================================================================
 /*

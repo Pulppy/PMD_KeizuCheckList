@@ -8,6 +8,7 @@ import net.sourceforge.pmd.lang.apex.ast.ASTField;
 import net.sourceforge.pmd.lang.apex.ast.ASTLiteralExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
+import net.sourceforge.pmd.lang.apex.ast.ASTVariableDeclarationStatements;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 
 /*
@@ -23,10 +24,10 @@ public class General11 extends  AbstractApexRule {
 		for(ASTLiteralExpression ele : lst0) {
 			if(!ele.getFirstParentOfType(ASTMethod.class).getImage().contentEquals("<clinit>")) {
 				if(ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty()
-						&& !ele.getImage().contentEquals("")) {
+						&& !ele.getImage().contentEquals("") && ele.getFirstParentOfType(ASTVariableDeclarationStatements.class) == null) {
 					lst1.add(ele);
 				}else if(!ele.isString() && ele.getParentsOfType(ASTField.class).isEmpty() && !ele.isNull()
-						&& !ele.isBoolean()	&& !ele.getImage().contentEquals("0")){
+						&& !ele.isBoolean()	&& !ele.getImage().contentEquals("0") && ele.getFirstParentOfType(ASTVariableDeclarationStatements.class) == null){
 					lst2.add(ele);
 				}
 			}

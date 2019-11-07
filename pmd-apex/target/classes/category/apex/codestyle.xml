@@ -110,7 +110,6 @@
 	@decription: Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet
 	@modified:
 -->
-<!--
 	<rule name="Check-List-General-8"
 		since="5.6.0"
 		message="[General-8] Khi khai bao bien phai chu y den scope cua bien. Khong khai bao bien public khi khong can thiet"
@@ -121,7 +120,6 @@
 			]]>
 		</example>
 	</rule>
--->
 
 <!--
 	General_09
@@ -131,7 +129,7 @@
 -->
 	<rule name="Check-List-General-9"
 		since="5.6.0"
-		message="[General-9] Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has... de dat ten bien"
+		message="[General-9] Dat ten cac bien sao cho de dung, de nho. Su dung cac tu nhu is, has….de dat ten bien"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General09">
 		<priority>3</priority>
 		<example>
@@ -163,7 +161,7 @@
 	<rule name="Check-List-Geneneral-11"
 		since="5.6.0"
 		message="[General-11] Thuc hien khai bao bang Constant nhung bien su dung nhieu lan.
-					Vi du: public final Integer COLUMN_DATE = 0;"
+					Vi du: public final Integer COLUMN_DATE = 0; //実績日付 "
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.General11">
 		<priority>3</priority>
 		<example>
@@ -396,7 +394,7 @@
 		since="5.5.0"
 		message="[General-26] Trong cau dieu kien if khong duoc long vao nhau , khong nen long phuc tap"
 		class="net.sourceforge.pmd.lang.apex.rule.design.AvoidDeeplyNestedIfStmtsRule"
-		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
 		<priority>3</priority>
 	</rule>
 
@@ -475,7 +473,7 @@
 		since="5.5.0"
 		message="[General-46] Trong xu ly loop khong duoc su dung SOQL, SOSL"
 		class="net.sourceforge.pmd.lang.apex.rule.performance.AvoidSoqlInLoopsRule"
-		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_performance.html#avoidsoqlinloops">
+		externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_apex_performance.html#avoidsoqlinloops">
 		<priority>3</priority>
 	</rule>
 
@@ -612,7 +610,7 @@
 		since="5.5.0"
 		message="[VisualPage-06] Khi thuc hien xu ly loi thi uu tien su dung FATAL, neu tai lieu ko ghi thi xac nhan lai giup"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage06"
-		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
 		<priority>3</priority>
 	</rule>
 
@@ -626,7 +624,7 @@
 		since="5.5.0"
 		message="[VisualPage-18] Nhung method nao return la Pagereference thi phai co try cacth"
 		class="net.sourceforge.pmd.lang.apex.rule.codestyle.VisualPage18"
-		externalInfoUrl="${pmd.website.baseurl}/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
+		externalInfoUrl="https://pmd.github.io/pmd/pmd_rules_apex_design.html#avoiddeeplynestedifstmts">
 		<priority>3</priority>
 	</rule>
 

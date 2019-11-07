@@ -14,6 +14,7 @@ import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTSoqlExpression;
 import net.sourceforge.pmd.lang.apex.ast.ASTSoslExpression;
+import net.sourceforge.pmd.lang.apex.ast.ASTStandardCondition;
 import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.ast.ASTWhileLoopStatement;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
@@ -108,6 +109,11 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     	}
     	//Lap list chua tat ca method duoc goi trong loop
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	for(ASTMethodCallExpression ele : lst1) {
+    		if(ele.getParentsOfType(ASTStandardCondition.class).size() !=  0) {
+    			lst1.remove(ele);
+    		}
+    	}
     	
     	//Neu khong co method nao duoc goi thi khong xet nua
     	if(lst1.isEmpty()) {
@@ -269,7 +275,14 @@ public class AvoidSoqlInLoopsRule extends AbstractApexRule {
     	if(lstMethodWithSOQL.isEmpty()) {
     		return data;
     	}
+    	
     	List<ASTMethodCallExpression> lst1 = node.findDescendantsOfType(ASTMethodCallExpression.class);
+    	if(node.jjtGetChild(0) instanceof ASTMethodCallExpression ) {
+    		if(lst1.contains(node.jjtGetChild(0))) {
+    			lst1.remove(node.jjtGetChild(0));
+    		}
+    	}
+    	
     	if(lst1.isEmpty()) {
     		return data;
     	}
