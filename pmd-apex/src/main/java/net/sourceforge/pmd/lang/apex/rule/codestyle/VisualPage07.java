@@ -6,6 +6,7 @@ import net.sourceforge.pmd.lang.apex.ast.ASTDmlInsertStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTDmlUpdateStatement;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethod;
 import net.sourceforge.pmd.lang.apex.ast.ASTMethodCallExpression;
+import net.sourceforge.pmd.lang.apex.ast.ASTUserClass;
 import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 /*
  * @class		: VisualPage07
@@ -16,6 +17,9 @@ import net.sourceforge.pmd.lang.apex.rule.AbstractApexRule;
 public class VisualPage07 extends AbstractApexRule {
 	@Override
 	public Object visit(ASTMethod node, Object data) {
+		if(node.getFirstParentOfType(ASTUserClass.class).getModifiers().isTest()) {
+			return data;
+		}
 		List<ASTDmlInsertStatement> insertStmList = node.findDescendantsOfType(ASTDmlInsertStatement.class);
 		List<ASTDmlUpdateStatement> updateStmList = node.findDescendantsOfType(ASTDmlUpdateStatement.class);
 		// Neu ko co DML trong method thi ket thuc

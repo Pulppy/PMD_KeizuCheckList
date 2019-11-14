@@ -64,6 +64,11 @@ public class General18 extends AbstractApexRule {
 						break;
 					}
 				} else {
+					if(listNode2.get(i + 1).getType().length() > 3) {
+						if(listNode2.get(i + 1).getType().substring(0,3).toLowerCase().contentEquals("map")) {
+							continue;
+						}
+					}
 					if ((listNode2.get(i).getEndColumn() + 4 + listNode2.get(i + 1).getType().length()) != listNode2
 							.get(i + 1).getBeginColumn()) {
 						addViolation(data, listNode2.get(i + 1));
