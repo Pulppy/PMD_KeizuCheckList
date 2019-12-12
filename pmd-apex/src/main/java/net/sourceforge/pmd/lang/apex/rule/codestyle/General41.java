@@ -28,8 +28,8 @@ public class General41 extends AbstractApexRule{
 		if(variableName.length() <= 3) {
 			return data;
 		}else if(!variableName.substring(0, 3).contentEquals("lst")
-				|| !variableName.substring(0, 4).contentEquals("list")
-				|| !variableName.substring(variableName.length() - 4).contentEquals("List")) {
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")) {
 			return data;
 		}
 		
@@ -81,8 +81,8 @@ public class General41 extends AbstractApexRule{
 		if(variableName.length() <= 3) {
 			return data;
 		}else if(!variableName.substring(0, 3).contentEquals("lst")
-				|| !variableName.substring(0, 4).contentEquals("list")
-				|| !variableName.substring(variableName.length() - 4).contentEquals("List")) {
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")) {
 			return data;
 		}
 		ASTIfBlockStatement ifNode = node.getFirstParentOfType(ASTIfBlockStatement.class);
@@ -118,8 +118,8 @@ public class General41 extends AbstractApexRule{
 		if(variableName.length() <= 3) {
 			return data;
 		}else if(!variableName.substring(0, 3).contentEquals("lst")
-				|| !variableName.substring(0, 4).contentEquals("list")
-				|| !variableName.substring(variableName.length() - 4).contentEquals("List")) {
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")) {
 			return data;
 		}
 		ASTIfBlockStatement ifNode = node.getFirstParentOfType(ASTIfBlockStatement.class);
@@ -155,8 +155,8 @@ public class General41 extends AbstractApexRule{
 		if(variableName.length() <= 3) {
 			return data;
 		}else if(!variableName.substring(0, 3).contentEquals("lst")
-				|| !variableName.substring(0, 4).contentEquals("list")
-				|| !variableName.substring(variableName.length() - 4).contentEquals("List")) {
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")) {
 			return data;
 		}
 		ASTIfBlockStatement ifNode = node.getFirstParentOfType(ASTIfBlockStatement.class);
