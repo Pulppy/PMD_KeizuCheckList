@@ -478,7 +478,9 @@ public class General18 extends AbstractApexRule {
 	private Boolean support(Node aftNode, Node bfrNode, Object data, int level) {
 		if (aftNode.hasDescendantOfType(ASTReferenceExpression.class)) {
 			// Get prefix
-			ASTReferenceExpression nodeTemp = aftNode.getFirstDescendantOfType(ASTReferenceExpression.class);
+//			ASTReferenceExpression nodeTemp = aftNode.getFirstDescendantOfType(ASTReferenceExpression.class);
+			List<ASTReferenceExpression> listNodeTemp = aftNode.findDescendantsOfType(ASTReferenceExpression.class);
+			ASTReferenceExpression nodeTemp = listNodeTemp.get(listNodeTemp.size() - 1);
 			if (nodeTemp.getBeginColumn() < aftNode.getEndColumn()) {
 				if (bfrNode.getEndColumn() + 3 + level + 2 != nodeTemp.getBeginColumn()) {
 					addViolation(data, aftNode);
@@ -501,14 +503,16 @@ public class General18 extends AbstractApexRule {
 
 	private Boolean support2(Node aftNode, Node bfrNode, Object data, int level) {
 		if (aftNode.hasDescendantOfType(ASTReferenceExpression.class)) {
-			ASTReferenceExpression nodeTemp = aftNode.getFirstDescendantOfType(ASTReferenceExpression.class);
+//			ASTReferenceExpression nodeTemp = aftNode.getFirstDescendantOfType(ASTReferenceExpression.class);
+			List<ASTReferenceExpression> listNodeTemp = aftNode.findDescendantsOfType(ASTReferenceExpression.class);
+			ASTReferenceExpression nodeTemp = listNodeTemp.get(listNodeTemp.size() - 1);
 			if (nodeTemp.getBeginColumn() < aftNode.getEndColumn()) {
 				if (bfrNode.getEndColumn() + 3 + level + 1 != nodeTemp.getBeginColumn()) {
 					addViolation(data, aftNode);
 					return true;
 				}
 			} else {
-				if (bfrNode.getEndColumn() + 3 + level + 1 != aftNode.getBeginColumn()) {
+				if (bfrNode.getEndColumn() + 3 + level + 1 != nodeTemp.getBeginColumn()) {
 					addViolation(data, aftNode);
 					return true;
 				}
