@@ -28,7 +28,7 @@ public class General18 extends AbstractApexRule {
 		// Tao list chua cac node con la param truyen vao ham
 		List<ASTParameter> listNode = node.findChildrenOfType(ASTParameter.class);
 		if (listNode.isEmpty()) {
-			call(node, data);
+//			call(node, data);
 			return data;
 		}
 		// Tao list chua cac hang ma param chiem
@@ -77,7 +77,7 @@ public class General18 extends AbstractApexRule {
 				break;
 			}
 		}
-		call(node, data);
+//		call(node, data);
 		return data;
 	}
 
