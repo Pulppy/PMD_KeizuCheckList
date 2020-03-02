@@ -25,6 +25,14 @@ public class General41 extends AbstractApexRule{
 		
 		//Lay ten cua bien duoc thuc hien DML
 		String variableName = node.getFirstDescendantOfType(ASTVariableExpression.class).getImage();
+		if(variableName.length() <= 3) {
+			return data;
+		}else if(!variableName.substring(0, 3).contentEquals("lst")
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")
+				&& !variableName.substring(variableName.length() - 3).contentEquals("Lst")) {
+			return data;
+		}
 		
 		//Kiem if dau tien bao boc cau DML
 		ASTIfBlockStatement ifNode = node.getFirstParentOfType(ASTIfBlockStatement.class);
@@ -71,6 +79,14 @@ public class General41 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTDmlDeleteStatement node, Object data) {
 		String variableName = node.getFirstDescendantOfType(ASTVariableExpression.class).getImage();
+		if(variableName.length() <= 3) {
+			return data;
+		}else if(!variableName.substring(0, 3).contentEquals("lst")
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")
+				&& !variableName.substring(variableName.length() - 3).contentEquals("Lst")) {
+			return data;
+		}
 		ASTIfBlockStatement ifNode = node.getFirstParentOfType(ASTIfBlockStatement.class);
 		if(ifNode == null) {
 			addViolation(data, node);
@@ -101,6 +117,14 @@ public class General41 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTDmlInsertStatement node, Object data) {
 		String variableName = node.getFirstDescendantOfType(ASTVariableExpression.class).getImage();
+		if(variableName.length() <= 3) {
+			return data;
+		}else if(!variableName.substring(0, 3).contentEquals("lst")
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")
+				&& !variableName.substring(variableName.length() - 3).contentEquals("Lst")) {
+			return data;
+		}
 		ASTIfBlockStatement ifNode = node.getFirstParentOfType(ASTIfBlockStatement.class);
 		if(ifNode == null) {
 			addViolation(data, node);
@@ -131,6 +155,14 @@ public class General41 extends AbstractApexRule{
 	@Override
 	public Object visit(ASTDmlUpsertStatement node, Object data) {
 		String variableName = node.getFirstDescendantOfType(ASTVariableExpression.class).getImage();
+		if(variableName.length() <= 3) {
+			return data;
+		}else if(!variableName.substring(0, 3).contentEquals("lst")
+				&& !variableName.substring(0, 4).contentEquals("list")
+				&& !variableName.substring(variableName.length() - 4).contentEquals("List")
+				&& !variableName.substring(variableName.length() - 3).contentEquals("Lst")) {
+			return data;
+		}
 		ASTIfBlockStatement ifNode = node.getFirstParentOfType(ASTIfBlockStatement.class);
 		if(ifNode == null) {
 			addViolation(data, node);
